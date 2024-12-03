@@ -5,238 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Greta Zu</title>
   <link rel="icon" href="./assets/favicon.ico" type="image/x-icon"></link>
-  <style>
-    * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    }
-
-    body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
-    }
-
-    .container {
-    width: 80%;
-    margin: 0 auto;
-    }
-
-    .interests-row {
-    display: flex;
-    flex-wrap: wrap; /* Ensures responsive wrapping */
-    gap: 20px; /* Space between items */
-    justify-content: center; /* Center items horizontally */
-    }
-    .portfolio-item {
-    flex: 1 1 calc(25% - 20px); /* Each item takes 25% width, minus the gap */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    }
-    .portfolio-item img {
-    max-width: 100%;
-    height: auto; /* Maintain aspect ratio */
-    border-radius: 8px; /* Optional: Rounded corners */
-    margin-bottom: 10px;
-    }
-    .portfolio-item p {
-    font-size: 1rem;
-    margin: 0;
-    }
-
-    #about {
-        margin-top: 30px;
-    }
-
-    header {
-    background-color: #5f7d9c;
-    color: white;
-    text-align: center;
-    padding: 50px 0;
-    }
-
-    header h1 {
-    font-size: 3rem;
-    margin-bottom: 10px;
-    }
-
-    header p {
-    font-size: 1.2rem;
-    }
-
-    section {
-    padding: 20px 0;
-    }
-
-    h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    color: #2c3e50;
-    }
-
-    ul {
-    list-style: none;
-    padding: 0;
-    }
-
-    ul li {
-    font-size: 1.1rem;
-    margin-bottom: 10px;
-    }
-
-    .project-card {
-    background-color: #ece5f5;
-    border: 1px solid #ddd;
-    padding: 20px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    text-align: center;
-    }
-
-    .project-card-research {
-    background-color: #e5edf5;
-    border: 1px solid #ddd;
-    padding: 20px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    text-align: center;
-    }
-
-    .project-card h3, .project-card-research h3 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    }
-
-    .project-card p, .project-card-research p {
-    font-size: 1.1rem;
-    margin-bottom: 10px;
-    }
-
-    .project-card a, .project-card-research a {
-    color: #3b2453;
-    text-decoration: none;
-    font-weight: bold;
-    }
-
-    .project-card a:hover, .project-card-research a:hover {
-    text-decoration: underline;
-    }
-
-    .social-links a {
-    margin-right: 20px;
-    color: #3498db;
-    text-decoration: none;
-    }
-
-    .social-links a:hover {
-    text-decoration: underline;
-    }
-
-    .nav-bar {
-    text-align: center;
-    margin-top: 20px;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    }
-    .nav-bar a {
-    margin-right: 20px;
-    color: white;
-    text-decoration: none;
-    }
-    .nav-bar a:hover {
-    text-decoration: underline;
-    }
-
-    /* Style the progress container */
-    .progress-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 8px; /* Thickness of the progress bar */
-    background: #f3f3f3; /* Background color of the progress container */
-    z-index: 1000; /* Ensures it's always visible */
-    }
-
-    /* Style the progress bar */
-    #progress {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    appearance: none; /* Remove default styles */
-    background: transparent;
-    }
-
-    #progress::-webkit-progress-bar {
-    background: #b9b9d1; /* Background of the progress bar track */
-    }
-
-    #progress::-webkit-progress-value {
-    background: #b186dc; /* Color of the progress fill */
-    }
-
-    #progress::-moz-progress-bar {
-    background: #b186dc; 
-    }
-
-
-    footer {
-    background-color: #5f7d9c;
-    color: white;
-    text-align: center;
-    padding: 20px;
-    margin-top: 50px;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-    .container {
-        width: 90%;
-    }
-    .portfolio-item {
-        flex: 1 1 calc(50% - 20px); /* Two items per row */
-    }
-    #about .container {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    #about img {
-        margin-bottom: 20px;
-    }
-
-    header h1 {
-        font-size: 2.5rem;
-    }
-
-    header p {
-        font-size: 1rem;
-    }
-
-    h2 {
-        font-size: 1.5rem;
-    }
-
-    .project-card {
-        padding: 15px;
-    }
-
-    .social-links a {
-        margin-right: 10px;
-    }
-    }
-    @media (max-width: 480px) {
-    .portfolio-item {
-        flex: 1 1 100%; /* One item per row */
-    }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
   <!-- Header Section -->
@@ -245,7 +15,7 @@
       <h1>Greta Ru-Mei Zu</h1>
       <p style="color: #e7e7e7c2;">Computer Science Student at McGill University</p>
     <!-- Navigation bar -->
-    <nav class="nav-bar">
+    <div id="nav-bar">
         <a href="#about">About Me</a>
         <a href="#socials">Socials</a>
         <a href="#skills">Skills</a>
@@ -253,7 +23,7 @@
         <a href="#education">Education</a>
         <a href="#experience">Experience</a>
         <a href="#Interests">Interests</a>
-    </nav>
+    </div>
     </div>
   </header>
   <!-- Scrolling Progress Bar -->
@@ -306,10 +76,13 @@
     <div class="container">
       <h2>Find Me On</h2>
       <div class="social-links">
+        <i class="fa fa-github"></i>
         <a href="https://github.com/zu-greta" target="_blank">GitHub</a>
+        <i class="fa fa-linkedin"></i>
         <a href="https://www.linkedin.com/in/greta-ru-mei-zu/" target="_blank">LinkedIn</a>
+        <i class="fa fa-envelope"></i>
         <a href="mailto:gretarm.zu@gmail.com" target="_blank">Email</a>
-        <!--CV pdf in assets folder-->
+        <i class="fa fa-file"></i>
         <a href="assets/Greta_Zu_CV.pdf" target="_blank">CV</a>
       </div>
     </div>
