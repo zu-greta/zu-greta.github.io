@@ -1,10 +1,489 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title> Greta Zu </title>
-        <link rel="stylesheet" type="text/css" href="style.css">
-    </head>
-    <body>
-        <h1> Greta Zu </h1>
-    </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Greta Zu</title>
+  <style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    }
+
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    }
+
+    .container {
+    width: 80%;
+    margin: 0 auto;
+    }
+
+    .interests-row {
+    display: flex;
+    flex-wrap: wrap; /* Ensures responsive wrapping */
+    gap: 20px; /* Space between items */
+    justify-content: center; /* Center items horizontally */
+    }
+    .portfolio-item {
+    flex: 1 1 calc(25% - 20px); /* Each item takes 25% width, minus the gap */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    }
+    .portfolio-item img {
+    max-width: 100%;
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 8px; /* Optional: Rounded corners */
+    margin-bottom: 10px;
+    }
+    .portfolio-item p {
+    font-size: 1rem;
+    margin: 0;
+    }
+
+    #about {
+        margin-top: 30px;
+    }
+
+    header {
+    background-color: #5f7d9c;
+    color: white;
+    text-align: center;
+    padding: 50px 0;
+    }
+
+    header h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    }
+
+    header p {
+    font-size: 1.2rem;
+    }
+
+    section {
+    padding: 20px 0;
+    }
+
+    h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #2c3e50;
+    }
+
+    ul {
+    list-style: none;
+    padding: 0;
+    }
+
+    ul li {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    }
+
+    .project-card {
+    background-color: #ece5f5;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+    }
+
+    .project-card-research {
+    background-color: #e5edf5;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+    }
+
+    .project-card h3, .project-card-research h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    }
+
+    .project-card p, .project-card-research p {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    }
+
+    .project-card a, .project-card-research a {
+    color: #3b2453;
+    text-decoration: none;
+    font-weight: bold;
+    }
+
+    .project-card a:hover, .project-card-research a:hover {
+    text-decoration: underline;
+    }
+
+    .social-links a {
+    margin-right: 20px;
+    color: #3498db;
+    text-decoration: none;
+    }
+
+    .social-links a:hover {
+    text-decoration: underline;
+    }
+
+    .nav-bar {
+    text-align: center;
+    margin-top: 20px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    }
+    .nav-bar a {
+    margin-right: 20px;
+    color: white;
+    text-decoration: none;
+    }
+    .nav-bar a:hover {
+    text-decoration: underline;
+    }
+
+    /* Style the progress container */
+    .progress-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 8px; /* Thickness of the progress bar */
+    background: #f3f3f3; /* Background color of the progress container */
+    z-index: 1000; /* Ensures it's always visible */
+    }
+
+    /* Style the progress bar */
+    #progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    appearance: none; /* Remove default styles */
+    background: transparent;
+    }
+
+    #progress::-webkit-progress-bar {
+    background: #b9b9d1; /* Background of the progress bar track */
+    }
+
+    #progress::-webkit-progress-value {
+    background: #b186dc; /* Color of the progress fill */
+    }
+
+    #progress::-moz-progress-bar {
+    background: #b186dc; 
+    }
+
+
+    footer {
+    background-color: #5f7d9c;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+    .portfolio-item {
+        flex: 1 1 calc(50% - 20px); /* Two items per row */
+    }
+    #about .container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    #about img {
+        margin-bottom: 20px;
+    }
+
+    header h1 {
+        font-size: 2.5rem;
+    }
+
+    header p {
+        font-size: 1rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .project-card {
+        padding: 15px;
+    }
+
+    .social-links a {
+        margin-right: 10px;
+    }
+    }
+    @media (max-width: 480px) {
+    .portfolio-item {
+        flex: 1 1 100%; /* One item per row */
+    }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Section -->
+  <header>
+    <div class="container">
+      <h1>Greta Ru-Mei Zu</h1>
+      <p style="color: #e7e7e7c2;">Computer Science Student at McGill University</p>
+    <!-- Navigation bar -->
+    <nav class="nav-bar">
+        <a href="#about">About Me</a>
+        <a href="#socials">Socials</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#education">Education</a>
+        <a href="#experience">Experience</a>
+        <a href="#Interests">Interests</a>
+    </nav>
+    </div>
+  </header>
+  <!-- Scrolling Progress Bar -->
+  <progress id="progress" value="0" max="100"></progress>
+
+  <div style="height: 5px;">
+  </div>
+    <script>
+      document.addEventListener("scroll", () => {
+      const progressBar = document.getElementById("progress");
+      const maxScroll = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const currentScroll = window.scrollY;
+
+      // Update the progress bar value
+      progressBar.value = currentScroll;
+
+      // Optionally, adjust max value dynamically
+      progressBar.max = maxScroll;
+      });
+    </script>
+
+  <!-- About Me Section -->
+  <section id="about">
+    <div class="container" style="display: flex; align-items: center; gap: 20px;">
+        <!-- Image Section -->
+        <div style="flex-shrink: 0;">
+            <img src="./assets/Linkedin-3.jpg" alt="Greta's Profile Picture" style="width: 150px; height: auto; border-radius: 10%;">
+        </div>
+        <!-- Text Section -->
+        <div>
+            <h2>About Me</h2>
+            <p>
+                Hi! I'm Greta and I am a 3rd-year undergraduate student at McGill University, majoring in Computer Science. 
+                <br>
+                I am passionate about software development and machine learning, and I am always looking for opportunities to learn and grow in the field.
+                <br>
+                Currently, I am volunteering in 
+                <a href="https://www.cs.mcgill.ca/~jvybihal/index.php">Professor Vybihal's lab at McGill University</a>, working on a project 
+                involving overcoming data collection on TikTok and analyzing the gender differences, eating disorders, and conspiracy 
+                theories pushed by TikTok's algorithm.
+            </p>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Social Links Section -->
+  <section id="socials">
+    <div class="container">
+      <h2>Find Me On</h2>
+      <div class="social-links">
+        <a href="https://github.com/zu-greta" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/greta-ru-mei-zu/" target="_blank">LinkedIn</a>
+        <a href="mailto:gretarm.zu@gmail.com" target="_blank">Email</a>
+        <!--CV pdf in assets folder-->
+        <a href="assets/Greta_Zu_CV.pdf" target="_blank">CV</a>
+      </div>
+    </div>
+  </section>
+
+   <!-- Skills Section -->
+   <section id="skills">
+    <div class="container">
+      <h2>Skills</h2>
+      <ul>
+        <li>Programming Languages: Python, Java, C, Bash, Javascript, PHP, OCaml, MIPS</li>
+        <li>Markeup and Frontend: HTML, CSS, Swift, React</li>
+        <li>Databases: SQL, DB2, MariaDB</li>
+        <li>Frameworks & Tools: Django, JUnit, JavaFX, Git, Linux, Pandas</li>
+        <li>Web stacks: XAMPP, MERN</li>
+        <li>IDE/Tools: Visual Studio Code, IntelliJ IDEA, PyCharm, Jupyter Notebook</li>
+        <li>Languages: English and French (both native fluency)</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects">
+    <div class="container">
+      <h2>Projects</h2>
+      <div class="project-card">
+        <h3>Artificial Intelligence Agent</h3>
+        <p>Develop an agent that can play and win against a random agent, a human
+            agent and other agents in a game of Colosseum Survival. Using techniques
+            such as Monte Carlo Tree Search, A* Search and heuristics to efficiently make
+            decisions and win against any opponent. </p>
+        <a href="https://github.com/zu-greta/424project" target="_blank">Code</a>
+      </div>
+      <div class="project-card">
+        <h3>CodeJam14 Hackathon MealMates mobile application</h3>
+        <p>Develop a full-stack mobile app - MealMates - that allows users to swipe
+            through food images from restaurants near them and curate a list of
+            interested restaurants as well as match with friends on similar restaurants to
+            try out together. The frontend uses React-Nave and the backend is
+            developed with Django-rest and SQLite database.</p>
+        <a href="https://youtube.com/shorts/2nAD9EJrNGw?si=f1xnBtyIwjq76qlM" target="_blank">Demo ||</a>
+        <a href="https://devpost.com/software/fooder-zx98kt" target="_blank">Devpost ||</a>
+        <a href="https://github.com/denis-tsariov/codejam14" target="_blank">Code</a>
+      </div>
+      <div class="project-card">
+        <h3>Database Systems Booking application</h3>
+        <p>Design an application for a travelling agency, where users can book flights,
+            hotels or rent cars. Created relational schemas, E/R diagrams, SQL queries
+            and used JDBC (Java) to provide a database and funcons to navigate and use it.  </p>
+        <a href="https://github.com/zu-greta/comp421" target="_blank">Code</a>
+      </div>
+      <div class="project-card">
+        <h3>Web Development Booking Tool for McGill SOCS</h3>
+        <p>Full-stack web development project creang a booking tool for school staff
+            and students. The frontend is created using HTML, CSS and Javascript, and
+            the backend is developed with Django and a SQLite database hosted on the
+            McGill SOCS servers. </p>
+        <a href="https://github.com/zu-greta/socs_sisters">Code</a>
+        </div>
+        <div class="project-card">
+            <h3>Operating Systems simulation project</h3>
+            <p>Using C programming language, create an operang system simulaon
+                including a shell, memory management and lesystem management. </p>
+            <a href="https://github.com/zu-greta/comp310">Code</a>
+        </div>
+        <div class="project-card">
+            <h3>Calendar/Reminder mobile application (in progress personal project)</h3>
+            <p>Develop an iOs Calendar and ToDo list application using SwuitUI and XCode.
+                The goal is to compare functionalies between iOs and macOs, using a
+                database, and looking at possibilies of syncing between devices.  </p>
+            <a href="https://github.com/zu-greta/calendar">Code</a>
+        </div>
+
+    </br>
+    <hr>
+    </br>
+
+    <div class="project-card-research">
+        <h3>TikTok algorithm Analysis Research project - Under supervision of Professor Joseph Vybihal</h3>
+        <p>Overcoming web scraping data barriers from TikTok using bots and bypassing
+            biases from the algorithm. Analyzing the data to see the different treatment
+            towards user gender, food negative and positive contents and the biases that
+            come with that.  </p>
+    </div>
+
+    </div>
+  </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <div class="container">
+        <h2>Education</h2>
+        <blockquote> <b style="font-size: 1.2rem;">McGill University</b> 
+            <ul>
+                <li> <b style="font-size: 1rem;">Bachelor of Science in Computer Science</b> (August 2022 - June 2026 expected)</li>
+                <li><b style="font-size: 1rem;">cGPA: </b> 3.80/4.0</li>
+                <li><b style="font-size: 1rem;">Relevant courses: </b>Algorithm and Data structures, Artificial Intelligence, 
+                    Programming languages and Paradigms, Software Design, Operating Systems, 
+                    Algorithm Design, Database Systems, Web Development, Data Science, Distributed systems
+                </li>
+                <li><b style="font-size: 1rem;">Awards: </b> Alma Mater Scholarship</li>
+            </ul>
+            </blockquote>
+        </br>
+        <hr>
+        </br>
+        </blockquote> <b style="font-size: 1.2rem;">Marianopolis College</b> 
+            <ul>
+                <li> <b style="font-size: 1rem;">DCS in Honours Health Science</b> (August 2020 - June 2022)</li>
+                <li><b style="font-size: 1rem;">R-Score: </b> 37.825</li>
+                <li><b style="font-size: 1rem;">Awards: </b>
+                    Dean's List Fall 2020 and Winter 2021
+                </li>
+            </ul>
+        </blockquote>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+        <h2>Experience</h2>
+        <ul>
+            <li> <b style="font-size: 1.2rem;">NoteTaker for Data Science course at McGill University</b> || January 2024 - Ongoing</li>
+            <li><b style="font-size: 1.2rem;">Corrector for physics course labs at Marianopolis College</b> || August 2022 - June 2023</li>
+        </ul>
+        </div>
+    </section>
+
+    <!-- Interests Section -->
+    <!-- Interests Section -->
+    <section id="interests">
+    <div class="container">
+      <h2>Interests/Hobbies</h2>
+      <div class="interests-row">
+        <div class="portfolio-item">
+          <img class="img-responsive" src="./assets/DSC_7497.JPG" alt="Dancing" height="250">
+          <p><strong>Dancing</strong><br><br>
+            I am an active dancer at <a href="https://www.instagram.com/krave_mcgill/?hl=en" target="_blank" rel="noopener">K-RAVE McGill</a> and <a href="https://www.youtube.com/@emria" target="_blank" rel="noopener">Emoria</a>.
+          </p>
+        </div>
+        <div class="portfolio-item">
+          <img class="img-responsive" src="./assets/volleyball.jpg" alt="Volleyball">
+          <p><strong>Volleyball</strong><br><br>
+            I have started playing volleyball at McGill in intramural teams this year!
+          </p>
+        </div>
+        <div class="portfolio-item">
+          <img class="img-responsive" src="./assets/GRE_0349.JPG" alt="Dragon Boat" height="250">
+          <p><strong>Dragon Boat</strong><br><br>
+            I am on the McGill DragonBoatZ team and also paddled with the UDEM Dragon boat team.
+          </p>
+        </div>
+        <div class="portfolio-item">
+          <img class="img-responsive" src="./assets/plane.jpg" alt="Travelling" height="250">
+          <p><strong>Travelling</strong><br><br>
+            I enjoy travelling to different countries and discovering local foods and culture!
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+ 
+
+  
+
+  
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 Greta Ru-Mei. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
 </html>
