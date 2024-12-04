@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Greta Zu</title>
+
   <link rel="icon" href="./assets/favicon.ico" type="image/x-icon"></link>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -14,20 +15,37 @@
     <div class="container">
       <h1>Greta Ru-Mei Zu</h1>
       <p style="color: #e7e7e7c2;">Computer Science Student at McGill University</p>
-    <!-- Navigation bar -->
-    <div id="nav-bar">
-        <a href="#about">About Me</a>
-        <a href="#socials">Socials</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#education">Education</a>
-        <a href="#experience">Experience</a>
-        <a href="#Interests">Interests</a>
     </div>
-    </div>
+
   </header>
-  <!-- Scrolling Progress Bar -->
+  <!-- Navigation bar -->
+  <div id="nav-bar">
+    <a href="#about">About Me</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#education">Education</a>
+    <a href="#experience">Experience</a>
+    <a href="#interests">Interests</a> 
+
+    <!-- Social Links -->
+    <div class="social-links">
+      <a href="https://github.com/zu-greta" target="_blank">
+        <i class="fa fa-github"></i> GitHub
+      </a>
+      <a href="https://www.linkedin.com/in/greta-ru-mei-zu/" target="_blank">
+        <i class="fa fa-linkedin"></i> LinkedIn
+      </a>
+      <a href="mailto:gretarm.zu@gmail.com" target="_blank">
+        <i class="fa fa-envelope"></i> Email
+      </a>
+      <a href="assets/Greta_Zu_CV.pdf" target="_blank">
+        <i class="fa fa-file"></i> CV
+      </a>
+    </div>
+
+    <!-- Scrolling Progress Bar -->
   <progress id="progress" value="0" max="100"></progress>
+</div>
 
   <div style="height: 5px;">
   </div>
@@ -45,12 +63,13 @@
       });
     </script>
 
+
   <!-- About Me Section -->
-  <section id="about">
+  <section id="about" class="hidden">
     <div class="container" style="display: flex; align-items: center; gap: 20px;">
         <!-- Image Section -->
         <div style="flex-shrink: 0;">
-            <img src="./assets/Linkedin-3.jpg" alt="Greta's Profile Picture" style="width: 150px; height: auto; border-radius: 10%;">
+            <img src="./assets/Linkedin-3.jpg" alt="Greta's Profile Picture" style="width: 200px; height: auto; border-radius: 10%;">
         </div>
         <!-- Text Section -->
         <div>
@@ -69,26 +88,8 @@
     </div>
 </section>
 
-
-    <!-- Social Links Section -->
-  <section id="socials">
-    <div class="container">
-      <h2>Find Me On</h2>
-      <div class="social-links">
-        <i class="fa fa-github"></i>
-        <a href="https://github.com/zu-greta" target="_blank">GitHub</a>
-        <i class="fa fa-linkedin"></i>
-        <a href="https://www.linkedin.com/in/greta-ru-mei-zu/" target="_blank">LinkedIn</a>
-        <i class="fa fa-envelope"></i>
-        <a href="mailto:gretarm.zu@gmail.com" target="_blank">Email</a>
-        <i class="fa fa-file"></i>
-        <a href="assets/Greta_Zu_CV.pdf" target="_blank">CV</a>
-      </div>
-    </div>
-  </section>
-
    <!-- Skills Section -->
-   <section id="skills">
+   <section id="skills" class="hidden">
     <div class="container">
       <h2>Skills</h2>
       <ul>
@@ -104,7 +105,7 @@
   </section>
 
   <!-- Projects Section -->
-  <section id="projects">
+  <section id="projects" class="hidden">
     <div class="container">
       <h2>Projects</h2>
       <div class="project-card">
@@ -171,7 +172,7 @@
   </section>
 
     <!-- Education Section -->
-    <section id="education">
+    <section id="education" class="hidden">
         <div class="container">
         <h2>Education</h2>
         <blockquote> <b style="font-size: 1.2rem;">McGill University</b> 
@@ -201,7 +202,7 @@
     </section>
 
     <!-- Experience Section -->
-    <section id="experience">
+    <section id="experience" class="hidden">
         <div class="container">
         <h2>Experience</h2>
         <ul>
@@ -211,9 +212,9 @@
         </div>
     </section>
 
+
     <!-- Interests Section -->
-    <!-- Interests Section -->
-    <section id="interests">
+    <section id="interests" class="hidden">
     <div class="container">
       <h2>Interests/Hobbies</h2>
       <div class="interests-row">
@@ -245,17 +246,45 @@
     </div>
   </section>
   
+  <script>
+    // Select all sections with the class "hidden"
+    const sections = document.querySelectorAll('.hidden');
 
- 
+    const options = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.3
+    };
 
-  
+    // Create a new Intersection Observer
+    const observer = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(entry => {
+        // If element is in viewport, add the 'show' class to trigger the animation
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+        // else {
+        //   entry.target.classList.remove('show');
+        // }
+      });
+    }, options);
 
-  
+    // Observe each section
+    sections.forEach(section => observer.observe(section));
+
+    document.querySelectorAll('.hidden').forEach((element)=>{
+    if(!element.id === 'nav-bar') {
+      element.classList.add('hidden');
+    }
+  });
+
+</script>
+
 
   <!-- Footer -->
   <footer>
     <div class="container">
-      <p>&copy; 2024 Greta Ru-Mei. All rights reserved.</p>
+      <p style="font-size:14px">&copy; 2024 Greta Ru-Mei Zu. All rights reserved. Last updated: December 2024. </p>
     </div>
   </footer>
 
