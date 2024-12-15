@@ -303,7 +303,11 @@
     }
     }
     @media (max-width: 480px) {
-    .portfolio-item {
-        flex: 1 1 100%; /* One item per row */
-    }
+        .portfolio-item {
+            flex: 1 1 100%; /* One item per row */
+        }
+        /* make the cards appear faster on smaller screens */
+        .hidden {
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
     }

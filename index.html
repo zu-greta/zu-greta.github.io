@@ -94,7 +94,7 @@
       <h2>Skills</h2>
       <ul>
         <li>Programming Languages: Python, Java, C, Bash, Javascript, PHP, OCaml, MIPS</li>
-        <li>Markeup and Frontend: HTML, CSS, Swift, React</li>
+        <li>Markup and Frontend: HTML, CSS, Swift, React</li>
         <li>Databases: SQL, DB2, MariaDB</li>
         <li>Frameworks & Tools: Django, JUnit, JavaFX, Git, Linux, Pandas</li>
         <li>Web stacks: XAMPP, MERN</li>
@@ -117,6 +117,15 @@
         <a href="https://github.com/zu-greta/424project" target="_blank">Code</a>
       </div>
       <div class="project-card">
+        <h3>Web Development Booking Tool for McGill SOCS</h3>
+        <p>Full-stack web development project creating a booking tool for school staff
+            and students. The webstack we used is XAMPP, where the frontend is created using HTML, 
+            CSS and Javascript, and the backend is developed with PHP and a SQLite database hosted on the
+            McGill SOCS servers. </p>
+        <a href="https://www.cs.mcgill.ca/~gzu/socs_sisters/landing" target="_blank">Website ||</a>
+        <a href="https://github.com/zu-greta/socs_sisters">Code</a>
+        </div>
+      <div class="project-card">
         <h3>CodeJam14 Hackathon MealMates mobile application</h3>
         <p>Develop a full-stack mobile app - MealMates - that allows users to swipe
             through food images from restaurants near them and curate a list of
@@ -134,14 +143,6 @@
             and used JDBC (Java) to provide a database and funcons to navigate and use it.  </p>
         <a href="https://github.com/zu-greta/comp421" target="_blank">Code</a>
       </div>
-      <div class="project-card">
-        <h3>Web Development Booking Tool for McGill SOCS</h3>
-        <p>Full-stack web development project creang a booking tool for school staff
-            and students. The frontend is created using HTML, CSS and Javascript, and
-            the backend is developed with Django and a SQLite database hosted on the
-            McGill SOCS servers. </p>
-        <a href="https://github.com/zu-greta/socs_sisters">Code</a>
-        </div>
         <div class="project-card">
             <h3>Operating Systems simulation project</h3>
             <p>Using C programming language, create an operang system simulaon
@@ -248,38 +249,51 @@
     </div>
   </section>
   
-  <script>
+<script>
+    // Define threshold values for different screen sizes
+    const largeScreenThreshold = 0.3;
+    const smallScreenThreshold = 0.1;
+  
+    // Function to get the appropriate threshold based on screen size
+    function getThreshold() {
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        return smallScreenThreshold;
+      } else {
+        return largeScreenThreshold;
+      }
+    }
+  
     // Select all sections with the class "hidden"
     const sections = document.querySelectorAll('.hidden');
-
-    const options = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.3
-    };
-
-    // Create a new Intersection Observer
+  
+    // Create a new Intersection Observer with dynamic threshold
     const observer = new IntersectionObserver(function(entries, observer) {
       entries.forEach(entry => {
         // If element is in viewport, add the 'show' class to trigger the animation
         if (entry.isIntersecting) {
           entry.target.classList.add('show');
         }
-        // else {
-        //   entry.target.classList.remove('show');
-        // }
       });
-    }, options);
-
+    }, {
+      root: null,
+      rootMargin: '0px',
+      threshold: getThreshold()
+    });
+  
     // Observe each section
     sections.forEach(section => observer.observe(section));
-
+  
     document.querySelectorAll('.hidden').forEach((element)=>{
-    if(!element.id === 'nav-bar') {
-      element.classList.add('hidden');
-    }
-  });
-
+      if(!element.id === 'nav-bar') {
+        element.classList.add('hidden');
+      }
+    });
+  
+    // Update observer threshold on window resize
+    window.addEventListener('resize', () => {
+      observer.disconnect();
+      sections.forEach(section => observer.observe(section));
+    });
 </script>
 
 
