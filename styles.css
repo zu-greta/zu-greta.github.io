@@ -44,7 +44,7 @@
         color: rgb(60, 58, 58);
         font-weight: bold;
     }
-    #nav-bar a, footer , h1{
+    #nav-bar a, footer , h1, footer p{
         color: white;
     }
 
