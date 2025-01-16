@@ -4,22 +4,64 @@
     box-sizing: border-box;
     }
 
+    /* colours */
+    #nav-bar, header, footer {
+        background-color: #4f4f51;
+        color: white;
+    }
+    body {
+        background-color: #cdcdcd;
+        color: #333;
+    }
+    #about, #skills, #projects, #education, #experience, #interests {
+        background-color: #b3b3b3;
+    }
+    .project-card, .project-card-research {
+        background-color: #a3a3a3;
+        border: 1px solid #787878;
+        color: black;
+    }
+    .project-card p, .project-card-research p, .container, ul {
+        color: rgb(59, 59, 59);
+    }
+    .project-card a:hover, .project-card-research a:hover {
+        text-decoration: underline;
+        color: #debdfc;
+    }
+    section {
+        border: 1px solid #cdcdcd;
+        color: black;
+    }
+    .container a, .social-links a {
+        color: #3498db;
+        font-weight: bold;
+    }
+    .container a:hover, #nav-bar a:hover {
+        text-decoration: underline;
+        color: #debdfc;
+    }
+    .project-card a, .project-card-research a, h2 {
+        color: rgb(60, 58, 58);
+        font-weight: bold;
+    }
+    #nav-bar a, footer , h1{
+        color: white;
+    }
+
+
     body {
     font-family: Arial, sans-serif;
-    background-color: #0d1b2a;
-    color: #333;
     scroll-behavior: smooth;
     }
 
-
     .interests-row {
     display: flex;
-    flex-wrap: wrap; /* Ensures responsive wrapping */
-    gap: 20px; /* Space between items */
-    justify-content: center; /* Center items horizontally */
+    flex-wrap: wrap; 
+    gap: 20px; 
+    justify-content: center; 
     }
     .portfolio-item {
-    flex: 1 1 calc(25% - 20px); /* Each item takes 25% width, minus the gap */
+    flex: 1 1 calc(25% - 20px); 
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -27,8 +69,8 @@
     }
     .portfolio-item img {
     max-width: 100%;
-    height: auto; /* Maintain aspect ratio */
-    border-radius: 8px; /* Optional: Rounded corners */
+    height: auto; 
+    border-radius: 8px; 
     margin-bottom: 10px;
     }
     .portfolio-item p {
@@ -52,8 +94,6 @@
     }
 
     header{
-    background-color: #1b263b;
-    color: white;
     text-align: center;
     padding: 50px 0 0 0;
     scroll-behavior: smooth;
@@ -75,7 +115,6 @@
     align-items: center;
     min-height: 50vh;
     box-sizing: border-box;
-    border: 1px solid #152331;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     margin: 10px;
@@ -85,23 +124,17 @@
     max-width: 800px;
     text-align: center;
     padding: 20px;
-    color: #e0e1dd;
-    }
-    .container {
-        color: #e0e1dd;
     }
 
     h2 {
     font-size: 2rem;
     margin-bottom: 20px;
-    color: #fff;
     }
 
 
     ul {
     list-style: none;
     padding: 0;
-    color: #e0e1dd;
     }
 
     ul li {
@@ -109,33 +142,18 @@
     margin-bottom: 10px;
     }
 
-    .container a {
-    color: #3498db;
-    }
-
-    .container a:hover {
-    text-decoration: underline;
-    color: #debdfc;
-    }
-
     .project-card {
-    background-color: #778da9;
-    border: 1px solid #9cb5db;
     padding: 20px;
     border-radius: 5px;
     margin-bottom: 20px;
     text-align: center;
-    color: white;
     }
 
     .project-card-research {
-    background-color: #778da9;
-    border: 1px solid #b6a8d7;
     padding: 20px;
     border-radius: 5px;
     margin-bottom: 20px;
     text-align: center;
-    color: white;
     }
 
     .project-card h3, .project-card-research h3 {
@@ -146,17 +164,6 @@
     .project-card p, .project-card-research p {
     font-size: 1.1rem;
     margin-bottom: 10px;
-    color: #e0e1dd;
-    }
-
-    .project-card a, .project-card-research a {
-    color: white;
-    font-weight: bold;
-    }
-
-    .project-card a:hover, .project-card-research a:hover {
-    text-decoration: underline;
-    color: #debdfc;
     }
 
     .social-links {
@@ -168,7 +175,6 @@
 
     .social-links a {
     margin-right: 20px;
-    color: #3498db;
     text-decoration: none;
     font-size: 18px;
     }
@@ -178,14 +184,12 @@
     }
 
     #nav-bar {
-    background-color: #1b263b;
     position: sticky;
     top: 0;
     overflow: hidden;
     text-align: center;
     padding-bottom: 20px;
     padding-top: 25px;
-    color: white;
     text-decoration: none;
     font-weight: bold;
     opacity: 1 !important;
@@ -193,11 +197,7 @@
     }
     #nav-bar a {
     margin-right: 20px;
-    color: white;
     text-decoration: none;
-    }
-    #nav-bar a:hover {
-    text-decoration: underline;
     }
 
     /* Style the progress container */
@@ -210,7 +210,6 @@
     background: #f3f3f3; /* Background color of the progress container */
     z-index: 1000; /* Ensures it's always visible */
     }
-
     /* Style the progress bar */
     #progress {
     position: fixed;
@@ -221,15 +220,12 @@
     appearance: none; /* Remove default styles */
     background: transparent;
     }
-
     #progress::-webkit-progress-bar {
     background: #a7c9e0; /* Background of the progress bar track */
     }
-
     #progress::-webkit-progress-value {
     background: #3498db; /* Color of the progress fill */
     }
-
     #progress::-moz-progress-bar {
     background: #3498db; 
     }
@@ -248,15 +244,8 @@
         transition:none;
     }
 
-    /* Add a background color to differentiate each section */
-    #about, #skills, #projects, #education, #experience, #interests {
-        background-color: #415a77;
-    }
-
 
     footer {
-    background-color: #1b263b;
-    color: white;
     text-align: center;
     padding: 20px;
     margin-top: 10px;
