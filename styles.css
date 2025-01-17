@@ -6,31 +6,34 @@
 
     /* colours */
     #nav-bar, header, footer {
-        background-color: #4f4f51;
+        background-color: #1b263b;
         color: white;
     }
     body {
-        background-color: #cdcdcd;
+        background-color: #0d1a2a;
         color: #333;
     }
     #about, #skills, #projects, #education, #experience, #interests {
-        background-color: #b3b3b3;
+        background-color: #415977;
     }
     .project-card, .project-card-research {
-        background-color: #a3a3a3;
-        border: 1px solid #787878;
-        color: black;
+        background-color: #778da9;
+        border: 1px solid #9cb5db;
+        color: white;
+    }
+    .project-card-research {
+        border: 1px solid #b6a8d7;
     }
     .project-card p, .project-card-research p, .container, ul {
-        color: rgb(59, 59, 59);
+        color: #d3d7d5;
     }
     .project-card a:hover, .project-card-research a:hover {
         text-decoration: underline;
         color: #debdfc;
     }
     section {
-        border: 1px solid #cdcdcd;
-        color: black;
+        border: 1px solid #2c2b2b;
+        color: white;
     }
     .container a, .social-links a {
         color: #3498db;
@@ -41,7 +44,7 @@
         color: #debdfc;
     }
     .project-card a, .project-card-research a, h2 {
-        color: rgb(60, 58, 58);
+        color: rgb(241, 241, 241);
         font-weight: bold;
     }
     #nav-bar a, footer , h1, footer p{
