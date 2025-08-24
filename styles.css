@@ -131,6 +131,22 @@ main {
     color: #ffc590;
 }
 
+.about-me {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.about-me-img img {
+  width: 200px;
+  height: auto;
+  border-radius: 10%;
+}
+
+.about-me-text {
+  text-align: left;
+}
+
 
 /* colours */
 .colour_main {
@@ -179,4 +195,49 @@ main {
 
 .colour_white {
     color: #ffffff;
+}
+
+/* for mobile */
+.hamburger {
+    display: none; /* Hidden by default, shown on mobile */
+}
+
+/* remove the sidebar for mobile */
+@media (max-width: 768px) {
+    .sidebar {
+        display: none;
+    }
+    .container {
+        flex-direction: column;
+    }
+}
+/* make the tabs responsive in hamburger fashion */
+@media (max-width: 768px) {
+    .tabs {
+        flex-direction: column;
+        position: absolute;
+        background-color: #001c40;
+        width: 100%;
+        z-index: 1000;
+        display: none;
+    }
+    .tab {
+        padding: 12px 16px;
+        border-bottom: 1px solid #003366;
+    }
+    .hamburger {
+        display: block;
+        cursor: pointer;
+    }
+}
+
+@media (max-width: 768px) {
+  .about-me {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-me-text {
+    text-align: center;
+  }
 }

@@ -62,6 +62,9 @@
         <!-- Main Content -->
         <main>
             <!-- Tabs -->
+            <div class="hamburger" style="padding: 12px 16px;">
+                <i class="fa fa-bars"></i>
+            </div>
             <div class="tabs">
                 <!-- home.txt contains everything, starting with about me section -->
                 <div class="tab active" data-target="home,about-me,contact-me,experience,skills,education">Home.txt</div>
@@ -79,30 +82,35 @@
                 <h1 style="text-align: center;" class="colour_main">Hello World, I'm Greta</h1>
             </div>
 
-            <div class="content" id="about-me" style="display: flex; align-items: center; gap: 20px;">
-                <!-- Image Section -->
-                <div style="flex-shrink: 0;">
-                    <img src="./assets/Linkedin-3.jpg" alt="Greta's Profile Picture"
-                        style="width: 200px; height: auto; border-radius: 10%;">
-                </div>
-                <!-- Text Section -->
-                <div style="text-align: left;">
-                    <h2>About Me</h2>
-                    <br>
-                    <p>
-                        Hello! I'm Greta and I am a 4th-year (final year) undergraduate student at <a
-                            href="https://www.mcgill.ca/">McGill University</a>, majoring in Computer Science.
-                        <br>
-                        I am passionate about software development and machine learning, and I am always looking for
-                        opportunities to learn and grow in the field.
-                        <br>
-                        Currently, I am volunteering in the <a href="https://sites.google.com/view/discslab">McGill DISC Lab</a>
-                        under the supervision of <a href="https://sites.google.com/view/oanabalmau">Professor Balmau</a> and 
-                        <a href="https://www.cs.mcgill.ca/~kemme/">Professor Kemme</a> working on a project about energy efficiency 
-                        in Machine Learning algorithms.
-                    </p>
-                </div>
+            <!-- About Me -->
+            <div class="content about-me" id="about-me">
+              <!-- Image Section -->
+              <div class="about-me-img">
+                <img src="./assets/Linkedin-3.jpg" alt="Greta's Profile Picture">
+              </div>
+
+              <!-- Text Section -->
+              <div class="about-me-text">
+                <h2>About Me</h2>
+                <br>
+                <p>
+                  Hello! I'm Greta and I am a 4th-year (final year) undergraduate student at 
+                  <a href="https://www.mcgill.ca/">McGill University</a>, majoring in Computer Science.
+                  <br>
+                  I am passionate about software development and machine learning, and I am always looking for
+                  opportunities to learn and grow in the field.
+                  <br>
+                  Currently, I am volunteering in the 
+                  <a href="https://sites.google.com/view/discslab">McGill DISC Lab</a>
+                  under the supervision of 
+                  <a href="https://sites.google.com/view/oanabalmau">Professor Balmau</a> and 
+                  <a href="https://www.cs.mcgill.ca/~kemme/">Professor Kemme</a> working on a project about energy efficiency 
+                  in Machine Learning algorithms.
+                </p>
+              </div>
             </div>
+
+
 
             <!-- contact me -->
             <div class="content" id="contact-me">
@@ -307,7 +315,7 @@
 
             <!-- Projects tab -->
             <div class="content colour_mainBackground" id="projectsc" style="text-align: left; display: none; padding: 20px; font-family: 'Fira Code', monospace; font-size: 0.95rem; border-radius: 10px; overflow: auto;">
-                <h2 style="text-align: center; color: #ffffff;">Projects</h2>
+                <h2 style="text-align: center;">Projects.c</h2>
                 <pre style="margin-top: 1rem; white-space: pre-wrap;">
             <span class="colur_comment">// Projects</span>
 
@@ -438,7 +446,7 @@
 
             <!-- Education tab -->
             <div class="content colour_mainBackground" id="educationjava" style="text-align: left; display: none; padding: 20px; font-family: 'Fira Code', monospace; font-size: 0.95rem;">
-                <h2 style="text-align: center; color: #ffffff;">Education</h2>
+                <h2 style="text-align: center;">Education.java</h2>
                 <pre style="margin-top: 1rem; white-space: pre-wrap;">
             <span class="colur_comment">// McGill University</span>
             <span class="colour_main">public class</span> <span class="colour_function">McGill</span> {
@@ -479,7 +487,7 @@
 
             <!-- Skills tab -->
             <div class="content colour_mainBackground" id="skillsbash" style="text-align: left; display: none; padding: 20px; font-family: 'Fira Code', monospace; font-size: 0.95rem; border-radius: 10px; overflow: auto;">
-                <h2 style="text-align: center; color: #ffffff;">Skills</h2>
+                <h2 style="text-align: center;">Skills.bash</h2>
                 <pre style="margin-top: 1rem; white-space: pre-wrap;">
             <span class="colur_comment"># Skills</span>
 
@@ -542,11 +550,9 @@
             </div>
 
 
-
-
             <!-- Interests tab -->
             <div class="content colour_mainBackground" id="interestsjson" style="text-align: left; display: none; padding: 20px; font-family: 'Fira Code', monospace; font-size: 0.95rem; border-radius: 10px;">
-                <h2 style="text-align: center; color: #ffffff;">Interests / Hobbies</h2>
+                <h2 style="text-align: center;">Interests.json</h2>
                 
                 <!-- code -->
                 <pre style="margin-top: 1rem; white-space: pre-wrap;">
@@ -656,6 +662,75 @@
 
     //TODO: add x button that closes the project tab and if clicked, the project tab will be hidden
     //TODO: unhighlight project sidebar item when x button is clicked or when on another tab
+
+    // document.addEventListener("DOMContentLoaded", function () {
+    //   const hamburger = document.querySelector(".hamburger");
+    //   const tabs = document.querySelector(".tabs");
+
+    //   // Toggle tabs when clicking hamburger
+    //   hamburger.addEventListener("click", function (e) {
+    //     e.stopPropagation(); // don’t trigger outside click close immediately
+    //     tabs.style.display = tabs.style.display === 'block' ? 'none' : 'block';
+    //   });
+
+    //   // Close tabs when clicking one
+    //   document.querySelectorAll(".tabs .tab").forEach(tab => {
+    //     tab.addEventListener("click", function () {
+    //       tabs.style.display = 'none';
+    //     });
+    //   });
+
+    //   // Close when clicking outside
+    //   document.addEventListener("click", function (e) {
+    //     if (tabs.style.display === 'block' && !tabs.contains(e.target) && !hamburger.contains(e.target)) {
+    //       tabs.style.display = 'none';
+    //     }
+    //   });
+    // });
+
+    document.addEventListener("DOMContentLoaded", function () {
+    const hamburger = document.querySelector(".hamburger");
+    const tabs = document.querySelector(".tabs");
+
+    function isMobile() {
+      return window.matchMedia("(max-width: 768px)").matches;
+    }
+
+    // Toggle tabs when clicking hamburger
+    hamburger.addEventListener("click", function (e) {
+      if (!isMobile()) return; // Only run on mobile
+      e.stopPropagation(); 
+      tabs.style.display = tabs.style.display === 'block' ? 'none' : 'block';
+    });
+
+    // Close tabs when clicking one
+    document.querySelectorAll(".tabs .tab").forEach(tab => {
+      tab.addEventListener("click", function () {
+        if (isMobile()) {
+          tabs.style.display = 'none';
+        }
+      });
+    });
+
+    // Close when clicking outside
+    document.addEventListener("click", function (e) {
+      if (
+        isMobile() &&
+        tabs.style.display === 'block' &&
+        !tabs.contains(e.target) &&
+        !hamburger.contains(e.target)
+      ) {
+        tabs.style.display = 'none';
+      }
+    });
+
+    // Reset when resizing back to desktop
+    window.addEventListener("resize", function () {
+      if (!isMobile()) {
+        tabs.style.display = ''; // reset to default (CSS handles it)
+      }
+    });
+  });
 
 
 </script>
