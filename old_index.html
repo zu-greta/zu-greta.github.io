@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Greta Zu</title>
+
+  <link rel="icon" href="./assets/favicon.ico" type="image/x-icon"></link>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+  <!-- Header Section -->
+  <header>
+    <div id="header" class="container">
+      <h1>Greta Ru-Mei Zu</h1>
+      <p style="color: #e7e7e7c2;">Computer Science Student at McGill University</p>
+    </div>
+
+  </header>
+  <!-- Navigation bar -->
+  <div id="nav-bar">
+    <a href="#about">About Me</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#education">Education</a>
+    <a href="#experience">Experience</a>
+    <a href="#interests">Interests</a> 
+
+    <!-- Social Links -->
+    <div class="social-links">
+      <a href="https://github.com/zu-greta" target="_blank">
+        <i class="fa fa-github"></i> GitHub
+      </a>
+      <a href="https://www.linkedin.com/in/greta-ru-mei-zu/" target="_blank">
+        <i class="fa fa-linkedin"></i> LinkedIn
+      </a>
+      <a href="mailto:gretarm.zu@gmail.com" target="_blank">
+        <i class="fa fa-envelope"></i> Email
+      </a>
+      <a href="assets/Greta_Zu_CV.pdf" target="_blank">
+        <i class="fa fa-file"></i> CV
+      </a>
+    </div>
+
+    <!-- Scrolling Progress Bar -->
+  <progress id="progress" value="0" max="100"></progress>
+</div>
+
+  <div style="height: 5px;">
+  </div>
+    <script>
+      document.addEventListener("scroll", () => {
+      const progressBar = document.getElementById("progress");
+      const maxScroll = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const currentScroll = window.scrollY;
+
+      // Update the progress bar value
+      progressBar.value = currentScroll;
+
+      // Optionally, adjust max value dynamically
+      progressBar.max = maxScroll;
+      });
+    </script>
+
+
+  <!-- About Me Section -->
+  <section id="about" class="hidden">
+    <div class="container" style="display: flex; align-items: center; gap: 20px;">
+        <!-- Image Section -->
+        <div style="flex-shrink: 0;">
+            <img src="./assets/Linkedin-3.jpg" alt="Greta's Profile Picture" style="width: 200px; height: auto; border-radius: 10%;">
+        </div>
+        <!-- Text Section -->
+        <div>
+            <h2>About Me</h2>
+            <p>
+                Hello! I'm Greta and I am a 4th-year (final year) undergraduate student at <a
+                href="https://www.mcgill.ca/">McGill University</a>, majoring in Computer Science.
+                <br>
+                I am passionate about software development and machine learning, and I am always looking for
+                opportunities to learn and grow in the field.
+                <br>
+                Currently, I am volunteering in the <a href="https://sites.google.com/view/discslab">McGill DISC Lab</a>
+                under the supervision of <a href="https://sites.google.com/view/oanabalmau">Professor Balmau</a> and 
+                <a href="https://www.cs.mcgill.ca/~kemme/">Professor Kemme</a> working on a project about energy efficiency 
+                in Machine Learning algorithms.
+            </p>
+        </div>
+    </div>
+</section>
+
+   <!-- Skills Section -->
+   <section id="skills" class="hidden">
+    <div class="container">
+      <h2>Skills</h2>
+      <ul>
+        <li>Programming Languages: Python, Java, C, C++, Bash, Javascript, PHP, OCaml, MIPS</li>
+        <li>Markup and Frontend: HTML, CSS, Swift, React</li>
+        <li>Databases: SQL, DB2, MariaDB</li>
+        <li>Frameworks & Tools: Django, JUnit, JavaFX, Git, Linux, Pandas</li>
+        <li>Web stacks: XAMPP, MERN</li>
+        <li>IDE/Tools: Visual Studio Code, IntelliJ IDEA, PyCharm, Jupyter Notebook</li>
+        <li>Languages: English and French (both native fluency)</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="hidden">
+    <div class="container">
+      <h2>Projects</h2>
+      <div class="project-card">
+        <h3>Artificial Intelligence Agent [Nov 2023 - Dec 2023]</h3>
+        <p>Develop an agent that can play and win against a random agent, a human
+            agent and other agents in a game of Colosseum Survival. Using techniques
+            such as Monte Carlo Tree Search, A* Search and heuristics to efficiently make
+            decisions and win against any opponent. </p>
+        <a href="https://github.com/zu-greta/424project" target="_blank">Code</a> || 
+        <!-- <a href="ai.html">Game</a> -->
+        <a href="assets/424Report.pdf" target="_blank">Report</a>
+        </br></br>
+        <hr style="border: 1px solid #9cb5db;">
+        <p style="font-size: 0.9rem; color:#9cb5db; text-align: left;">Python</p>
+      </div>
+      <div class="project-card">
+        <h3>SOC-cessful Schedule Booking Tool [Nov 2024 - Jan 2025]</h3>
+        <p>Full-stack web development project creating a booking tool for school staff
+            and students. The webstack we used is XAMPP, where the frontend is created using HTML, 
+            CSS and Javascript, and the backend is developed with PHP and a SQLite3 database hosted on the
+            McGill SOCS servers. </p>
+        <a href="https://www.cs.mcgill.ca/~gzu/socs_sisters/landing" target="_blank">Website</a> ||
+        <a href="https://github.com/zu-greta/socs_sisters">Code</a> ||
+        <a href="https://youtu.be/ZxdcFvYHAKo?si=WddSmUicHZD8O6qh">Demo</a>
+      </br></br>
+      <hr style="border: 1px solid #9cb5db;">
+      <p style="font-size: 0.9rem; color:#9cb5db; text-align: left;">HTML/CSS, Javascript, PHP, XAMPP, SQLite3, SQL</p>
+        </div>
+      <div class="project-card">
+        <h3>Travelling Agency Management System and Booking application [Feb 2024 - Jan 2025]</h3>
+        <p>Designed an application for a travelling agency, where users can book flights,
+            hotels or rent cars. Created relational schemas, E/R diagrams, SQL queries
+            and used JDBC (Java) to provide a database and functions to navigate and use it.  </p>
+        <a href="https://github.com/zu-greta/comp421" target="_blank">Code</a>
+      </br></br>
+      <hr style="border: 1px solid #9cb5db;">
+      <p style="font-size: 0.9rem; color:#9cb5db; text-align: left;">Java, JDBC, E/R diagrams, SQL, DB2</p>
+      </div>
+      <div class="project-card">
+        <h3>Compiler for Mini-C [Jan 2025 - Present]</h3>
+        <p>Create a compiler using Java for Mini-C language (a subset of C), including a lexer, a parser, semantics analysis, 
+          translation to MIPS, and object oriented features. </p>
+        <a href="https://github.com/zu-greta/comp520_2024" target="_blank">Code</a>
+      </br></br>
+      <hr style="border: 1px solid #9cb5db;">
+      <p style="font-size: 0.9rem; color:#9cb5db; text-align: left;">Java, C, MIPS</p>
+      </div>
+        <div class="project-card">
+            <h3>Operating Systems simulation project [Jan 2024 - Mar 2024]</h3>
+            <p>Using C programming language, create an operating system simulaon
+                including a shell, memory management and lesystem management. </p>
+            <a href="https://github.com/zu-greta/comp310">Code</a>
+          </br></br>
+          <hr style="border: 1px solid #9cb5db;">
+          <p style="font-size: 0.9rem; color:#9cb5db; text-align: left;">C, Bash, Docker</p>
+        </div>
+        <div class="project-card">
+          <h3>HackMcWics25 Hackathon BCV website [2025]</h3>
+          <p>Develop a full-stack web-app - BCV (best CV) - that allows users to enter information about 
+            projects, past employements, skills and extracurriculars, as well as a job description, 
+            and using Gemini API the generator will create a single-paged CV tailored to the job requirements
+            based on the user's skills in order of relevance. The frontend uses React and Tailwind CSS, with Next.JS routing
+             and the backend is developed with Drizzle and Postgres database. We used Gemini API for the AI 
+            generation and SERP API for the job board posting carousel</p>
+          <a href="https://youtu.be/TeJMOojokRM?si=M3tr0oGHdgZCmjvG" target="_blank">Demo</a> ||
+          <a href="https://devpost.com/software/bcv-hackmcwics25" target="_blank">Devpost</a> ||
+          <a href="https://github.com/DavidNitchi/McWICS25" target="_blank">Code</a>
+        </br></br>
+        <hr style="border: 1px solid #9cb5db;">
+        <p style="font-size: 0.9rem; color:#9cb5db; text-align: left;">REACT, Tailwind CSS, HTML/CSS, Javascript, APIs, Drizzle, Next.js</p>
+        </div>
+      <div class="project-card">
+        <h3>CodeJam14 Hackathon MealMates mobile application [2024]</h3>
+        <p>Develop a full-stack mobile app - MealMates - that allows users to swipe
+            through food images from restaurants near them and curate a list of
+            interested restaurants as well as match with friends on similar restaurants to
+            try out together. The frontend uses React-Native and the backend is
+            developed with Django-rest and SQLite3 database.</p>
+        <a href="https://youtube.com/shorts/2nAD9EJrNGw?si=f1xnBtyIwjq76qlM" target="_blank">Demo</a> ||
+        <a href="https://devpost.com/software/fooder-zx98kt" target="_blank">Devpost</a> ||
+        <a href="https://github.com/denis-tsariov/codejam14" target="_blank">Code</a>
+      </br></br>
+      <hr style="border: 1px solid #9cb5db;">
+      <p style="font-size: 0.9rem; color:#9cb5db; text-align: left;">Python, Django-rest, SQLite3, SQL, Javascript, Typescript, REACT-native, Tailwind</p>
+      </div>
+        <div class="project-card">
+            <h3>Calendar/Reminder mobile application [July 2024 - Present]</h3>
+            <p>Develop an iOs Calendar and ToDo list application using SwuitUI and XCode.
+                The goal is to compare functionalies between iOs and macOs, using a
+                database, and looking at possibilies of syncing between devices.  </p>
+            <a href="https://github.com/zu-greta/calendar">Code</a>
+          </br></br>
+          <hr style="border: 1px solid #9cb5db;">
+          <p style="font-size: 0.9rem; color:#9cb5db; text-align: left;">Swuift, SwuitUI</p>
+        </div>
+
+    </br>
+    <hr>
+    </br>
+
+    <div class="project-card-research">
+        <h3>TikTok Impact on Society Analysis Research project - Under supervision of Professor Joseph Vybihal [Sep 2024 - Dec 2024]</h3>
+        <p>Overcoming web scraping data barriers from TikTok using bots and bypassing
+            biases from the algorithm. Analyzing the data to see the different treatment
+            towards user gender, food negative and positive contents and the biases that
+            come with that. 
+        </p>
+        <a href="assets/Tik_Tok_Research_Project.pdf">Report</a> 
+    </div>
+    <div class="project-card-research">
+      <h3>Depression and Eating Disorders [Jan 2022 - April 2022]</h3>
+      <p> Researched the correlation between eating disorders and depression, determining whether there is a link 
+        between the two in terms of impact and risks. Also analyzed if the treatment for major depressive disorders,
+        more specifically, antidepressants, functions or can be beneficial to eating disorders such as anorexia nervosa and bulimia nervosa.
+      </p>
+      <a href="assets/eating_disorders_depression.pdf">Report</a> ||
+      <a href="assets/eating_disorders_depression_presentation.pdf">Presentation</a>
+  </div>
+
+    </div>
+  </section>
+
+    <!-- Education Section -->
+    <section id="education" class="hidden">
+        <div class="container">
+        <h2>Education</h2>
+        <blockquote> <b style="font-size: 1.2rem;">McGill University</b> 
+            <ul>
+                <li> <b style="font-size: 1rem;">Bachelor of Science in Computer Science</b> (August 2022 - June 2026 expected)</li>
+                <li><b style="font-size: 1rem;">cGPA: </b> 3.83/4.0</li>
+                <li><b style="font-size: 1rem;">Relevant courses: </b>Algorithm and Data structures, Artificial Intelligence, 
+                    Programming languages and Paradigms, Software Design, Operating Systems, 
+                    Algorithm Design, Database Systems, Web Development, Data Science, Distributed systems, Compiler Design,
+                    Machine Learning, Intro to C++
+                </li>
+                <li><b style="font-size: 1rem;">Awards: </b> Alma Mater Scholarship</li>
+            </ul>
+            </blockquote>
+        </br>
+        <hr>
+        </br>
+        </blockquote> <b style="font-size: 1.2rem;">Marianopolis College</b> 
+            <ul>
+                <li> <b style="font-size: 1rem;">DCS in Honours Health Science</b> (August 2020 - June 2022)</li>
+                <li><b style="font-size: 1rem;">R-Score: </b> 37.825</li>
+                <li><b style="font-size: 1rem;">Awards: </b>
+                    Dean's List Fall 2020 and Winter 2021
+                </li>
+            </ul>
+        </blockquote>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="hidden">
+        <div class="container">
+        <h2>Experience</h2>
+        <ul>
+            <li> <b style="font-size: 1.2rem;">NoteTaker for Data Science course at McGill University</b> || January 2024 - Ongoing</li>
+            <li><b style="font-size: 1.2rem;">Corrector for physics course labs at Marianopolis College</b> || August 2022 - June 2023</li>
+        </ul>
+        </div>
+    </section>
+
+
+    <!-- Interests Section -->
+    <section id="interests" class="hidden">
+    <div class="container">
+      <h2>Interests/Hobbies</h2>
+      <div class="interests-row">
+        <div class="portfolio-item">
+          <img class="img-responsive" src="./assets/dance.JPG" alt="Dancing" height="250">
+          <p><strong>Dancing</strong><br><br>
+            I am an active dancer at <a href="https://www.instagram.com/krave_mcgill/?hl=en" target="_blank" rel="noopener">K-RAVE McGill</a> and <a href="https://www.youtube.com/@emria" target="_blank" rel="noopener">Emoria</a>.
+          </p>
+        </div>
+        <div class="portfolio-item">
+          <img class="img-responsive" src="./assets/volleyball.jpg" alt="Volleyball">
+          <p><strong>Volleyball</strong><br><br>
+            I have started playing volleyball at McGill in intramural teams this year!
+          </p>
+        </div>
+        <div class="portfolio-item">
+          <img class="img-responsive" src="./assets/db.JPG" alt="Dragon Boat" height="250">
+          <p><strong>Dragon Boat</strong><br><br>
+            I am on the McGill DragonBoatZ team and also paddled with the UDEM Dragon boat team.
+          </p>
+        </div>
+        <div class="portfolio-item">
+          <img class="img-responsive" src="./assets/plane.jpg" alt="Travelling" height="250">
+          <p><strong>Travelling</strong><br><br>
+            I enjoy travelling to different countries and discovering local foods and culture!
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+<script>
+    // Define threshold values for different screen sizes
+    const largeScreenThreshold = 0.2;
+    const smallScreenThreshold = 0.1;
+  
+    // Function to get the appropriate threshold based on screen size
+    function getThreshold() {
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        return smallScreenThreshold;
+      } else {
+        return largeScreenThreshold;
+      }
+    }
+  
+    // Select all sections with the class "hidden"
+    const sections = document.querySelectorAll('.hidden');
+  
+    // Create a new Intersection Observer with dynamic threshold
+    const observer = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(entry => {
+        // If element is in viewport, add the 'show' class to trigger the animation
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, {
+      root: null,
+      rootMargin: '0px',
+      threshold: getThreshold()
+    });
+  
+    // Observe each section
+    sections.forEach(section => observer.observe(section));
+  
+    document.querySelectorAll('.hidden').forEach((element)=>{
+      if(!element.id === 'nav-bar') {
+        element.classList.add('hidden');
+      }
+    });
+  
+    // Update observer threshold on window resize
+    window.addEventListener('resize', () => {
+      observer.disconnect();
+      sections.forEach(section => observer.observe(section));
+    });
+</script>
+
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p style="font-size:14px">&copy; 2024 Greta Ru-Mei Zu. All rights reserved. Last updated: January 2025. </p>
+    </div>
+  </footer>
+
+</body>
+</html>

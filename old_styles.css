@@ -1,0 +1,320 @@
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    }
+
+    /* colours */
+    #nav-bar, header, footer {
+        background-color: #1b263b;
+        color: white;
+    }
+    body {
+        background-color: #0d1a2a;
+        color: #333;
+    }
+    #about, #skills, #projects, #education, #experience, #interests {
+        background-color: #415977;
+    }
+    .project-card, .project-card-research {
+        background-color: #778da9;
+        border: 1px solid #9cb5db;
+        color: white;
+    }
+    .project-card-research {
+        border: 1px solid #b6a8d7;
+    }
+    .project-card p, .project-card-research p, .container, ul {
+        color: #d3d7d5;
+    }
+    .project-card a:hover, .project-card-research a:hover {
+        text-decoration: underline;
+        color: #debdfc;
+    }
+    section {
+        border: 1px solid #2c2b2b;
+        color: white;
+    }
+    .container a, .social-links a {
+        color: #3498db;
+        font-weight: bold;
+    }
+    .container a:hover, #nav-bar a:hover {
+        text-decoration: underline;
+        color: #debdfc;
+    }
+    .project-card a, .project-card-research a, h2 {
+        color: rgb(241, 241, 241);
+        font-weight: bold;
+    }
+    #nav-bar a, footer , h1, footer p{
+        color: white;
+    }
+
+
+    body {
+    font-family: Arial, sans-serif;
+    scroll-behavior: smooth;
+    }
+
+    .interests-row {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 20px; 
+    justify-content: center; 
+    }
+    .portfolio-item {
+    flex: 1 1 calc(25% - 20px); 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    }
+    .portfolio-item img {
+    max-width: 100%;
+    height: auto; 
+    border-radius: 8px; 
+    margin-bottom: 10px;
+    }
+    .portfolio-item p {
+    font-size: 1rem;
+    margin: 0;
+    }
+
+    #about {
+        margin-top: 10px;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+    #socials {
+        flex: 0.5;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    header{
+    text-align: center;
+    padding: 50px 0 0 0;
+    scroll-behavior: smooth;
+    }
+
+    header h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    }
+
+    header p {
+    font-size: 1.2rem;
+    }
+
+    section {
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    margin: 10px;
+    }
+
+    section .container {
+    max-width: 800px;
+    text-align: center;
+    padding: 20px;
+    }
+
+    h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    }
+
+
+    ul {
+    list-style: none;
+    padding: 0;
+    }
+
+    ul li {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    }
+
+    .project-card {
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+    }
+
+    .project-card-research {
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+    }
+
+    .project-card h3, .project-card-research h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    }
+
+    .project-card p, .project-card-research p {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    }
+
+    .social-links {
+    display: fixed;
+    gap: 15px;
+    align-items: center;
+    padding-top: 10px;
+    }
+
+    .social-links a {
+    margin-right: 20px;
+    text-decoration: none;
+    font-size: 18px;
+    }
+
+    .social-links a:hover {
+    text-decoration: underline;
+    }
+
+    #nav-bar {
+    position: sticky;
+    top: 0;
+    overflow: hidden;
+    text-align: center;
+    padding-bottom: 20px;
+    padding-top: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    opacity: 1 !important;
+    z-index: 9999;
+    }
+    #nav-bar a {
+    margin-right: 20px;
+    text-decoration: none;
+    }
+
+    /* Style the progress container */
+    .progress-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px; /* Thickness of the progress bar */
+    background: #f3f3f3; /* Background color of the progress container */
+    z-index: 1000; /* Ensures it's always visible */
+    }
+    /* Style the progress bar */
+    #progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    appearance: none; /* Remove default styles */
+    background: transparent;
+    }
+    #progress::-webkit-progress-bar {
+    background: #a7c9e0; /* Background of the progress bar track */
+    }
+    #progress::-webkit-progress-value {
+    background: #3498db; /* Color of the progress fill */
+    }
+    #progress::-moz-progress-bar {
+    background: #3498db; 
+    }
+
+    .hidden {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+    .show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .hidden #nav-bar {
+        opacity: 1;
+        transition:none;
+    }
+
+
+    footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 10px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+    .portfolio-item {
+        flex: 1 1 calc(50% - 20px); /* Two items per row */
+    }
+    #about .container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    #about img {
+        margin-bottom: 20px;
+        border: #debdfc;
+        box-shadow: inset 0 0 10px #050505;
+    }
+
+    header h1 {
+        font-size: 2.5rem;
+    }
+
+    header p {
+        font-size: 1rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .project-card {
+        padding: 15px;
+    }
+
+    .social-links a {
+        margin-right: 10px;
+    }
+    }
+
+    /* TODO: AI game styles */
+    
+
+    /* Responsive Design */
+
+    @media (max-width: 480px) {
+        .portfolio-item {
+            flex: 1 1 100%; /* One item per row */
+        }
+        /* make the cards appear faster on smaller screens */
+        .hidden {
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+        #header h1, #header p {
+            align-items: center;
+            padding-left: 8%;
+            padding-bottom: 2%;
+        }
+        #header p {
+            padding-bottom: 4%;
+        }
+
+    }

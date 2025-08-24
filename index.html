@@ -1,365 +1,663 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Greta Zu</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greta Zu</title>
 
-  <link rel="icon" href="./assets/favicon.ico" type="image/x-icon"></link>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="./assets/favicon.ico" type="image/x-icon">
+    </link>
+    <link rel="stylesheet" href="vs_styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> 
 </head>
+
 <body>
-  <!-- Header Section -->
-  <header>
-    <div id="header" class="container">
-      <h1>Greta Ru-Mei Zu</h1>
-      <p style="color: #e7e7e7c2;">Computer Science Student at McGill University</p>
-    </div>
-
-  </header>
-  <!-- Navigation bar -->
-  <div id="nav-bar">
-    <a href="#about">About Me</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#education">Education</a>
-    <a href="#experience">Experience</a>
-    <a href="#interests">Interests</a> 
-
-    <!-- Social Links -->
-    <div class="social-links">
-      <a href="https://github.com/zu-greta" target="_blank">
-        <i class="fa fa-github"></i> GitHub
-      </a>
-      <a href="https://www.linkedin.com/in/greta-ru-mei-zu/" target="_blank">
-        <i class="fa fa-linkedin"></i> LinkedIn
-      </a>
-      <a href="mailto:gretarm.zu@gmail.com" target="_blank">
-        <i class="fa fa-envelope"></i> Email
-      </a>
-      <a href="assets/Greta_Zu_CV.pdf" target="_blank">
-        <i class="fa fa-file"></i> CV
-      </a>
-    </div>
-
-    <!-- Scrolling Progress Bar -->
-  <progress id="progress" value="0" max="100"></progress>
-</div>
-
-  <div style="height: 5px;">
-  </div>
-    <script>
-      document.addEventListener("scroll", () => {
-      const progressBar = document.getElementById("progress");
-      const maxScroll = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const currentScroll = window.scrollY;
-
-      // Update the progress bar value
-      progressBar.value = currentScroll;
-
-      // Optionally, adjust max value dynamically
-      progressBar.max = maxScroll;
-      });
-    </script>
-
-
-  <!-- About Me Section -->
-  <section id="about" class="hidden">
-    <div class="container" style="display: flex; align-items: center; gap: 20px;">
-        <!-- Image Section -->
-        <div style="flex-shrink: 0;">
-            <img src="./assets/Linkedin-3.jpg" alt="Greta's Profile Picture" style="width: 200px; height: auto; border-radius: 10%;">
-        </div>
-        <!-- Text Section -->
-        <div>
-            <h2>About Me</h2>
-            <p>
-                Hello! I'm Greta and I am a 4th-year (final year) undergraduate student at <a
-                href="https://www.mcgill.ca/">McGill University</a>, majoring in Computer Science.
-                <br>
-                I am passionate about software development and machine learning, and I am always looking for
-                opportunities to learn and grow in the field.
-                <br>
-                Currently, I am volunteering in the <a href="https://sites.google.com/view/discslab">McGill DISC Lab</a>
-                under the supervision of <a href="https://sites.google.com/view/oanabalmau">Professor Balmau</a> and 
-                <a href="https://www.cs.mcgill.ca/~kemme/">Professor Kemme</a> working on a project about energy efficiency 
-                in Machine Learning algorithms.
-            </p>
-        </div>
-    </div>
-</section>
-
-   <!-- Skills Section -->
-   <section id="skills" class="hidden">
     <div class="container">
-      <h2>Skills</h2>
-      <ul>
-        <li>Programming Languages: Python, Java, C, C++, Bash, Javascript, PHP, OCaml, MIPS</li>
-        <li>Markup and Frontend: HTML, CSS, Swift, React</li>
-        <li>Databases: SQL, DB2, MariaDB</li>
-        <li>Frameworks & Tools: Django, JUnit, JavaFX, Git, Linux, Pandas</li>
-        <li>Web stacks: XAMPP, MERN</li>
-        <li>IDE/Tools: Visual Studio Code, IntelliJ IDEA, PyCharm, Jupyter Notebook</li>
-        <li>Languages: English and French (both native fluency)</li>
-      </ul>
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="folders">
+                <div class="projects-header"><i class="fa fa-angle-down"></i> Projects</div>
+                <ul class="projects-list">
+                    <div class="projects-folder"><i class="fa fa-angle-down"></i> Web Development
+                        <ul class="projects-list" style="padding: 1.5% 2%;">
+                            <li class="project-item" data-project="Brown Lab Website">Brown Lab Website</li>
+                            <li class="project-item" data-project="SOC-cessful Schedule Booking Tool">SOC-cessful
+                                Schedule</li>
+                            <li class="project-item" data-project="BCV McWics25 Hackathon">Best-CV (BCV)</li>
+                        </ul>
+                    </div>
+                    <li class="project-item" data-project="Artificial Intelligence Agent">AI Agent</li>
+                    <li class="project-item" data-project="Travelling Agency Management System and Booking Application">
+                        Travelling Agency</li>
+                    <li class="project-item" data-project="Compiler for Mini-C">Compiler for
+                        Mini-C</li>
+                    <li class="project-item" data-project="Operating System Simulation">OS simulation</li>
+                    <div class="projects-folder"><i class="fa fa-angle-down"></i> Mobile Application
+                        <ul class="projects-list" style="padding: 1.5% 2%;">
+                            <li class="project-item" data-project="MealMates CodeJam14 Hackathon">MealMates</li>
+                            <li class="project-item" style="color: #d1f1a9;" data-project="Calendar/Reminder">
+                                Calendar/Reminder</li>
+                        </ul>
+                    </div>
+                    <div class="projects-folder"><i class="fa fa-angle-down"></i> Research Projects
+                        <ul class="projects-list" style="padding: 1.5% 2%;">
+                            <li class="project-item" style="color: #d1f1a9;" data-project="Energy Efficiency in Machine Learning Algorithms">Energy
+                                Efficiency in ML Algorithms</li>
+                            <li class="project-item" data-project="TikTok Impact on Society Analaysis">TikTok Impact on
+                                Society Analysis</li>
+                            <li class="project-item" data-project="Depression & Eating Disorders">Depression and Eating 
+                                Disorders</li>
+                        </ul>
+                    </div>
+                </ul>
+            </div>
+            <div class="profile">
+                <i class="fa fa-user-circle"></i>
+                <span>Greta Ru-Mei Zu</span>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Tabs -->
+            <div class="tabs">
+                <!-- home.txt contains everything, starting with about me section -->
+                <div class="tab active" data-target="home,about-me,contact-me,experience,skills,education">Home.txt</div>
+                <!-- other tabs: Contact me (links to everything + my info), education, experience, skills, projects, interests-->
+                <div class="tab" data-target="experiencepy">Experience.py</div>
+                <div class="tab" data-target="projectsc">Projects.c</div>
+                <div class="tab" data-target="educationjava">Education.java</div>
+                <div class="tab" data-target="skillsbash">Skills.bash</div>
+                <div class="tab" data-target="interestsjson">Interests.json</div>
+                <div class="tab hidden" id="current-project-tab"></div>
+            </div>
+
+            <!-- Home Content Area -->
+            <div class="content" id="home">
+                <h1 style="text-align: center;" class="colour_main">Hello World, I'm Greta</h1>
+            </div>
+
+            <div class="content" id="about-me" style="display: flex; align-items: center; gap: 20px;">
+                <!-- Image Section -->
+                <div style="flex-shrink: 0;">
+                    <img src="./assets/Linkedin-3.jpg" alt="Greta's Profile Picture"
+                        style="width: 200px; height: auto; border-radius: 10%;">
+                </div>
+                <!-- Text Section -->
+                <div style="text-align: left;">
+                    <h2>About Me</h2>
+                    <br>
+                    <p>
+                        Hello! I'm Greta and I am a 4th-year (final year) undergraduate student at <a
+                            href="https://www.mcgill.ca/">McGill University</a>, majoring in Computer Science.
+                        <br>
+                        I am passionate about software development and machine learning, and I am always looking for
+                        opportunities to learn and grow in the field.
+                        <br>
+                        Currently, I am volunteering in the <a href="https://sites.google.com/view/discslab">McGill DISC Lab</a>
+                        under the supervision of <a href="https://sites.google.com/view/oanabalmau">Professor Balmau</a> and 
+                        <a href="https://www.cs.mcgill.ca/~kemme/">Professor Kemme</a> working on a project about energy efficiency 
+                        in Machine Learning algorithms.
+                    </p>
+                </div>
+            </div>
+
+            <!-- contact me -->
+            <div class="content" id="contact-me">
+                <h2>Contact Me</h2>
+                <a href="https://github.com/zu-greta" target="_blank">
+                    <i class="fa fa-github"></i> GitHub
+                </a>
+                <a href="https://www.linkedin.com/in/greta-ru-mei-zu/" target="_blank">
+                    <i class="fa fa-linkedin"></i> LinkedIn
+                </a>
+                <a href="mailto:gretarm.zu@gmail.com" target="_blank">
+                    <i class="fa fa-envelope"></i> Email
+                </a>
+                <a href="assets/Greta_Zu_CV.pdf" target="_blank">
+                    <i class="fa fa-file"></i> CV
+                </a>
+            </div>
+
+            <!-- experiences -->
+            <div class="content" id="experience" style="text-align: left;">
+                <h2 style="text-align: center;">Experience</h2>
+                </br>
+                <blockquote> <b style="font-size: 1.2rem;">Ericsson</b>
+                    <ul style="list-style-type: none; padding-left: 0; margin: 0;">
+                        <li><b style="font-size: 1rem;">Machine Learning Intern</b> (May 2025 - December 2025)</li>
+                        <li><b style="font-size: 1rem;">Work: </b> Creating and onboarding Retrieval Augmented Generation 
+                            (RAG) solutions and processing/inference pipelines using AWS and AWS Bedrock services 
+                            + Comparing and evaluating RAG solutions</li>
+                    </ul>
+                </blockquote>
+                </br>
+                <blockquote> <b style="font-size: 1.2rem;">McGill University</b>
+                    <ul style="list-style-type: none; padding-left: 0; margin: 0;">
+                        <li><b style="font-size: 1rem;">Notetaker (data science)</b> (January 2024 - May 2025)</li>
+                        <li><b style="font-size: 1rem;">Work: </b> Creating detailed notes and summaries for 
+                            data science lectures and exam study preparation.</li>
+                    </ul>
+                </blockquote>
+                </br>
+                <blockquote> <b style="font-size: 1.2rem;">Marianopolis College</b>
+                    <ul style="list-style-type: none; padding-left: 0; margin: 0;">
+                        <li><b style="font-size: 1rem;">Corrector (physics labs)</b> (August 2022 - June 2023)</li>
+                        <li><b style="font-size: 1rem;">Work: </b> Grading student lab reports and providing feedback to 
+                            improve their understanding of physics concepts.</li>
+                    </ul>
+                </blockquote>
+                </br>
+                <hr>
+                </br>
+                <blockquote> <b style="font-size: 1.2rem;">McGill University</b>
+                    <ul style="list-style-type: none; padding-left: 0; margin: 0;">
+                        <li><b style="font-size: 1rem;">Research Assistant</b> (June 2025 - Ongoing)</li>
+                        <li><b style="font-size: 1rem;">Supervisor: </b> Professor Balmau</li>
+                        <li><b style="font-size: 1rem;">Project: </b> Energy Efficiency in Machine Learning Algorithms</li>
+                    </ul>
+                </blockquote>
+                </br>
+                <blockquote> <b style="font-size: 1.2rem;">McGill University</b>
+                    <ul style="list-style-type: none; padding-left: 0; margin: 0;">
+                        <li><b style="font-size: 1rem;">Research Assistant</b> (May 2022 - August 2022)</li>
+                        <li><b style="font-size: 1rem;">Supervisor: </b> Professor Vybihal</li>
+                        <li><b style="font-size: 1rem;">Project: </b> Overcoming data collection on TikTok and analyzing
+                            the gender differences, eating disorders, and conspiracy theories pushed by TikTok's
+                            algorithm</li>
+                    </ul>
+                </blockquote>
+                </br>
+            </div>
+
+            <!-- Skills -->
+            <div class="content" id="skills" style="text-align: left;">
+                <h2 style="text-align: center;">Skills</h2>
+                </br>
+                <ul style="list-style-type: none; padding-left: 0; margin: 0;">
+                    <li><b>Programming Languages:</b> Python, Java, C, C++, Bash, Javascript, PHP, OCaml, MIPS Assembly</li>
+                    <li><b>Markup and Frontend:</b> HTML, CSS, Swift, React</li>
+                    <li><b>Databases:</b> SQL, DB2, MariaDB</li>
+                    <li><b>Technologies:</b> Docker, AWS</li>
+                    <li><b>Frameworks & Tools:</b> Django, JUnit, JavaFX, Git, Linux, Pandas</li>
+                    <li><b>Web stacks:</b> XAMPP, MERN</li>
+                    <li><b>IDE/Tools:</b> Visual Studio Code, IntelliJ IDEA, PyCharm, Jupyter Notebook</li>
+                    <li><b>Languages:</b> English and French (both native fluency)</li>
+                </ul>
+            </div>
+
+            <!-- Education -->
+            <div class="content" id="education" style="text-align: left;">
+                <h2 style="text-align: center;">Education</h2>
+                <blockquote> <b style="font-size: 1.2rem;">McGill University</b>
+                    <ul style="list-style-type: none; padding-left: 0; margin: 0;">
+                        <li> <b style="font-size: 1rem;">Bachelor of Science in Computer Science</b> (August 2022 - June
+                            2026 expected)</li>
+                        <li><b style="font-size: 1rem;">cGPA: </b> 3.84/4.0</li>
+                        <li><b style="font-size: 1rem;">Relevant courses: </b>Algorithm and Data structures, Artificial
+                            Intelligence,
+                            Programming languages and Paradigms, Software Design, Operating Systems,
+                            Algorithm Design, Database Systems, Web Development, Data Science, Distributed systems,
+                            Compiler Design,
+                            Machine Learning, Intro to C++
+                        </li>
+                        <li><b style="font-size: 1rem;">Awards: </b> Alma Mater Scholarship</li>
+                    </ul>
+                </blockquote>
+                </br>
+                <hr>
+                </br>
+                </blockquote> <b style="font-size: 1.2rem;">Marianopolis College</b>
+                <ul style="list-style-type: none; padding-left: 0; margin: 0;">
+                    <li> <b style="font-size: 1rem;">DCS in Honours Health Science</b> (August 2020 - June 2022)</li>
+                    <li><b style="font-size: 1rem;">R-Score: </b> 37.825</li>
+                    <li><b style="font-size: 1rem;">Awards: </b>
+                        Dean's List Fall 2020 and Winter 2021
+                    </li>
+                </ul>
+                </blockquote>
+            </div>
+
+
+
+            <!-- Experience tab -->
+            <div class="content" id="experiencepy" style="text-align: left; display: none; padding: 20px; font-family: 'Fira Code', monospace; font-size: 0.95rem;">
+                <h2 style="text-align: center;">Experience.py</h2>
+                <pre style="background-color: #002451; color: #ffffff; padding: 15px; border-radius: 10px; overflow-x: auto;">
+            <span class="colour_comment">### Work Experience ###</span>
+
+            <span class="colour_reserved">class</span> <span class="colour_main">Work_Experience</span>:
+                <span class="colour_reserved">def</span> <span class="colour_function">__init__</span>(<span class="colour_dotthings">self</span>):
+                    <span class="colour_dotthings">self</span>.positions <span class="colour_punctuation">=</span> []
+
+                <span class="colour_reserved">def</span> <span class="colour_function">add_position</span>(<span class="colour_dotthings">self</span>, company, role, dates, details):
+                    <span class="colour_dotthings">self</span>.positions.append({
+                        <span class="colour_string">"company"</span>: company,
+                        <span class="colour_string">"role"</span>: role,
+                        <span class="colour_string">"dates"</span>: dates,
+                        <span class="colour_string">"details"</span>: details
+                    })
+
+            <span class="colour_comment"># Ericsson</span>
+            <span class="colour_function">experience.add_position</span>(
+                <span class="colour_string">"Ericsson"</span>,
+                <span class="colour_string">"Machine Learning Intern"</span>,
+                <span class="colour_string">"May 2025 - Dec 2025"</span>,
+                [
+                    <span class="colour_string">"Creating and onboarding Retrieval Augmented Generation (RAG) solutions"</span>,
+                    <span class="colour_string">"Building inference pipelines with AWS and Bedrock"</span>,
+                    <span class="colour_string">"Comparing and evaluating RAG solutions"</span>
+                ]
+            )
+
+            <span class="colour_comment"># McGill University</span>
+            <span class="colour_function">experience.add_position</span>(
+                <span class="colour_string">"McGill University"</span>,
+                <span class="colour_string">"Notetaker (Data Science)"</span>,
+                <span class="colour_string">"Jan 2024 - May 2025"</span>,
+                [<span class="colour_string">"Creating detailed notes and summaries for lectures and exams"</span>]
+            )
+
+            <span class="colour_comment"># Marianopolis College</span>
+            <span class="colour_function">experience.add_position</span>(
+                <span class="colour_string">"Marianopolis College"</span>,
+                <span class="colour_string">"Corrector (Physics Labs)"</span>,
+                <span class="colour_string">"Aug 2022 - Jun 2023"</span>,
+                [<span class="colour_string">"Grading lab reports and providing feedback"</span>]
+            )
+
+            <hr style="border: none; border-top: 1px solid rgba(255, 255, 255, 0.08); margin: 0.8rem 0;">
+
+            <span class="colour_comment">### Research Experience ###</span>
+            <span class="colour_reserved">class</span> <span class="colour_main">Research_Experience</span>:
+                <span class="colour_reserved">def</span> <span class="colour_function">__init__</span>(<span class="colour_dotthings">self</span>):
+                    <span class="colour_dotthings">self</span>.projects <span class="colour_punctuation">=</span> []
+
+                <span class="colour_reserved">def</span> <span class="colour_function">add_project</span>(<span class="colour_dotthings">self</span>, lab, professors, dates, details):
+                    <span class="colour_dotthings">self</span>.projects.append({
+                        <span class="colour_string">"lab"</span>: lab,
+                        <span class="colour_string">"professors"</span>: professors,
+                        <span class="colour_string">"dates"</span>: dates,
+                        <span class="colour_string">"details"</span>: details
+                    })
+
+            <span class="colour_comment"># McGill University (Research Assistant - Balmau)</span>
+            <span class="colour_function">experience.add_projects</span>(
+                <span class="colour_string">"McGill University DISCS Lab"</span>,
+                <span class="colour_string">"Oana Balmau, Bettina Kemme"</span>,
+                <span class="colour_string">"Jun 2025 - Ongoing"</span>,
+                [<span class="colour_string">"Energy Efficiency in Machine Learning Algorithms"</span>]
+            )
+
+            <span class="colour_comment"># McGill University (Research Assistant - Vybihal)</span>
+            <span class="colour_function">experience.add_projects</span>(
+                <span class="colour_string">"McGill University"</span>,
+                <span class="colour_string">"Joseph Vybihal"</span>,
+                <span class="colour_string">"May 2022 - Aug 2022"</span>,
+                [
+                    <span class="colour_string">"Overcoming TikTok data collection challenges"</span>,
+                    <span class="colour_string">"Analyzing gender differences, eating disorders, and conspiracy theories"</span>
+                ]
+            )
+                </pre>
+            </div>
+
+
+            <!-- Projects tab -->
+            <div class="content colour_mainBackground" id="projectsc" style="text-align: left; display: none; padding: 20px; font-family: 'Fira Code', monospace; font-size: 0.95rem; border-radius: 10px; overflow: auto;">
+                <h2 style="text-align: center; color: #ffffff;">Projects</h2>
+                <pre style="margin-top: 1rem; white-space: pre-wrap;">
+            <span class="colur_comment">// Projects</span>
+
+            <span class="colour_reserved">#include</span> &lt;stdio.h&gt;
+
+            <span class="colur_comment">// Artificial Intelligence Agent</span>
+            <span class="colour_reserved">void</span> AI_Agent() {
+                <span class="colur_comment">// Nov 2023 - Dec 2023</span>
+                <span class="colour_comment">/*</span> Develop an agent that can play and win against random, human, and other agents
+                in Colosseum Survival using Monte Carlo Tree Search, A* Search, and heuristics. <span class="colour_comment">*/</span>
+                <span class="colour_function">char</span> *tech = <span class="colour_string">"Python"</span>;
+                <span class="colour_function">char</span> *code_link = <span class="colour_string">"<a href="https://github.com/zu-greta/424project" target="_blank" style="color:#9cb5db; text-decoration:underline;">https://github.com/zu-greta/424project</a>"</span>;
+                <span class="colour_function">char</span> *report_link = <span class="colour_string">"<a href="assets/424Report.pdf" target="_blank" style="color:#9cb5db; text-decoration:underline;">assets/424Report.pdf</a>"</span>;
+            }
+
+            <span class="colur_comment">// SOC-cessful Schedule Booking Tool</span>
+            <span class="colour_reserved">void</span> Schedule_Booking_Tool() {
+                <span class="colur_comment">// Nov 2024 - Jan 2025</span>
+                <span class="colour_comment">/*</span> Full-stack web app for school booking tool using XAMPP, HTML/CSS, Javascript, PHP, and SQLite3. <span class="colour_comment">*/</span>
+                <span class="colour_function">char</span> *tech = <span class="colour_string">"HTML/CSS, Javascript, PHP, XAMPP, SQLite3, SQL"</span>;
+                <span class="colour_function">char</span> *website_link = <span class="colour_string">"<a href="https://www.cs.mcgill.ca/~gzu/socs_sisters/landing" target="_blank" style="color:#9cb5db; text-decoration:underline;">https://www.cs.mcgill.ca/~gzu/socs_sisters/landing</a>"</span>;
+                <span class="colour_function">char</span> *code_link = <span class="colour_string">"<a href="https://github.com/zu-greta/socs_sisters" target="_blank" style="color:#9cb5db; text-decoration:underline;">https://github.com/zu-greta/socs_sisters</a>"</span>;
+                <span class="colour_function">char</span> *demo_link = <span class="colour_string">"<a href="https://youtu.be/ZxdcFvYHAKo?si=WddSmUicHZD8O6qh" target="_blank" style="color:#9cb5db; text-decoration:underline;">https://youtu.be/ZxdcFvYHAKo?si=WddSmUicHZD8O6qh</a>"</span>;
+            }
+
+            <span class="colur_comment">// Travelling Agency Management System</span>
+            <span class="colour_reserved">void</span> Travelling_Agency() {
+                <span class="colur_comment">// Feb 2024 - Jan 2025</span>
+                <span class="colour_comment">/*</span> Booking application with JDBC, SQL, relational schemas, and E/R diagrams. <span class="colour_comment">*/</span>
+                <span class="colour_function">char</span> *tech = <span class="colour_string">"Java, JDBC, E/R diagrams, SQL, DB2"</span>;
+                <span class="colour_function">char</span> *code_link = <span class="colour_string">"<a href="https://github.com/zu-greta/comp520_2024" target="_blank" style="color:#9cb5db; text-decoration:underline;">https://github.com/zu-greta/comp520_2024</a>"</span>;
+            }
+
+            <span class="colur_comment">// Compiler for Mini-C</span>
+            <span class="colour_reserved">void</span> MiniC_Compiler() {
+                <span class="colur_comment">// Jan 2025 - Present</span>
+                <span class="colour_comment">/*</span> Compiler including lexer, parser, semantic analysis, MIPS translation, and OOP features. <span class="colour_comment">*/</span>
+                <span class="colour_function">char</span> *tech = <span class="colour_string">"Java, C, MIPS"</span>;
+                <span class="colour_function">char</span> *code_link = <span class="colour_string">"<a href="https://github.com/zu-greta/comp520_2024" target="_blank" style="color:#9cb5db; text-decoration:underline;">https://github.com/zu-greta/comp520_2024</a>"</span>;
+            }
+
+            <span class="colur_comment">// Operating Systems Simulation Project</span>
+            <span class="colour_reserved">void</span> OS_Simulation() {
+                <span class="colur_comment">// Jan 2024 - Mar 2024</span>
+                <span class="colour_comment">/*</span> OS simulation including shell, memory management, and filesystem. <span class="colour_comment">*/</span>
+                <span class="colour_function">char</span> *tech = <span class="colour_string">"C, Bash, Docker"</span>;
+                <span class="colour_function">char</span> *code_link = <span class="colour_string">"<a href="https://github.com/zu-greta/comp310" target="_blank" style="color:#9cb5db; text-decoration:underline;">https://github.com/zu-greta/comp310</a>"</span>;
+            }
+
+            <span class="colur_comment">// Brown Lab Website</span>
+            <span class="colour_reserved">void</span> Brown_lab() {
+                <span class="colur_comment">// Jan 2025 - Dec 2025</span>
+                <span class="colour_comment">/*</span> Website for the Brown Lab at McGill using React, Javascript and Node.js. <span class="colour_comment">*/</span>
+                <span class="colour_function">char</span> *tech = <span class="colour_string">"React, Javascript, Node.js"</span>;
+                <span class="colour_function">char</span> *website_link = <span class="colour_string">"<a href="https://zu-greta.github.io/brown_lab/" target="_blank" style="color:#9cb5db; text-decoration:underline;">https://zu-greta.github.io/brown_lab/</a>"</span>;
+                <span class="colour_function">char</span> *code_link = <span class="colour_string">"<a href="https://github.com/zu-greta/brown_lab" target="_blank" style="color:#9cb5db; text-decoration:underline;">https://github.com/zu-greta/brown_lab</a>"</span>;
+            }
+
+            <span class="colur_comment">// HackMcWics25 Hackathon BCV website</span>
+            <span class="colour_reserved">void</span> BCV_Hackathon() {
+                <span class="colur_comment">// 2025</span>
+                <span class="colour_comment">/*</span> Full-stack web app generating CVs using React, Next.js, Drizzle, Postgres, 
+                    Gemini API, SERP API. <span class="colour_comment">*/</span>
+                <span class="colour_function">char</span> *tech = <span class="colour_string">"REACT, Tailwind CSS, HTML/CSS, Javascript, APIs, Drizzle, Next.js"</span>;
+                <span class="colour_function">char</span> *demo_link = <span class="colour_string">"<a href="https://youtu.be/TeJMOojokRM?si=M3tr0oGHdgZCmjvG" target="_blank" style="color:#9cb5db; text-decoration:underline;">https://youtu.be/TeJMOojokRM?si=M3tr0oGHdgZCmjvG</a>"</span>;
+                <span class="colour_function">char</span> *devpost_link = <span class="colour_string">"<a href="https://devpost.com/software/bcv-hackmcwics25" target="_blank" style="color:#9cb5db; text-decoration:underline;">https://devpost.com/software/bcv-hackmcwics25</a>"</span>;
+                <span class="colour_function">char</span> *code_link = <span class="colour_string">"<a href="https://github.com/DavidNitchi/McWICS25" target="_blank" style="color:#9cb5db; text-decoration:underline;">https://github.com/DavidNitchi/McWICS25</a>"</span>;
+            }
+
+            <span class="colur_comment">// CodeJam14 Hackathon MealMates mobile application</span>
+            <span class="colour_reserved">void</span> MealMates_App() {
+                <span class="colur_comment">// 2024</span>
+                <span class="colour_comment">/*</span> Full-stack mobile app with React-Native frontend and Django-rest backend. <span class="colour_comment">*/</span>
+                <span class="colour_function">char</span> *tech = <span class="colour_string">"Python, Django-rest, SQLite3, SQL, Javascript, Typescript, REACT-native, Tailwind"</span>;
+                <span class="colour_function">char</span> *demo_link = <span class="colour_string">"<a href="https://youtube.com/shorts/2nAD9EJrNGw?si=f1xnBtyIwjq76qlM" target="_blank" style="color:#9cb5db; text-decoration:underline;">https://youtube.com/shorts/2nAD9EJrNGw?si=f1xnBtyIwjq76qlM</a>"</span>;
+                <span class="colour_function">char</span> *devpost_link = <span class="colour_string">"<a href="https://devpost.com/software/fooder-zx98kt" target="_blank" style="color:#9cb5db; text-decoration:underline;">https://devpost.com/software/fooder-zx98kt</a>"</span>;
+                <span class="colour_function">char</span> *code_link = <span class="colour_string">"<a href="https://github.com/denis-tsariov/codejam14" target="_blank" style="color:#9cb5db; text-decoration:underline;">https://github.com/denis-tsariov/codejam14</a>"</span>;
+            }
+
+            <span class="colur_comment">// Calendar/Reminder mobile application</span>
+            <span class="colour_reserved">void</span> Calendar_App() {
+                <span class="colur_comment">// July 2024 - Present</span>
+                <span class="colour_comment">/*</span> iOS Calendar and ToDo list application using SwiftUI and XCode. <span class="colour_comment">*/</span>
+                <span class="colour_function">char</span> *tech = <span class="colour_string">"Swift, SwiftUI"</span>;
+                <span class="colour_function">char</span> *code_link = <span class="colour_string">"<a href="https://github.com/zu-greta/calendar" target="_blank" style="color:#9cb5db; text-decoration:underline;">https://github.com/zu-greta/calendar</a>"</span>;
+
+            }
+
+            <hr style="border: none; border-top: 1px solid rgba(255, 255, 255, 0.08); margin: 0.8rem 0;">
+
+            <span class="colur_comment">// Research Projects</span>
+            <span class="colour_reserved">struct</span> Research_Project {
+                <span class="colour_function">char</span> *title;
+                <span class="colour_function">char</span> *professors;
+                <span class="colour_function">char</span> *description;
+                <span class="colour_function">char</span> *report_link;
+            };
+
+            <span class="colur_comment">// Energy Efficiency in ML Algorithms</span>
+            <span class="colour_reserved">struct</span> Energy_Efficiency_Project {
+                <span class="colour_function">char</span> *title = <span class="colour_string">"Energy Efficiency in ML Algorithms"</span>;
+                <span class="colour_function">char</span> *description = <span class="colour_string">"Using CodeCarbon to instrument Switch-Transformers and
+                    Qwen Mixture of Experts models running on diﬀerent frameworks such as DeepSpeed and
+                    FastMoE, and exploring solu7ons to train models more eﬃciently in terms of energy consumption."</span>;
+                <span class="colour_comment">// Report → <a href="assets/energy_eff_report.pdf" target="_blank" style="color:#9cb5db; text-decoration:underline;">assets/energy_eff_report.pdf</a></span>
+            };
+
+            <span class="colur_comment">// TikTok Impact on Society Analysis</span>
+            <span class="colour_reserved">struct</span> TikTok_Impact_Project {
+                <span class="colour_function">char</span> *title = <span class="colour_string">"TikTok Impact on Society Analysis"</span>;
+                <span class="colour_function">char</span> *description = <span class="colour_string">"Overcoming web scraping data barriers from TikTok using bots and bypassing
+                    biases from the algorithm. Analyzing the data to see the diﬀerent treatment
+                    towards user gender, food negative/positive contents and the biases."</span>;
+                <span class="colour_comment">// Report → <a href="assets/Tik_Tok_Research_Project.pdf" target="_blank" style="color:#9cb5db; text-decoration:underline;">assets/Tik_Tok_Research_Project.pdf</a></span>
+            };
+
+            <span class="colur_comment">// Depression and Eating Disorders</span>
+            <span class="colour_reserved">struct</span> Depression_Eating_Disorders_Project {
+                <span class="colour_function">char</span> *title = <span class="colour_string">"Depression and Eating Disorders"</span>;
+                <span class="colour_function">char</span> *description = <span class="colour_string">"Researching correlation between eating disorders and depression, 
+                        analyzing treatment impact"</span>;
+                <span class="colour_comment">// Report → <a href="assets/eating_disorders_depression.pdf" target="_blank" style="color:#9cb5db; text-decoration:underline;">assets/eating_disorders_depression.pdf</a></span>
+            };
+
+                </pre>
+            </div>
+
+
+            <!-- Education tab -->
+            <div class="content colour_mainBackground" id="educationjava" style="text-align: left; display: none; padding: 20px; font-family: 'Fira Code', monospace; font-size: 0.95rem;">
+                <h2 style="text-align: center; color: #ffffff;">Education</h2>
+                <pre style="margin-top: 1rem; white-space: pre-wrap;">
+            <span class="colur_comment">// McGill University</span>
+            <span class="colour_main">public class</span> <span class="colour_function">McGill</span> {
+                <span class="colour_main">private</span> <span class="colour_main">String</span> degree = <span class="colour_string">"Bachelor of Science in Computer Science"</span>;
+                <span class="colour_main">private</span> <span class="colour_main">double</span> cGPA = <span class="colour_dotthings">3.84</span>;
+
+                <span class="colour_main">private</span> <span class="colour_main">String[]</span> courses = {
+                    <span class="colour_string">"Algorithms and Data Structures"</span>,
+                    <span class="colour_string">"Artificial Intelligence"</span>,
+                    <span class="colour_string">"Programming Languages and Paradigms"</span>,
+                    <span class="colour_string">"Software Design"</span>,
+                    <span class="colour_string">"Operating Systems"</span>,
+                    <span class="colour_string">"Algorithm Design"</span>,
+                    <span class="colour_string">"Database Systems"</span>,
+                    <span class="colour_string">"Web Development"</span>,
+                    <span class="colour_string">"Data Science"</span>,
+                    <span class="colour_string">"Distributed Systems"</span>,
+                    <span class="colour_string">"Compiler Design"</span>,
+                    <span class="colour_string">"Machine Learning"</span>,
+                    <span class="colour_string">"Intro to C++"</span>
+                };
+
+                <span class="colour_main">private</span> <span class="colour_main">String</span> awards = <span class="colour_string">"Alma Mater Scholarship"</span>;
+            }
+
+            <span class="colur_comment">// Marianopolis College</span>
+            <span class="colour_main">public class</span> <span class="colour_function">Marianopolis</span> {
+                <span class="colour_main">private</span> <span class="colour_main">String</span> degree = <span class="colour_string">"DCS in Honours Health Science"</span>;
+                <span class="colour_main">private</span> <span class="colour_main">double</span> rScore = <span class="colour_dotthings">37.825</span>;
+                <span class="colour_main">private</span> <span class="colour_main">String[]</span> awards = {
+                    <span class="colour_string">"Dean's List Fall 2020"</span>,
+                    <span class="colour_string">"Dean's List Winter 2021"</span>
+                };
+            }
+                </pre>
+            </div>
+
+
+            <!-- Skills tab -->
+            <div class="content colour_mainBackground" id="skillsbash" style="text-align: left; display: none; padding: 20px; font-family: 'Fira Code', monospace; font-size: 0.95rem; border-radius: 10px; overflow: auto;">
+                <h2 style="text-align: center; color: #ffffff;">Skills</h2>
+                <pre style="margin-top: 1rem; white-space: pre-wrap;">
+            <span class="colur_comment"># Skills</span>
+
+            <span class="colour_dotthings">$</span> <span class="colour_main">PROGRAMMING_LANGUAGES</span>=<span class="colour_punctuation">(</span>
+                <span class="colour_string">"Python"</span>
+                <span class="colour_string">"Java"</span>
+                <span class="colour_string">"C"</span>
+                <span class="colour_string">"C++"</span>
+                <span class="colour_string">"Bash"</span>
+                <span class="colour_string">"Javascript"</span>
+                <span class="colour_string">"PHP"</span>
+                <span class="colour_string">"OCaml"</span>
+                <span class="colour_string">"MIPS Assembly"</span>
+            <span class="colour_punctuation">)</span>
+
+            <span class="colour_dotthings">$</span> <span class="colour_main">MARKUP_FRONTEND</span>=<span class="colour_punctuation">(</span>
+                <span class="colour_string">"HTML"</span>
+                <span class="colour_string">"CSS"</span>
+                <span class="colour_string">"Swift"</span>
+                <span class="colour_string">"React"</span>
+            <span class="colour_punctuation">)</span>
+
+            <span class="colour_dotthings">$</span> <span class="colour_main">DATABASES</span>=<span class="colour_punctuation">(</span>
+                <span class="colour_string">"SQL"</span>
+                <span class="colour_string">"DB2"</span>
+                <span class="colour_string">"MariaDB"</span>
+            <span class="colour_punctuation">)</span>
+
+            <span class="colour_dotthings">$</span> <span class="colour_main">TECHNOLOGIES</span>=<span class="colour_punctuation">(</span>
+                <span class="colour_string">"Docker"</span>
+                <span class="colour_string">"AWS"</span>
+            <span class="colour_punctuation">)</span>
+
+            <span class="colour_dotthings">$</span> <span class="colour_main">FRAMEWORKS_TOOLS</span>=<span class="colour_punctuation">(</span>
+                <span class="colour_string">"Django"</span>
+                <span class="colour_string">"JUnit"</span>
+                <span class="colour_string">"JavaFX"</span>
+                <span class="colour_string">"Git"</span>
+                <span class="colour_string">"Linux"</span>
+                <span class="colour_string">"Pandas"</span>
+            <span class="colour_punctuation">)</span>
+
+            <span class="colour_dotthings">$</span> <span class="colour_main">WEB_STACKS</span>=<span class="colour_punctuation">(</span>
+                <span class="colour_string">"XAMPP"</span>
+                <span class="colour_string">"MERN"</span>
+            <span class="colour_punctuation">)</span>
+
+            <span class="colour_dotthings">$</span> <span class="colour_main">IDE_TOOLS</span>=<span class="colour_punctuation">(</span>
+                <span class="colour_string">"Visual Studio Code"</span>
+                <span class="colour_string">"IntelliJ IDEA"</span>
+                <span class="colour_string">"PyCharm"</span>
+                <span class="colour_string">"Jupyter Notebook"</span>
+            <span class="colour_punctuation">)</span>
+
+            <span class="colour_dotthings">$</span> <span class="colour_main">LANGUAGES</span>=<span class="colour_punctuation">(</span>
+                <span class="colour_string">"English"</span>
+                <span class="colour_string">"French"</span>
+            <span class="colour_punctuation">)</span>
+                </pre>
+            </div>
+
+
+
+
+            <!-- Interests tab -->
+            <div class="content colour_mainBackground" id="interestsjson" style="text-align: left; display: none; padding: 20px; font-family: 'Fira Code', monospace; font-size: 0.95rem; border-radius: 10px;">
+                <h2 style="text-align: center; color: #ffffff;">Interests / Hobbies</h2>
+                
+                <!-- code -->
+                <pre style="margin-top: 1rem; white-space: pre-wrap;">
+            <span class="colur_comment">// My hobbies and interests</span>
+            <span class="colour_punctuation">{</span>
+                <span class="colour_main">"Dancing"</span><span class="colour_punctuation">:</span> <span class="colour_punctuation">{</span>
+                    <span class="colour_main">"description"</span><span class="colour_punctuation">:</span> <span class="colour_string">"I am an active dancer at K-RAVE McGill and Emoria."</span><span class="colour_punctuation">,</span>
+                    <span class="colour_main">"image"</span><span class="colour_punctuation">:</span> <span class="colour_string">"./assets/dance.JPG"</span>
+                <span class="colour_punctuation">},</span>
+
+                <span class="colour_main">"Volleyball"</span><span class="colour_punctuation">:</span> <span class="colour_punctuation">{</span>
+                    <span class="colour_main">"description"</span><span class="colour_punctuation">:</span> <span class="colour_string">"I have started playing volleyball at McGill in intramural teams this year!"</span><span class="colour_punctuation">,</span>
+                    <span class="colour_main">"image"</span><span class="colour_punctuation">:</span> <span class="colour_string">"./assets/volleyball.jpg"</span>
+                <span class="colour_punctuation">},</span>
+
+                <span class="colour_main">"Dragon Boat"</span><span class="colour_punctuation">:</span> <span class="colour_punctuation">{</span>
+                    <span class="colour_main">"description"</span><span class="colour_punctuation">:</span> <span class="colour_string">"I paddled with the McGill DragonBoatZ team and also the UDEM Dragon boat team."</span><span class="colour_punctuation">,</span>
+                    <span class="colour_main">"image"</span><span class="colour_punctuation">:</span> <span class="colour_string">"./assets/db.JPG"</span>
+                <span class="colour_punctuation">},</span>
+
+                <span class="colour_main">"Travelling"</span><span class="colour_punctuation">:</span> <span class="colour_punctuation">{</span>
+                    <span class="colour_main">"description"</span><span class="colour_punctuation">:</span> <span class="colour_string">"I enjoy travelling to different countries and discovering local foods/culture!"</span><span class="colour_punctuation">,</span>
+                    <span class="colour_main">"image"</span><span class="colour_punctuation">:</span> <span class="colour_string">"./assets/plane.jpg"</span>
+                <span class="colour_punctuation">}</span>
+            <span class="colour_punctuation">}</span>
+                </pre>
+
+                <!-- images -->
+                <div style="margin-top: 20px; display: flex; justify-content: center;">
+                    <div style="background-color: #001c40; padding: 20px; border-radius: 10px; box-shadow: 0 0 15px rgba(0,0,0,0.5); overflow-x: auto; display: flex; gap: 30px;">
+                        <!-- Dancing -->
+                        <div style="text-align: center;">
+                            <img src="./assets/dance.JPG" alt="Dancing" style="height: 150px; border-radius: 5px; display: block; margin: 0 auto;">
+                            <p style="color: #ffffff; font-family: 'Fira Code', monospace; font-size: 0.85rem;">./assets/dance.JPG</p>
+                        </div>
+                        <!-- Volleyball -->
+                        <div style="text-align: center;">
+                            <img src="./assets/volleyball.jpg" alt="Volleyball" style="height: 150px; border-radius: 5px; display: block; margin: 0 auto;">
+                            <p style="color: #ffffff; font-family: 'Fira Code', monospace; font-size: 0.85rem;">./assets/volleyball.jpg</p>
+                        </div>
+                        <!-- Dragon Boat -->
+                        <div style="text-align: center;">
+                            <img src="./assets/db.JPG" alt="Dragon Boat" style="height: 150px; border-radius: 5px; display: block; margin: 0 auto;">
+                            <p style="color: #ffffff; font-family: 'Fira Code', monospace; font-size: 0.85rem;">./assets/db.JPG</p>
+                        </div>
+                        <!-- Travelling -->
+                        <div style="text-align: center;">
+                            <img src="./assets/plane.jpg" alt="Travelling" style="height: 150px; border-radius: 5px; display: block; margin: 0 auto;">
+                            <p style="color: #ffffff; font-family: 'Fira Code', monospace; font-size: 0.85rem;">./assets/plane.jpg</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
     </div>
-  </section>
-
-  <!-- Projects Section -->
-  <section id="projects" class="hidden">
-    <div class="container">
-      <h2>Projects</h2>
-      <div class="project-card">
-        <h3>Artificial Intelligence Agent [Nov 2023 - Dec 2023]</h3>
-        <p>Develop an agent that can play and win against a random agent, a human
-            agent and other agents in a game of Colosseum Survival. Using techniques
-            such as Monte Carlo Tree Search, A* Search and heuristics to efficiently make
-            decisions and win against any opponent. </p>
-        <a href="https://github.com/zu-greta/424project" target="_blank">Code</a> || 
-        <!-- <a href="ai.html">Game</a> -->
-        <a href="assets/424Report.pdf" target="_blank">Report</a>
-        </br></br>
-        <hr style="border: 1px solid #9cb5db;">
-        <p style="font-size: 0.9rem; color:#9cb5db; text-align: left;">Python</p>
-      </div>
-      <div class="project-card">
-        <h3>SOC-cessful Schedule Booking Tool [Nov 2024 - Jan 2025]</h3>
-        <p>Full-stack web development project creating a booking tool for school staff
-            and students. The webstack we used is XAMPP, where the frontend is created using HTML, 
-            CSS and Javascript, and the backend is developed with PHP and a SQLite3 database hosted on the
-            McGill SOCS servers. </p>
-        <a href="https://www.cs.mcgill.ca/~gzu/socs_sisters/landing" target="_blank">Website</a> ||
-        <a href="https://github.com/zu-greta/socs_sisters">Code</a> ||
-        <a href="https://youtu.be/ZxdcFvYHAKo?si=WddSmUicHZD8O6qh">Demo</a>
-      </br></br>
-      <hr style="border: 1px solid #9cb5db;">
-      <p style="font-size: 0.9rem; color:#9cb5db; text-align: left;">HTML/CSS, Javascript, PHP, XAMPP, SQLite3, SQL</p>
-        </div>
-      <div class="project-card">
-        <h3>Travelling Agency Management System and Booking application [Feb 2024 - Jan 2025]</h3>
-        <p>Designed an application for a travelling agency, where users can book flights,
-            hotels or rent cars. Created relational schemas, E/R diagrams, SQL queries
-            and used JDBC (Java) to provide a database and functions to navigate and use it.  </p>
-        <a href="https://github.com/zu-greta/comp421" target="_blank">Code</a>
-      </br></br>
-      <hr style="border: 1px solid #9cb5db;">
-      <p style="font-size: 0.9rem; color:#9cb5db; text-align: left;">Java, JDBC, E/R diagrams, SQL, DB2</p>
-      </div>
-      <div class="project-card">
-        <h3>Compiler for Mini-C [Jan 2025 - Present]</h3>
-        <p>Create a compiler using Java for Mini-C language (a subset of C), including a lexer, a parser, semantics analysis, 
-          translation to MIPS, and object oriented features. </p>
-        <a href="https://github.com/zu-greta/comp520_2024" target="_blank">Code</a>
-      </br></br>
-      <hr style="border: 1px solid #9cb5db;">
-      <p style="font-size: 0.9rem; color:#9cb5db; text-align: left;">Java, C, MIPS</p>
-      </div>
-        <div class="project-card">
-            <h3>Operating Systems simulation project [Jan 2024 - Mar 2024]</h3>
-            <p>Using C programming language, create an operating system simulaon
-                including a shell, memory management and lesystem management. </p>
-            <a href="https://github.com/zu-greta/comp310">Code</a>
-          </br></br>
-          <hr style="border: 1px solid #9cb5db;">
-          <p style="font-size: 0.9rem; color:#9cb5db; text-align: left;">C, Bash, Docker</p>
-        </div>
-        <div class="project-card">
-          <h3>HackMcWics25 Hackathon BCV website [2025]</h3>
-          <p>Develop a full-stack web-app - BCV (best CV) - that allows users to enter information about 
-            projects, past employements, skills and extracurriculars, as well as a job description, 
-            and using Gemini API the generator will create a single-paged CV tailored to the job requirements
-            based on the user's skills in order of relevance. The frontend uses React and Tailwind CSS, with Next.JS routing
-             and the backend is developed with Drizzle and Postgres database. We used Gemini API for the AI 
-            generation and SERP API for the job board posting carousel</p>
-          <a href="https://youtu.be/TeJMOojokRM?si=M3tr0oGHdgZCmjvG" target="_blank">Demo</a> ||
-          <a href="https://devpost.com/software/bcv-hackmcwics25" target="_blank">Devpost</a> ||
-          <a href="https://github.com/DavidNitchi/McWICS25" target="_blank">Code</a>
-        </br></br>
-        <hr style="border: 1px solid #9cb5db;">
-        <p style="font-size: 0.9rem; color:#9cb5db; text-align: left;">REACT, Tailwind CSS, HTML/CSS, Javascript, APIs, Drizzle, Next.js</p>
-        </div>
-      <div class="project-card">
-        <h3>CodeJam14 Hackathon MealMates mobile application [2024]</h3>
-        <p>Develop a full-stack mobile app - MealMates - that allows users to swipe
-            through food images from restaurants near them and curate a list of
-            interested restaurants as well as match with friends on similar restaurants to
-            try out together. The frontend uses React-Native and the backend is
-            developed with Django-rest and SQLite3 database.</p>
-        <a href="https://youtube.com/shorts/2nAD9EJrNGw?si=f1xnBtyIwjq76qlM" target="_blank">Demo</a> ||
-        <a href="https://devpost.com/software/fooder-zx98kt" target="_blank">Devpost</a> ||
-        <a href="https://github.com/denis-tsariov/codejam14" target="_blank">Code</a>
-      </br></br>
-      <hr style="border: 1px solid #9cb5db;">
-      <p style="font-size: 0.9rem; color:#9cb5db; text-align: left;">Python, Django-rest, SQLite3, SQL, Javascript, Typescript, REACT-native, Tailwind</p>
-      </div>
-        <div class="project-card">
-            <h3>Calendar/Reminder mobile application [July 2024 - Present]</h3>
-            <p>Develop an iOs Calendar and ToDo list application using SwuitUI and XCode.
-                The goal is to compare functionalies between iOs and macOs, using a
-                database, and looking at possibilies of syncing between devices.  </p>
-            <a href="https://github.com/zu-greta/calendar">Code</a>
-          </br></br>
-          <hr style="border: 1px solid #9cb5db;">
-          <p style="font-size: 0.9rem; color:#9cb5db; text-align: left;">Swuift, SwuitUI</p>
-        </div>
-
-    </br>
-    <hr>
-    </br>
-
-    <div class="project-card-research">
-        <h3>TikTok Impact on Society Analysis Research project - Under supervision of Professor Joseph Vybihal [Sep 2024 - Dec 2024]</h3>
-        <p>Overcoming web scraping data barriers from TikTok using bots and bypassing
-            biases from the algorithm. Analyzing the data to see the different treatment
-            towards user gender, food negative and positive contents and the biases that
-            come with that. 
-        </p>
-        <a href="assets/Tik_Tok_Research_Project.pdf">Report</a> 
-    </div>
-    <div class="project-card-research">
-      <h3>Depression and Eating Disorders [Jan 2022 - April 2022]</h3>
-      <p> Researched the correlation between eating disorders and depression, determining whether there is a link 
-        between the two in terms of impact and risks. Also analyzed if the treatment for major depressive disorders,
-        more specifically, antidepressants, functions or can be beneficial to eating disorders such as anorexia nervosa and bulimia nervosa.
-      </p>
-      <a href="assets/eating_disorders_depression.pdf">Report</a> ||
-      <a href="assets/eating_disorders_depression_presentation.pdf">Presentation</a>
-  </div>
-
-    </div>
-  </section>
-
-    <!-- Education Section -->
-    <section id="education" class="hidden">
-        <div class="container">
-        <h2>Education</h2>
-        <blockquote> <b style="font-size: 1.2rem;">McGill University</b> 
-            <ul>
-                <li> <b style="font-size: 1rem;">Bachelor of Science in Computer Science</b> (August 2022 - June 2026 expected)</li>
-                <li><b style="font-size: 1rem;">cGPA: </b> 3.83/4.0</li>
-                <li><b style="font-size: 1rem;">Relevant courses: </b>Algorithm and Data structures, Artificial Intelligence, 
-                    Programming languages and Paradigms, Software Design, Operating Systems, 
-                    Algorithm Design, Database Systems, Web Development, Data Science, Distributed systems, Compiler Design,
-                    Machine Learning, Intro to C++
-                </li>
-                <li><b style="font-size: 1rem;">Awards: </b> Alma Mater Scholarship</li>
-            </ul>
-            </blockquote>
-        </br>
-        <hr>
-        </br>
-        </blockquote> <b style="font-size: 1.2rem;">Marianopolis College</b> 
-            <ul>
-                <li> <b style="font-size: 1rem;">DCS in Honours Health Science</b> (August 2020 - June 2022)</li>
-                <li><b style="font-size: 1rem;">R-Score: </b> 37.825</li>
-                <li><b style="font-size: 1rem;">Awards: </b>
-                    Dean's List Fall 2020 and Winter 2021
-                </li>
-            </ul>
-        </blockquote>
-        </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience" class="hidden">
-        <div class="container">
-        <h2>Experience</h2>
-        <ul>
-            <li> <b style="font-size: 1.2rem;">NoteTaker for Data Science course at McGill University</b> || January 2024 - Ongoing</li>
-            <li><b style="font-size: 1.2rem;">Corrector for physics course labs at Marianopolis College</b> || August 2022 - June 2023</li>
-        </ul>
-        </div>
-    </section>
-
-
-    <!-- Interests Section -->
-    <section id="interests" class="hidden">
-    <div class="container">
-      <h2>Interests/Hobbies</h2>
-      <div class="interests-row">
-        <div class="portfolio-item">
-          <img class="img-responsive" src="./assets/DSC_7497.JPG" alt="Dancing" height="250">
-          <p><strong>Dancing</strong><br><br>
-            I am an active dancer at <a href="https://www.instagram.com/krave_mcgill/?hl=en" target="_blank" rel="noopener">K-RAVE McGill</a> and <a href="https://www.youtube.com/@emria" target="_blank" rel="noopener">Emoria</a>.
-          </p>
-        </div>
-        <div class="portfolio-item">
-          <img class="img-responsive" src="./assets/volleyball.jpg" alt="Volleyball">
-          <p><strong>Volleyball</strong><br><br>
-            I have started playing volleyball at McGill in intramural teams this year!
-          </p>
-        </div>
-        <div class="portfolio-item">
-          <img class="img-responsive" src="./assets/GRE_0349.JPG" alt="Dragon Boat" height="250">
-          <p><strong>Dragon Boat</strong><br><br>
-            I am on the McGill DragonBoatZ team and also paddled with the UDEM Dragon boat team.
-          </p>
-        </div>
-        <div class="portfolio-item">
-          <img class="img-responsive" src="./assets/plane.jpg" alt="Travelling" height="250">
-          <p><strong>Travelling</strong><br><br>
-            I enjoy travelling to different countries and discovering local foods and culture!
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-  
+</body>
 <script>
-    // Define threshold values for different screen sizes
-    const largeScreenThreshold = 0.2;
-    const smallScreenThreshold = 0.1;
-  
-    // Function to get the appropriate threshold based on screen size
-    function getThreshold() {
-      if (window.matchMedia("(max-width: 768px)").matches) {
-        return smallScreenThreshold;
-      } else {
-        return largeScreenThreshold;
-      }
-    }
-  
-    // Select all sections with the class "hidden"
-    const sections = document.querySelectorAll('.hidden');
-  
-    // Create a new Intersection Observer with dynamic threshold
-    const observer = new IntersectionObserver(function(entries, observer) {
-      entries.forEach(entry => {
-        // If element is in viewport, add the 'show' class to trigger the animation
-        if (entry.isIntersecting) {
-          entry.target.classList.add('show');
-        }
-      });
-    }, {
-      root: null,
-      rootMargin: '0px',
-      threshold: getThreshold()
+    // TODO clickable project items???
+    // // Highlight selected project and display its details
+    // const projectItems = document.querySelectorAll('.project-item');
+    // const content = document.querySelector('.content');
+    // const projectTab = document.getElementById('current-project-tab');
+
+    // projectItems.forEach(item => {
+    //     item.addEventListener('click', () => {
+    //         // Highlight the clicked project
+    //         projectItems.forEach(p => p.classList.remove('active'));
+    //         item.classList.add('active');
+
+    //         // Display project details
+    //         const projectName = item.dataset.project;
+    //         content.innerHTML = `
+    //   <h1>${projectName}</h1>
+    //   <p>Details about ${projectName} will go here.</p>
+    // `;
+
+    //         // Update tabs
+    //         projectTab.textContent = projectName;
+    //         projectTab.classList.remove('hidden');
+    //         document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+    //         projectTab.classList.add('active');
+    //     });
+    // });
+
+    // Highlight and display active tab content
+    const tabs = document.querySelectorAll('.tab');
+    const contents = document.querySelectorAll('.content');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            // Remove "active" from all tabs
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+
+            // Hide all content sections
+            contents.forEach(c => c.style.display = 'none');
+
+            // Show all target sections for this tab
+            const targets = tab.dataset.target.split(',');
+            targets.forEach(id => {
+                const section = document.getElementById(id.trim());
+                if (section) section.style.display = 'block';
+            });
+        });
     });
-  
-    // Observe each section
-    sections.forEach(section => observer.observe(section));
-  
-    document.querySelectorAll('.hidden').forEach((element)=>{
-      if(!element.id === 'nav-bar') {
-        element.classList.add('hidden');
-      }
-    });
-  
-    // Update observer threshold on window resize
-    window.addEventListener('resize', () => {
-      observer.disconnect();
-      sections.forEach(section => observer.observe(section));
-    });
+
+
+    //TODO: add x button that closes the project tab and if clicked, the project tab will be hidden
+    //TODO: unhighlight project sidebar item when x button is clicked or when on another tab
+
+
 </script>
 
-
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <p style="font-size:14px">&copy; 2024 Greta Ru-Mei Zu. All rights reserved. Last updated: January 2025. </p>
-    </div>
-  </footer>
-
-</body>
 </html>
