@@ -17,6 +17,9 @@ body {
     display: flex;
     width: 100%;
 }
+.hamburger {
+    display: none; /* Hidden by default, shown on mobile */
+}
 
 /* Sidebar */
 .sidebar {
@@ -198,10 +201,6 @@ main {
 }
 
 /* for mobile */
-.hamburger {
-    display: none; /* Hidden by default, shown on mobile */
-}
-
 /* remove the sidebar for mobile */
 @media (max-width: 768px) {
     .sidebar {
