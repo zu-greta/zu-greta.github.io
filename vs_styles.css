@@ -1,0 +1,182 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #002451;
+    color: #d4d4d4;
+    display: flex;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 20%;
+    background-color: #001c40;
+    padding: 1.5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #ffffff;
+}
+.profile {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #7385b7;
+}
+.profile i {
+    font-size: 2rem;
+    margin-right: 3%;
+}
+
+.folders {
+    display: flex;
+    flex-direction: column;
+}
+
+.projects-header {
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 3% 0;
+}
+
+.projects-list {
+    list-style: none;
+}
+
+.projects-folder {
+    padding: 1.5% 9%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.project-item {
+    padding: 1.5% 9%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.project-item:hover,
+.project-item.active {
+    background-color: #415570;
+}
+
+/* Tabs */
+.tabs {
+    position: sticky;
+    top: 0;
+    display: flex;
+    background-color: #001c40;
+    padding-top: 0.5%;
+}
+
+.tab {
+    padding: 0.5% 1.5%;
+    color: #d4d4d4;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.tab.active {
+    background-color: #002451;
+}
+
+/* TODO: fix this button style */
+.tab-close-btn {
+    color: #d4d4d4;
+    padding: 0 3px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    background-color: #002451;
+}
+
+/* Content Area */
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    max-height: fit-content;
+    overflow-y: auto;
+}
+
+.content {
+    display: block;
+    padding: 30px;
+    text-align: center;
+}
+
+.content a {
+    color: #ff9da4;
+}
+
+#contact-me a {
+    color: #bbdaff;
+    font-weight: bold;
+    gap: 15px;
+    text-decoration: none;
+    font-size: 18px;
+}
+#contact-me a:hover {
+    color: #ffc590;
+}
+
+
+/* colours */
+.colour_main {
+    color: #ff9da4;
+}
+
+.colour_dotthings {
+    color: #bbdaff;
+}
+
+.colour_reserved {
+    color: #eabbff;
+}
+
+.colour_punctuation {
+    color: #da70d6;
+}
+
+.colour_string {
+    color: #d1f1a9;
+}
+
+.colour_function {
+    color: #ffc590;
+}
+
+.colur_comment {
+    color: #7385b7;
+}
+
+.colour_mainBackground {
+    background-color: #002451;
+}
+
+.colour_sidebarBackground {
+    background-color: #001c40;
+}
+
+.colour_highlightTab {
+    background-color: #415570;
+}
+
+.colour_tabText {
+    color: #cccccc;
+}
+
+.colour_white {
+    color: #ffffff;
+}
