@@ -11,7 +11,7 @@ const st = t => S("colour_string", `"${t}"`);
 const dt = t => S("colour_dotthings", t);
 const mn = t => S("colour_main", t);
 const pn = t => S("colour_punctuation", t);
-const link = (url, label) => `<a href="${url}" target="_blank" style="color:#9cb5db; text-decoration:underline;">${label}</a>`;
+const link = (url, label) => `<a href="${url}" target="_blank" style="color:var(--link-code); text-decoration:underline;">${label}</a>`;
 
 function escHtml(s) { return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
 
@@ -34,7 +34,7 @@ function renderSidebar() {
             html += `<div class="projects-folder"><i class="fa fa-angle-down"></i> ${entry.folder}
                 <ul class="projects-list" style="padding: 1.5% 2%;">`;
             for (const item of entry.items) {
-                const style = item.highlight ? ' style="color: #d1f1a9;"' : "";
+                const style = item.highlight ? ' style="color: var(--syn-string);"' : "";
                 html += `<li class="project-item"${style} data-project="${item.name}">${item.short}</li>`;
             }
             html += `</ul></div>`;
@@ -144,7 +144,7 @@ ${details}
 `;
     }
 
-    py += `\n<hr style="border: none; border-top: 1px solid rgba(255, 255, 255, 0.08); margin: 0.8rem 0;">\n`;
+    py += `\n<hr style="border: none; border-top: 1px solid var(--border-color); margin: 0.8rem 0;">\n`;
 
     py += `
 ${cm("### Research Experience ###")}
@@ -200,7 +200,7 @@ ${rs("void")} ${p.funcName}() {
     }
 
     c += `
-<hr style="border: none; border-top: 1px solid rgba(255, 255, 255, 0.08); margin: 0.8rem 0;">
+<hr style="border: none; border-top: 1px solid var(--border-color); margin: 0.8rem 0;">
 
 ${cm("// Research Projects")}
 ${rs("struct")} Research_Project {
@@ -287,7 +287,7 @@ function renderInterestsJson() {
     for (const e of d.entries) {
         imgHtml += `<div style="text-align: center;">
             <img src="${e.image}" alt="${e.name}" style="height: 150px; border-radius: 5px; display: block; margin: 0 auto;">
-            <p style="color: #ffffff; font-family: 'Fira Code', monospace; font-size: 0.85rem;">${e.image}</p>
+            <p style="color: var(--text-white); font-family: 'Fira Code', monospace; font-size: 0.85rem;">${e.image}</p>
         </div>`;
     }
     document.getElementById("interests-images").innerHTML = imgHtml;
@@ -352,11 +352,143 @@ document.addEventListener("DOMContentLoaded", function () {
     toggle.addEventListener("click", function () {
         currentLang = currentLang === "en" ? "fr" : "en";
         if (currentLang === "fr") {
-            toggle.innerHTML = '<span class="lang-inactive">EN</span> / FR';
+            toggle.innerHTML = '<span class="toggle-inactive">EN</span> / FR';
         } else {
-            toggle.innerHTML = 'EN / <span class="lang-inactive">FR</span>';
+            toggle.innerHTML = 'EN / <span class="toggle-inactive">FR</span>';
         }
         renderAll();
+    });
+});
+
+// ---- Theme toggle ----
+document.addEventListener("DOMContentLoaded", function () {
+    const themes = ["dark", "light", "monokai"];
+    const icons = { dark: "🌙", light: "☀️", monokai: "🎨" };
+    let themeIndex = 0;
+    const toggle = document.getElementById("theme-toggle");
+
+    toggle.addEventListener("click", function () {
+        themeIndex = (themeIndex + 1) % themes.length;
+        document.documentElement.setAttribute("data-theme", themes[themeIndex]);
+        toggle.textContent = icons[themes[themeIndex]];
+    });
+});
+
+// ---- Terminal ----
+document.addEventListener("DOMContentLoaded", function () {
+    const btn = document.getElementById("terminal-btn");
+    const win = document.getElementById("terminal-window");
+    const close = document.getElementById("terminal-close");
+    const input = document.getElementById("terminal-input");
+    const output = document.getElementById("terminal-output");
+
+    btn.addEventListener("click", () => {
+        win.classList.toggle("show");
+        if (win.classList.contains("show")) input.focus();
+    });
+    close.addEventListener("click", () => win.classList.remove("show"));
+
+    const commands = {
+        help: () => `Available commands:
+  <span style="color:var(--syn-string)">whoami</span>      — who is Greta?
+  <span style="color:var(--syn-string)">skills</span>      — list skills
+  <span style="color:var(--syn-string)">education</span>    — education history
+  <span style="color:var(--syn-string)">contact</span>     — how to reach me
+  <span style="color:var(--syn-string)">projects</span>    — list projects
+  <span style="color:var(--syn-string)">interests</span>   — hobbies & fun
+  <span style="color:var(--syn-string)">fortune</span>     — random quote
+  <span style="color:var(--syn-string)">date</span>        — current date
+  <span style="color:var(--syn-string)">echo [msg]</span>  — repeat after me
+  <span style="color:var(--syn-string)">theme [name]</span>— switch theme (dark/light/monokai)
+  <span style="color:var(--syn-string)">clear</span>       — clear terminal
+  <span style="color:var(--syn-string)">exit</span>        — close terminal`,
+
+        whoami: () => `Greta Ru-Mei Zu
+BSc Computer Science (AI) @ McGill → MSc Computing @ Imperial
+Currently: Summer@EPFL in the SaCS Lab 🇨🇭`,
+
+        skills: () => DATA.skills.map(s => `<span style="color:var(--syn-function)">${s.category}:</span> ${s.items}`).join("\n"),
+
+        education: () => DATA.education.map(e => `<span style="color:var(--syn-function)">${e.school}</span> — ${e.degree} (${e.dates})`).join("\n"),
+
+        contact: () => DATA.contact.map(c => `<span style="color:var(--syn-function)">${c.label}:</span> ${c.url}`).join("\n"),
+
+        projects: () => DATA.projectsC.projects.map(p => `<span style="color:var(--syn-function)">${p.comment}</span> (${p.dates}) — ${p.tech}`).join("\n"),
+
+        interests: () => {
+            const main = DATA.interests.entries.map(e => `🎯 ${e.name} — ${e.description}`).join("\n");
+            const other = DATA.interests.other.join(", ");
+            return main + `\n\nAlso: ${other}`;
+        },
+
+        fortune: () => {
+            const quotes = [
+                '"The best way to predict the future is to invent it." — Alan Kay',
+                '"Talk is cheap. Show me the code." — Linus Torvalds',
+                '"First, solve the problem. Then, write the code." — John Johnson',
+                '"Code is like humor. When you have to explain it, it\'s bad." — Cory House',
+                '"Simplicity is the soul of efficiency." — Austin Freeman',
+                '"Any fool can write code that a computer can understand. Good programmers write code that humans can understand." — Martin Fowler',
+                '"It works on my machine. ¯\\_(ツ)_/¯"'
+            ];
+            return quotes[Math.floor(Math.random() * quotes.length)];
+        },
+
+        date: () => new Date().toString(),
+
+        clear: () => null,
+        exit: () => null
+    };
+
+    function addOutput(html) {
+        const div = document.createElement("div");
+        div.innerHTML = html;
+        output.appendChild(div);
+        output.scrollTop = output.scrollHeight;
+    }
+
+    input.addEventListener("keydown", function (e) {
+        if (e.key !== "Enter") return;
+        const raw = input.value.trim();
+        input.value = "";
+        if (!raw) return;
+
+        addOutput(`<span style="color:var(--syn-function)">$ </span>${raw}`);
+
+        const parts = raw.split(" ");
+        const cmd = parts[0].toLowerCase();
+        const args = parts.slice(1).join(" ");
+
+        if (cmd === "clear") {
+            output.innerHTML = "";
+            return;
+        }
+        if (cmd === "exit") {
+            win.classList.remove("show");
+            return;
+        }
+        if (cmd === "echo") {
+            addOutput(args || "");
+            return;
+        }
+        if (cmd === "theme") {
+            const valid = ["dark", "light", "monokai"];
+            if (valid.includes(args)) {
+                document.documentElement.setAttribute("data-theme", args);
+                const icons = { dark: "🌙", light: "☀️", monokai: "🎨" };
+                document.getElementById("theme-toggle").textContent = icons[args];
+                addOutput(`Theme switched to ${args}`);
+            } else {
+                addOutput(`Usage: theme [dark|light|monokai]`);
+            }
+            return;
+        }
+        if (commands[cmd]) {
+            const result = commands[cmd]();
+            if (result) addOutput(result);
+        } else {
+            addOutput(`<span style="color:var(--syn-main)">command not found: ${cmd}</span>. Type <span style="color:var(--syn-string)">help</span> for available commands.`);
+        }
     });
 });
 

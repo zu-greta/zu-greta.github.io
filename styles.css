@@ -5,10 +5,89 @@
     box-sizing: border-box;
 }
 
+/* Theme variables */
+:root, [data-theme="dark"] {
+    --bg-main: #002451;
+    --bg-sidebar: #001c40;
+    --bg-tab: #001c40;
+    --bg-tab-active: #002451;
+    --bg-highlight: #415570;
+    --text-primary: #d4d4d4;
+    --text-white: #ffffff;
+    --text-muted: #7385b7;
+    --border-color: #003366;
+    --shadow-color: rgba(0,0,0,0.5);
+    /* syntax */
+    --syn-main: #ff9da4;
+    --syn-dot: #bbdaff;
+    --syn-reserved: #eabbff;
+    --syn-punctuation: #da70d6;
+    --syn-string: #d1f1a9;
+    --syn-function: #ffc590;
+    --syn-comment: #7385b7;
+    /* links */
+    --link-color: #ff9da4;
+    --link-contact: #bbdaff;
+    --link-hover: #ffc590;
+    --link-code: #9cb5db;
+    /* status */
+    --status-color: #a3d572;
+}
+
+[data-theme="light"] {
+    --bg-main: #fafafa;
+    --bg-sidebar: #e8e8e8;
+    --bg-tab: #e8e8e8;
+    --bg-tab-active: #fafafa;
+    --bg-highlight: #d0d0d0;
+    --text-primary: #383a42;
+    --text-white: #383a42;
+    --text-muted: #a0a1a7;
+    --border-color: #d0d0d0;
+    --shadow-color: rgba(0,0,0,0.1);
+    --syn-main: #e45649;
+    --syn-dot: #4078f2;
+    --syn-reserved: #a626a4;
+    --syn-punctuation: #a626a4;
+    --syn-string: #50a14f;
+    --syn-function: #c18401;
+    --syn-comment: #a0a1a7;
+    --link-color: #e45649;
+    --link-contact: #4078f2;
+    --link-hover: #c18401;
+    --link-code: #4078f2;
+    --status-color: #50a14f;
+}
+
+[data-theme="monokai"] {
+    --bg-main: #272822;
+    --bg-sidebar: #1e1f1c;
+    --bg-tab: #1e1f1c;
+    --bg-tab-active: #272822;
+    --bg-highlight: #49483e;
+    --text-primary: #f8f8f2;
+    --text-white: #f8f8f2;
+    --text-muted: #75715e;
+    --border-color: #49483e;
+    --shadow-color: rgba(0,0,0,0.5);
+    --syn-main: #f92672;
+    --syn-dot: #66d9ef;
+    --syn-reserved: #f92672;
+    --syn-punctuation: #f8f8f2;
+    --syn-string: #e6db74;
+    --syn-function: #a6e22e;
+    --syn-comment: #75715e;
+    --link-color: #f92672;
+    --link-contact: #66d9ef;
+    --link-hover: #a6e22e;
+    --link-code: #66d9ef;
+    --status-color: #a6e22e;
+}
+
 body {
     font-family: 'Courier New', Courier, monospace;
-    background-color: #002451;
-    color: #d4d4d4;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
     display: flex;
     height: 100vh;
 }
@@ -18,25 +97,25 @@ body {
     width: 100%;
 }
 .hamburger {
-    display: none; /* Hidden by default, shown on mobile */
+    display: none;
 }
 
 /* Sidebar */
 .sidebar {
     width: 20%;
-    background-color: #001c40;
+    background-color: var(--bg-sidebar);
     padding: 1.5%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    color: #ffffff;
+    color: var(--text-white);
 }
 .profile {
     display: flex;
     align-items: center;
     font-size: 1.2rem;
     margin-bottom: 20px;
-    color: #7385b7;
+    color: var(--text-muted);
     position: relative;
     cursor: pointer;
 }
@@ -48,7 +127,7 @@ body {
 .status-dot {
     width: 8px;
     height: 8px;
-    background-color: #a3d572;
+    background-color: var(--status-color);
     border-radius: 50%;
     margin-left: 8px;
 }
@@ -58,13 +137,13 @@ body {
     position: absolute;
     bottom: 100%;
     left: 0;
-    background-color: #001c40;
-    border: 1px solid #415570;
+    background-color: var(--bg-sidebar);
+    border: 1px solid var(--bg-highlight);
     border-radius: 8px;
     padding: 12px;
     margin-bottom: 8px;
     min-width: 220px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    box-shadow: 0 4px 12px var(--shadow-color);
     z-index: 100;
 }
 
@@ -74,22 +153,22 @@ body {
 
 .profile-status {
     font-size: 0.85rem;
-    color: #d1f1a9;
+    color: var(--syn-string);
     padding-bottom: 8px;
     margin-bottom: 8px;
-    border-bottom: 1px solid #415570;
+    border-bottom: 1px solid var(--bg-highlight);
 }
 
 .profile-links a {
     display: block;
-    color: #bbdaff;
+    color: var(--link-contact);
     text-decoration: none;
     font-size: 0.9rem;
     padding: 4px 0;
 }
 
 .profile-links a:hover {
-    color: #ffc590;
+    color: var(--link-hover);
 }
 
 .folders {
@@ -121,7 +200,7 @@ body {
 
 .project-item:hover,
 .project-item.active {
-    background-color: #415570;
+    background-color: var(--bg-highlight);
 }
 
 /* Tabs */
@@ -129,28 +208,27 @@ body {
     position: sticky;
     top: 0;
     display: flex;
-    background-color: #001c40;
+    background-color: var(--bg-tab);
     padding-top: 0.5%;
 }
 
 .tab {
     padding: 0.5% 1.5%;
-    color: #d4d4d4;
+    color: var(--text-primary);
     cursor: pointer;
     font-size: 1rem;
 }
 
 .tab.active {
-    background-color: #002451;
+    background-color: var(--bg-tab-active);
 }
 
-/* TODO: fix this button style */
 .tab-close-btn {
-    color: #d4d4d4;
+    color: var(--text-primary);
     padding: 0 3px;
     cursor: pointer;
     font-size: 1.1rem;
-    background-color: #002451;
+    background-color: var(--bg-tab-active);
 }
 
 /* Content Area */
@@ -169,7 +247,7 @@ main {
 }
 
 .content a {
-    color: #ff9da4;
+    color: var(--link-color);
 }
 
 #contact-me {
@@ -185,99 +263,63 @@ main {
 }
 
 #contact-me a {
-    color: #bbdaff;
+    color: var(--link-contact);
     font-weight: bold;
     gap: 15px;
     text-decoration: none;
     font-size: 18px;
 }
 #contact-me a:hover {
-    color: #ffc590;
+    color: var(--link-hover);
 }
 
 .about-me {
-  display: flex;
-  align-items: center;
-  gap: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
 .about-me-img img {
-  width: 200px;
-  height: auto;
-  border-radius: 10%;
+    width: 200px;
+    height: auto;
+    border-radius: 10%;
 }
 
 .about-me-text {
-  text-align: left;
+    text-align: left;
 }
 
+/* Syntax highlight colours — now using CSS variables */
+.colour_main { color: var(--syn-main); }
+.colour_dotthings { color: var(--syn-dot); }
+.colour_reserved { color: var(--syn-reserved); }
+.colour_punctuation { color: var(--syn-punctuation); }
+.colour_string { color: var(--syn-string); }
+.colour_function { color: var(--syn-function); }
+.colour_comment { color: var(--syn-comment); }
 
-/* colours */
-.colour_main {
-    color: #ff9da4;
-}
-
-.colour_dotthings {
-    color: #bbdaff;
-}
-
-.colour_reserved {
-    color: #eabbff;
-}
-
-.colour_punctuation {
-    color: #da70d6;
-}
-
-.colour_string {
-    color: #d1f1a9;
-}
-
-.colour_function {
-    color: #ffc590;
-}
-
-.colour_comment {
-    color: #7385b7;
-}
-
-.colour_mainBackground {
-    background-color: #002451;
-}
-
-.colour_sidebarBackground {
-    background-color: #001c40;
-}
-
-.colour_highlightTab {
-    background-color: #415570;
-}
-
-.colour_tabText {
-    color: #cccccc;
-}
-
-.colour_white {
-    color: #ffffff;
-}
-
-/* Language toggle */
-.lang-toggle {
+/* Toolbar toggles */
+.toolbar-group {
     margin-left: auto;
-    padding: 0.5% 1.5%;
-    color: #d4d4d4;
+    display: flex;
+    align-items: center;
+}
+
+.toolbar-toggle {
+    padding: 0.5% 10px;
+    color: var(--text-primary);
     cursor: pointer;
     font-size: 0.9rem;
     white-space: nowrap;
     user-select: none;
 }
 
-.lang-toggle:hover {
-    color: #ffc590;
+.toolbar-toggle:hover {
+    color: var(--link-hover);
 }
 
-.lang-inactive {
-    color: #7385b7;
+.toggle-inactive {
+    color: var(--text-muted);
 }
 
 /* Code-themed tabs */
@@ -286,14 +328,14 @@ main {
     padding: 20px;
     font-family: 'Fira Code', monospace;
     font-size: 0.95rem;
-    background-color: #002451;
+    background-color: var(--bg-main);
     border-radius: 10px;
     overflow: auto;
 }
 
 .code-pre {
-    background-color: #002451;
-    color: #ffffff;
+    background-color: var(--bg-main);
+    color: var(--text-white);
     padding: 15px;
     border-radius: 10px;
     overflow-x: auto;
@@ -301,17 +343,114 @@ main {
 
 /* Interests gallery */
 .interests-gallery {
-    background-color: #001c40;
+    background-color: var(--bg-sidebar);
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    box-shadow: 0 0 15px var(--shadow-color);
     overflow-x: auto;
     display: flex;
     gap: 30px;
 }
 
+/* Terminal */
+.terminal-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--bg-highlight);
+    color: var(--text-white);
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 999;
+    box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.terminal-btn:hover {
+    background-color: var(--link-hover);
+    color: var(--bg-main);
+}
+
+.terminal-window {
+    display: none;
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 480px;
+    max-width: 90vw;
+    height: 320px;
+    background-color: var(--bg-sidebar);
+    border: 1px solid var(--bg-highlight);
+    border-radius: 8px;
+    z-index: 1000;
+    flex-direction: column;
+    box-shadow: 0 4px 20px var(--shadow-color);
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+}
+
+.terminal-window.show {
+    display: flex;
+}
+
+.terminal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background-color: var(--bg-highlight);
+    border-radius: 8px 8px 0 0;
+    color: var(--text-white);
+    font-size: 0.8rem;
+}
+
+.terminal-close {
+    cursor: pointer;
+}
+
+.terminal-close:hover {
+    color: var(--link-color);
+}
+
+.terminal-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.terminal-output {
+    flex: 1;
+    overflow-y: auto;
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+.terminal-input-line {
+    display: flex;
+    align-items: center;
+}
+
+.terminal-prompt {
+    color: var(--syn-function);
+    margin-right: 4px;
+}
+
+.terminal-input {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--text-white);
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+}
+
 /* for mobile */
-/* remove the sidebar for mobile */
 @media (max-width: 768px) {
     .sidebar {
         display: none;
@@ -320,19 +459,19 @@ main {
         flex-direction: column;
     }
 }
-/* make the tabs responsive in hamburger fashion */
+
 @media (max-width: 768px) {
     .tabs {
         flex-direction: column;
         position: absolute;
-        background-color: #001c40;
+        background-color: var(--bg-tab);
         width: 100%;
         z-index: 1000;
         display: none;
     }
     .tab {
         padding: 12px 16px;
-        border-bottom: 1px solid #003366;
+        border-bottom: 1px solid var(--border-color);
     }
     .hamburger {
         display: block;
@@ -341,12 +480,12 @@ main {
 }
 
 @media (max-width: 768px) {
-  .about-me {
-    flex-direction: column;
-    text-align: center;
-  }
+    .about-me {
+        flex-direction: column;
+        text-align: center;
+    }
 
-  .about-me-text {
-    text-align: center;
-  }
+    .about-me-text {
+        text-align: center;
+    }
 }
