@@ -192,15 +192,114 @@ body {
     transition: background-color 0.3s ease;
 }
 
+.folder-arrow {
+    transition: transform 0.2s;
+    display: inline-block;
+    width: 12px;
+}
+
+.projects-folder.collapsed .folder-arrow {
+    transform: rotate(-90deg);
+}
+
+.projects-folder.collapsed .folder-contents {
+    display: none;
+}
+
 .project-item {
     padding: 1.5% 9%;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
+.git-badge {
+    float: right;
+    font-size: 0.75rem;
+    font-weight: bold;
+    opacity: 0.8;
+}
+
 .project-item:hover,
 .project-item.active {
     background-color: var(--bg-highlight);
+}
+
+/* Project detail card */
+.project-card {
+    background-color: var(--bg-sidebar);
+    border: 1px solid var(--bg-highlight);
+    border-radius: 10px;
+    padding: 24px;
+    max-width: 700px;
+    margin: 20px auto;
+}
+
+.project-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.project-card-header h2 {
+    font-size: 1.3rem;
+    color: var(--text-white);
+}
+
+.project-status {
+    font-size: 0.85rem;
+    font-family: 'Courier New', monospace;
+}
+
+.project-meta {
+    display: flex;
+    gap: 20px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.project-desc {
+    line-height: 1.6;
+    margin-bottom: 16px;
+    color: var(--text-primary);
+}
+
+.project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 16px;
+}
+
+.tech-tag {
+    background-color: var(--bg-highlight);
+    color: var(--syn-function);
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-family: 'Courier New', monospace;
+}
+
+.project-links {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding-top: 12px;
+    border-top: 1px solid var(--bg-highlight);
+}
+
+.project-links a {
+    color: var(--link-contact);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.project-links a:hover {
+    color: var(--link-hover);
 }
 
 /* Tabs */

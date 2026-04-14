@@ -184,28 +184,194 @@ const DATA = {
 
     // Projects.c tab
     projectsC: {
-        // Sidebar folder structure for the left panel
+        // Git-style status: "M" = modified (in progress/green), "A" = added (recently done/orange), "" = committed (done/normal)
         sidebar: [
-            { folder: "Web Development", items: [
-                { name: "Brown Lab Website", short: "Brown Lab Website" },
-                { name: "SOC-cessful Schedule Booking Tool", short: "SOC-cessful Schedule" },
-                { name: "BCV McWics25 Hackathon", short: "Best-CV (BCV)" }
-            ]},
-            { name: "Artificial Intelligence Agent", short: "AI Agent" },
-            { name: "Paxos Total Order Game", short: "Paxos Game" },
-            { name: "Travelling Agency Management System and Booking Application", short: "Travelling Agency" },
-            { name: "Compiler for Mini-C", short: "Compiler for Mini-C" },
-            { name: "Operating System Simulation", short: "OS simulation" },
-            { folder: "Mobile Application", items: [
-                { name: "MealMates CodeJam14 Hackathon", short: "MealMates" },
-                { name: "Calendar/Reminder", short: "Calendar/Reminder", highlight: true }
-            ]},
             { folder: "Research Projects", items: [
-                { name: "Energy Efficiency in Machine Learning Algorithms", short: "Energy Efficiency in ML Algorithms", highlight: true },
-                { name: "TikTok Impact on Society Analaysis", short: "TikTok Impact on Society Analysis" },
-                { name: "Depression & Eating Disorders", short: "Depression and Eating Disorders" }
+                { id: "energy-ml", short: "Energy Efficiency in ML", status: "A" },
+                { id: "tiktok", short: "TikTok Analysis", status: "" },
+                { id: "depression", short: "Depression & Eating Disorders", status: "" }
+            ]},
+            { folder: "Web Development", items: [
+                { id: "brown-lab", short: "Brown Lab Website", status: "M" },
+                { id: "soc-schedule", short: "SOC-cessful Schedule", status: "" },
+                { id: "bcv", short: "Best-CV (BCV)", status: "" }
+            ]},
+            { id: "ai-agent", short: "AI Agent", status: "" },
+            { id: "paxos", short: "Paxos Game", status: "" },
+            { id: "travel-agency", short: "Travelling Agency", status: "" },
+            { id: "compiler", short: "Compiler for Mini-C", status: "" },
+            { id: "os-sim", short: "OS simulation", status: "" },
+            { folder: "Mobile Application", items: [
+                { id: "mealmates", short: "MealMates", status: "" },
+                { id: "calendar", short: "Calendar/Reminder", status: "M" }
             ]}
         ],
+        // Detailed project info — shown when clicking a sidebar item
+        details: {
+            "brown-lab": {
+                title: "Brown Lab Website",
+                dates: "Jan 2025 - Present",
+                status: "M",
+                statusLabel: "In Development",
+                description: "Building and maintaining the official website for the Brown Lab at McGill University. Responsive design with dynamic content management for lab publications, team members, and research updates.",
+                tech: ["React", "Javascript", "Node.js"],
+                course: "Volunteer / Freelance",
+                links: [
+                    { label: "🌐 Website", url: "https://zu-greta.github.io/brown_lab/" },
+                    { label: "💻 Code", url: "https://github.com/zu-greta/brown_lab" }
+                ]
+            },
+            "soc-schedule": {
+                title: "SOC-cessful Schedule Booking Tool",
+                dates: "Nov 2024 - Jan 2025",
+                status: "",
+                statusLabel: "Completed",
+                description: "Full-stack web application creating a booking tool for school staff and students. The frontend uses HTML, CSS and Javascript, and the backend is developed with PHP and a SQLite3 database hosted on the McGill SOCS servers.",
+                tech: ["HTML/CSS", "Javascript", "PHP", "XAMPP", "SQLite3", "SQL"],
+                course: "COMP 307 — Web Development",
+                links: [
+                    { label: "🌐 Website", url: "https://www.cs.mcgill.ca/~gzu/socs_sisters/landing" },
+                    { label: "💻 Code", url: "https://github.com/zu-greta/socs_sisters" },
+                    { label: "🎬 Demo", url: "https://youtu.be/ZxdcFvYHAKo?si=WddSmUicHZD8O6qh" }
+                ]
+            },
+            "bcv": {
+                title: "BCV — Best CV Generator",
+                dates: "2025 (Hackathon)",
+                status: "",
+                statusLabel: "Completed",
+                description: "Hackathon project (McWICS 2025). Users enter their experience, skills, and a job description — Gemini API generates a tailored single-page CV ranked by relevance. Includes a SERP API job board carousel.",
+                tech: ["React", "Tailwind CSS", "Next.js", "Drizzle", "PostgreSQL", "Gemini API", "SERP API"],
+                course: "McWICS 2025 Hackathon",
+                links: [
+                    { label: "🎬 Demo", url: "https://youtu.be/TeJMOojokRM?si=M3tr0oGHdgZCmjvG" },
+                    { label: "📋 Devpost", url: "https://devpost.com/software/bcv-hackmcwics25" },
+                    { label: "💻 Code", url: "https://github.com/DavidNitchi/McWICS25" }
+                ]
+            },
+            "ai-agent": {
+                title: "Artificial Intelligence Agent",
+                dates: "Oct 2023 - Dec 2023",
+                status: "",
+                statusLabel: "Completed",
+                description: "Developed an agent that plays and wins against random, human, and other agents in Colosseum Survival. Uses Monte Carlo Tree Search, A* Search, and heuristics to make efficient decisions. Placed in the top 20% of the class tournament.",
+                tech: ["Python"],
+                course: "COMP 424 — Artificial Intelligence",
+                links: [
+                    { label: "💻 Code", url: "https://github.com/zu-greta/424project" },
+                    { label: "📄 Report", url: "assets/424Report.pdf" }
+                ]
+            },
+            "paxos": {
+                title: "Paxos Total Order Game",
+                dates: "Nov 2024 - Dec 2024",
+                status: "",
+                statusLabel: "Completed",
+                description: "Implemented the Paxos Consensus Algorithm to achieve total order in a Java-based multiplayer distributed systems game. Handles node failures and network partitions gracefully.",
+                tech: ["Java", "Paxos", "Distributed Systems"],
+                course: "COMP 512 — Distributed Systems",
+                links: []
+            },
+            "travel-agency": {
+                title: "Travel Agency Management System",
+                dates: "Jan 2024 - May 2024",
+                status: "",
+                statusLabel: "Completed",
+                description: "Designed an application for a travelling agency where users can book flights, hotels, or rent cars. Created relational schemas, E/R diagrams, SQL queries and used JDBC to provide a database and functions to navigate and use it.",
+                tech: ["Java", "JDBC", "SQL", "DB2", "E/R diagrams"],
+                course: "COMP 421 — Database Systems",
+                links: [
+                    { label: "💻 Code", url: "https://github.com/zu-greta/comp421" }
+                ]
+            },
+            "compiler": {
+                title: "Compiler for Mini-C",
+                dates: "Jan 2025 - May 2025",
+                status: "",
+                statusLabel: "Completed",
+                description: "Built a full compiler from scratch for Mini-C (a subset of C) including lexer, parser, semantic analysis, MIPS code generation, and object-oriented features. Automated with Bash scripts.",
+                tech: ["Java", "C", "MIPS", "Bash"],
+                course: "COMP 520 — Compiler Design",
+                links: [
+                    { label: "💻 Code", url: "https://github.com/zu-greta/comp520_2024" }
+                ]
+            },
+            "os-sim": {
+                title: "Operating Systems Simulation",
+                dates: "Jan 2024 - Mar 2024",
+                status: "",
+                statusLabel: "Completed",
+                description: "Created an operating system simulation including a custom shell, memory management (paging, segmentation), and filesystem management. Containerized with Docker for reproducible testing.",
+                tech: ["C", "Bash", "Docker"],
+                course: "COMP 310 — Operating Systems",
+                links: [
+                    { label: "💻 Code", url: "https://github.com/zu-greta/comp310" }
+                ]
+            },
+            "mealmates": {
+                title: "MealMates — Food Matching App",
+                dates: "2024 (Hackathon)",
+                status: "",
+                statusLabel: "Completed",
+                description: "Hackathon project (CodeJam 14). Users swipe through food images from nearby restaurants and curate a list of interested spots. Match with friends on similar restaurants to try out together. Tinder-style UX for food.",
+                tech: ["Python", "Django-rest", "SQLite3", "Javascript", "TypeScript", "React Native", "Tailwind"],
+                course: "CodeJam 14 Hackathon",
+                links: [
+                    { label: "🎬 Demo", url: "https://youtube.com/shorts/2nAD9EJrNGw?si=f1xnBtyIwjq76qlM" },
+                    { label: "📋 Devpost", url: "https://devpost.com/software/fooder-zx98kt" },
+                    { label: "💻 Code", url: "https://github.com/denis-tsariov/codejam14" }
+                ]
+            },
+            "calendar": {
+                title: "Calendar / Reminder App",
+                dates: "July 2024 - Present",
+                status: "M",
+                statusLabel: "In Development",
+                description: "Personal iOS Calendar and ToDo list application. Exploring differences between iOS and macOS APIs, database syncing between devices, and native SwiftUI design patterns.",
+                tech: ["Swift", "SwiftUI", "Xcode"],
+                course: "Personal Project",
+                links: [
+                    { label: "💻 Code", url: "https://github.com/zu-greta/calendar" }
+                ]
+            },
+            "energy-ml": {
+                title: "Energy Efficiency in ML Algorithms",
+                dates: "June 2025 - Dec 2025",
+                status: "A",
+                statusLabel: "Recently Completed",
+                description: "Instrumented Switch-Transformers and Qwen Mixture-of-Experts models using CodeCarbon on DeepSpeed. Profiled GPU energy consumption and identified optimization strategies that reduced energy usage by ~66% without loss in accuracy. Prepared a Responsible AI course project with starter code.",
+                tech: ["Python", "CodeCarbon", "DeepSpeed", "PyTorch"],
+                course: "McGill DISC Lab — Prof. Balmau & Prof. Kemme",
+                links: [
+                    { label: "📄 Report", url: "assets/energy_eff_report.pdf" }
+                ]
+            },
+            "tiktok": {
+                title: "TikTok Algorithm Analysis",
+                dates: "Sept 2024 - Dec 2024",
+                status: "",
+                statusLabel: "Completed",
+                description: "Designed Python-based bots to collect 400+ TikTok videos while bypassing scraping restrictions. Conducted statistical analysis using Pandas and Scikit-learn to quantify algorithmic bias in engagement rates by user gender and content sentiment.",
+                tech: ["Python", "Pandas", "Scikit-learn", "Web Scraping"],
+                course: "Prometheus Lab — Prof. Vybihal",
+                links: [
+                    { label: "📄 Report", url: "assets/Tik_Tok_Research_Project.pdf" }
+                ]
+            },
+            "depression": {
+                title: "Depression & Eating Disorders",
+                dates: "Jan 2022 - April 2022",
+                status: "",
+                statusLabel: "Completed",
+                description: "Researched the correlation between eating disorders and depression, determining whether there is a link in terms of impact and risks. Analyzed if antidepressants can be beneficial to eating disorders such as anorexia nervosa and bulimia nervosa.",
+                tech: ["Research", "Statistical Analysis"],
+                course: "Marianopolis College — Health Science",
+                links: [
+                    { label: "📄 Report", url: "assets/eating_disorders_depression.pdf" },
+                    { label: "📊 Presentation", url: "assets/eating_disorders_depression_poster_prsentation.pdf" }
+                ]
+            }
+        },
         // The C-code project entries
         projects: [
             {
@@ -394,7 +560,7 @@ const DATA = {
     // Interests.json tab
     interests: {
         entries: [
-            { name: "Dancing", description: "I am an active dancer at K-RAVE McGill and Emoria.", image: "./assets/dance.JPG" },
+            { name: "Dancing", description: "I am an active dancer at K-RAVE McGill, Emoria, and Kreation.", image: "./assets/dance.JPG" },
             { name: "Volleyball", description: "I have started playing volleyball at McGill in intramural teams this year!", image: "./assets/volleyball.jpg" },
             { name: "Dragon Boat", description: "I paddled with the McGill DragonBoatZ team and also the UDEM Dragon boat team.", image: "./assets/db.JPG" },
             { name: "Travelling", description: "I enjoy travelling to different countries and discovering local foods/culture!", image: "./assets/plane.jpg" }

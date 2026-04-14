@@ -26,23 +26,99 @@ function t(key) {
 }
 
 // ---- Sidebar ----
+function statusColor(status) {
+    if (status === "M") return "var(--syn-string)";   // green — modified/in-progress
+    if (status === "A") return "var(--syn-function)";  // orange — added/recently done
+    return "";
+}
+
 function renderSidebar() {
     const el = document.getElementById("sidebar-projects");
     let html = "";
     for (const entry of DATA.projectsC.sidebar) {
         if (entry.folder) {
-            html += `<div class="projects-folder"><i class="fa fa-angle-down"></i> ${entry.folder}
-                <ul class="projects-list" style="padding: 1.5% 2%;">`;
+            html += `<div class="projects-folder" onclick="this.classList.toggle('collapsed')">
+                <i class="fa fa-angle-down folder-arrow"></i> ${entry.folder}
+                <ul class="projects-list folder-contents" style="padding: 1.5% 2%;">`;
             for (const item of entry.items) {
-                const style = item.highlight ? ' style="color: var(--syn-string);"' : "";
-                html += `<li class="project-item"${style} data-project="${item.name}">${item.short}</li>`;
+                const color = statusColor(item.status);
+                const style = color ? ` style="color:${color}"` : "";
+                const badge = item.status ? `<span class="git-badge">${item.status}</span>` : "";
+                html += `<li class="project-item"${style} data-project-id="${item.id}">${item.short}${badge}</li>`;
             }
             html += `</ul></div>`;
         } else {
-            html += `<li class="project-item" data-project="${entry.name}">${entry.short}</li>`;
+            const color = statusColor(entry.status);
+            const style = color ? ` style="color:${color}"` : "";
+            const badge = entry.status ? `<span class="git-badge">${entry.status}</span>` : "";
+            html += `<li class="project-item"${style} data-project-id="${entry.id}">${entry.short}${badge}</li>`;
         }
     }
     el.innerHTML = html;
+
+    // Click handler for project items
+    el.querySelectorAll(".project-item").forEach(item => {
+        item.addEventListener("click", function (e) {
+            e.stopPropagation();
+            const id = this.dataset.projectId;
+            openProjectDetail(id);
+            // Highlight active
+            el.querySelectorAll(".project-item").forEach(p => p.classList.remove("active"));
+            this.classList.add("active");
+        });
+    });
+}
+
+function openProjectDetail(id) {
+    const p = DATA.projectsC.details[id];
+    if (!p) return;
+
+    const tab = document.getElementById("current-project-tab");
+    tab.textContent = p.title + " ✕";
+    tab.dataset.target = "project-detail";
+    tab.classList.remove("hidden");
+    tab.style.display = "";
+
+    // Activate this tab
+    document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+    tab.classList.add("active");
+    document.querySelectorAll(".content").forEach(c => c.style.display = "none");
+
+    const statusColors = { "M": "var(--syn-string)", "A": "var(--syn-function)", "": "var(--text-muted)" };
+    const statusColor = statusColors[p.status] || "var(--text-muted)";
+
+    const detail = document.getElementById("project-detail");
+    detail.style.display = "block";
+    detail.innerHTML = `
+        <div class="project-card">
+            <div class="project-card-header">
+                <h2>${p.title}</h2>
+                <span class="project-status" style="color:${statusColor}">● ${p.statusLabel}</span>
+            </div>
+            <div class="project-meta">
+                <span>📅 ${p.dates}</span>
+                <span>📚 ${p.course}</span>
+            </div>
+            <p class="project-desc">${p.description}</p>
+            <div class="project-tech">
+                ${p.tech.map(t => `<span class="tech-tag">${t}</span>`).join("")}
+            </div>
+            ${p.links.length ? `<div class="project-links">
+                ${p.links.map(l => `<a href="${l.url}" target="_blank">${l.label}</a>`).join("")}
+            </div>` : ""}
+        </div>`;
+
+    // Close tab on click
+    tab.onclick = function (e) {
+        e.stopImmediatePropagation();
+        tab.classList.add("hidden");
+        tab.classList.remove("active");
+        tab.style.display = "none";
+        detail.style.display = "none";
+        document.querySelectorAll("#sidebar-projects .project-item").forEach(p => p.classList.remove("active"));
+        // Go back to home
+        document.querySelector('.tab[data-target*="home"]').click();
+    };
 }
 
 // ---- Home tab sections ----
