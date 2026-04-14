@@ -660,7 +660,7 @@ const FR = {
         project: "Projet",
         relevantCourses: "Cours pertinents",
         awards: "Prix",
-        status: "🟢 Ouverte aux opportunités"
+        status: "Ouverte aux opportunités"
     },
 
     aboutMe: {

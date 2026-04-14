@@ -21,7 +21,7 @@ function t(key) {
     const defaults = { aboutMe: "About Me", contactMe: "Contact Me", experience: "Experience",
         skills: "Skills", education: "Education", work: "Work", supervisor: "Supervisor",
         project: "Project", relevantCourses: "Relevant courses", awards: "Awards",
-        status: "🟢 Open to opportunities" };
+        status: "Open to opportunities" };
     return defaults[key] || key;
 }
 
@@ -450,7 +450,7 @@ function renderProfilePopup() {
     document.getElementById("profile-stats").innerHTML = stats.map(s =>
         `<div class="stat-item"><div class="stat-value">${s.value}</div><div class="stat-label">${s.label}</div></div>`
     ).join("");
-    document.getElementById("profile-status-text").textContent = t("status");
+    document.getElementById("profile-status-text").innerHTML = '<span class="status-dot-inline green"></span> ' + t("status");
 }
 
 function initProfilePopup() {

@@ -135,6 +135,22 @@ body {
     margin-left: 8px;
 }
 
+.status-dot-inline {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.status-dot-inline.green {
+    background-color: var(--syn-string);
+}
+
+.status-dot-inline.yellow {
+    background-color: var(--syn-function);
+}
+
 .profile-popup {
     display: none;
     position: absolute;
@@ -734,6 +750,28 @@ main {
         padding: 15px 5px;
     }
     .contact-bar {
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        flex-direction: row;
+        justify-content: center;
+        gap: 0;
+        background-color: var(--bg-sidebar);
+        border-top: 1px solid var(--bg-highlight);
+    }
+    .contact-bar a {
+        width: auto;
+        height: 36px;
+        padding: 0 16px;
+        border-radius: 0;
+        font-size: 0.9rem;
+    }
+    .contact-bar a:hover {
+        width: auto;
+        padding: 0 16px;
+    }
+    .contact-bar a span {
         display: none;
     }
     .terminal-btn {
