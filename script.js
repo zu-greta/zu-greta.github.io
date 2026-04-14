@@ -1,4 +1,299 @@
-// Tab switching
+// ============================================================
+// RENDERING — Builds all HTML from DATA (defined in data.js)
+// ============================================================
+
+// Helper: wrap text in a syntax-highlight span
+const S = (cls, text) => `<span class="${cls}">${text}</span>`;
+const cm = t => S("colour_comment", t);
+const rs = t => S("colour_reserved", t);
+const fn = t => S("colour_function", t);
+const st = t => S("colour_string", `"${t}"`);
+const dt = t => S("colour_dotthings", t);
+const mn = t => S("colour_main", t);
+const pn = t => S("colour_punctuation", t);
+const link = (url, label) => `<a href="${url}" target="_blank" style="color:#9cb5db; text-decoration:underline;">${label}</a>`;
+
+function escHtml(s) { return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+
+// ---- Sidebar ----
+function renderSidebar() {
+    const el = document.getElementById("sidebar-projects");
+    let html = "";
+    for (const entry of DATA.projectsC.sidebar) {
+        if (entry.folder) {
+            html += `<div class="projects-folder"><i class="fa fa-angle-down"></i> ${entry.folder}
+                <ul class="projects-list" style="padding: 1.5% 2%;">`;
+            for (const item of entry.items) {
+                const style = item.highlight ? ' style="color: #d1f1a9;"' : "";
+                html += `<li class="project-item"${style} data-project="${item.name}">${item.short}</li>`;
+            }
+            html += `</ul></div>`;
+        } else {
+            html += `<li class="project-item" data-project="${entry.name}">${entry.short}</li>`;
+        }
+    }
+    el.innerHTML = html;
+}
+
+// ---- Home tab sections ----
+function renderAboutMe() {
+    const d = DATA.aboutMe;
+    document.getElementById("about-me").innerHTML = `
+        <div class="about-me-img"><img src="${d.image}" alt="Greta's Profile Picture"></div>
+        <div class="about-me-text"><h2>About Me</h2><br><p>${d.text}</p></div>`;
+}
+
+function renderContact() {
+    const el = document.getElementById("contact-me");
+    el.innerHTML = "<h2>Contact Me</h2>" +
+        DATA.contact.map(c => `<a href="${c.url}" target="_blank"><i class="fa ${c.icon}"></i> ${c.label}</a>`).join("\n");
+}
+
+function renderHomeExperience() {
+    let html = '<h2 style="text-align: center;">Experience</h2><br>';
+    for (const e of DATA.workExperience) {
+        html += `<blockquote><b style="font-size:1.2rem;">${e.company}</b>
+            <ul style="list-style-type:none;padding-left:0;margin:0;">
+                <li><b style="font-size:1rem;">${e.role}</b> (${e.dates})</li>
+                <li><b style="font-size:1rem;">Work: </b> ${escHtml(e.work)}</li>
+            </ul></blockquote><br>`;
+    }
+    html += "<hr><br>";
+    for (const r of DATA.researchExperience) {
+        html += `<blockquote><b style="font-size:1.2rem;">${r.institution}</b>
+            <ul style="list-style-type:none;padding-left:0;margin:0;">
+                <li><b style="font-size:1rem;">${r.role}</b> (${r.dates})</li>
+                <li><b style="font-size:1rem;">Supervisor: </b> ${r.supervisor}</li>
+                <li><b style="font-size:1rem;">Project: </b> ${r.project}</li>
+            </ul></blockquote><br>`;
+    }
+    document.getElementById("experience").innerHTML = html;
+}
+
+function renderHomeSkills() {
+    let html = '<h2 style="text-align: center;">Skills</h2><br><ul style="list-style-type:none;padding-left:0;margin:0;">';
+    for (const s of DATA.skills) {
+        html += `<li><b>${s.category}:</b> ${s.items}</li>`;
+    }
+    html += "</ul>";
+    document.getElementById("skills").innerHTML = html;
+}
+
+function renderHomeEducation() {
+    let html = '<h2 style="text-align: center;">Education</h2>';
+    DATA.education.forEach((e, i) => {
+        if (i > 0) html += "<br><hr><br>";
+        html += `<blockquote><b style="font-size:1.2rem;">${e.school}</b>
+            <ul style="list-style-type:none;padding-left:0;margin:0;">
+                <li><b style="font-size:1rem;">${e.degree}</b> (${e.dates})</li>`;
+        if (e.gpa) html += `<li><b style="font-size:1rem;">cGPA: </b> ${e.gpa}</li>`;
+        if (e.rScore) html += `<li><b style="font-size:1rem;">R-Score: </b> ${e.rScore}</li>`;
+        if (e.courses) html += `<li><b style="font-size:1rem;">Relevant courses: </b>${e.courses}</li>`;
+        if (e.awards) html += `<li><b style="font-size:1rem;">Awards: </b> ${e.awards}</li>`;
+        html += `</ul></blockquote>`;
+    });
+    document.getElementById("education").innerHTML = html;
+}
+
+// ---- Code-themed tabs ----
+function renderExperiencePy() {
+    const d = DATA.experiencePy;
+    let py = "";
+    py += `${cm("### Work Experience ###")}
+
+${rs("class")} ${mn("Work_Experience")}:
+    ${rs("def")} ${fn("__init__")}(${dt("self")}):
+        ${dt("self")}.positions ${pn("=")} []
+
+    ${rs("def")} ${fn("add_position")}(${dt("self")}, company, role, dates, details):
+        ${dt("self")}.positions.append({
+            ${st("company")}: company,
+            ${st("role")}: role,
+            ${st("dates")}: dates,
+            ${st("details")}: details
+        })
+`;
+    for (const w of d.work) {
+        const details = w.details.map(d => `        ${st(escHtml(d))}`).join(",\n");
+        py += `
+${cm("# " + w.comment)}
+${fn("experience.add_position")}(
+    ${st(escHtml(w.company))},
+    ${st(escHtml(w.role))},
+    ${st(w.dates)},
+    [
+${details}
+    ]
+)
+`;
+    }
+
+    py += `\n<hr style="border: none; border-top: 1px solid rgba(255, 255, 255, 0.08); margin: 0.8rem 0;">\n`;
+
+    py += `
+${cm("### Research Experience ###")}
+${rs("class")} ${mn("Research_Experience")}:
+    ${rs("def")} ${fn("__init__")}(${dt("self")}):
+        ${dt("self")}.projects ${pn("=")} []
+
+    ${rs("def")} ${fn("add_project")}(${dt("self")}, lab, professors, dates, details):
+        ${dt("self")}.projects.append({
+            ${st("lab")}: lab,
+            ${st("professors")}: professors,
+            ${st("dates")}: dates,
+            ${st("details")}: details
+        })
+`;
+    for (const r of d.research) {
+        const details = r.details.map(d => `        ${st(escHtml(d))}`).join(",\n");
+        py += `
+${cm("# " + r.comment)}
+${fn("research.add_project")}(
+    ${st(escHtml(r.lab))},
+    ${st(escHtml(r.professors))},
+    ${st(r.dates)},
+    [
+${details}
+    ]
+)
+`;
+    }
+
+    document.getElementById("experiencepy-pre").innerHTML = py;
+}
+
+function renderProjectsC() {
+    const d = DATA.projectsC;
+    let c = `${cm("// Projects")}
+
+${rs("#include")} &lt;stdio.h&gt;
+`;
+    for (const p of d.projects) {
+        c += `
+${cm("// " + p.comment)}
+${rs("void")} ${p.funcName}() {
+    ${cm("// " + p.dates)}
+    ${cm("/*")} ${p.description} ${cm("*/")}
+    ${fn("char")} *tech = ${st(p.tech)};`;
+        for (const [key, val] of Object.entries(p.links)) {
+            c += `\n    ${fn("char")} *${key} = ${S("colour_string", '"' + link(val.url, val.label) + '"')};`;
+        }
+        c += `
+}
+`;
+    }
+
+    c += `
+<hr style="border: none; border-top: 1px solid rgba(255, 255, 255, 0.08); margin: 0.8rem 0;">
+
+${cm("// Research Projects")}
+${rs("struct")} Research_Project {
+    ${fn("char")} *title;
+    ${fn("char")} *professors;
+    ${fn("char")} *description;
+    ${fn("char")} *report_link;
+};
+`;
+    for (const r of d.research) {
+        c += `
+${cm("// " + r.comment)}
+${rs("struct")} ${r.name} {
+    ${fn("char")} *title = ${st(r.title)};
+    ${fn("char")} *description = ${st(r.description)};
+    ${cm("// Report → " + link(r.reportLink.url, r.reportLink.label))}
+};
+`;
+    }
+
+    document.getElementById("projectsc-pre").innerHTML = c;
+}
+
+function renderEducationJava() {
+    let java = "";
+    for (const cls of DATA.educationJava) {
+        java += `${cm("// " + cls.comment)}
+${mn("public class")} ${fn(cls.className)} {`;
+        for (const f of cls.fields) {
+            const val = f.isNumber ? dt(f.value) : st(f.value);
+            java += `\n    ${mn("private")} ${mn(f.type)} ${f.name} = ${val};`;
+        }
+        if (cls.arrayFields) {
+            for (const af of cls.arrayFields) {
+                java += `\n\n    ${mn("private")} ${mn("String[]")} ${af.name} = {`;
+                java += af.values.map(v => `\n        ${st(escHtml(v))}`).join(",");
+                java += `\n    };`;
+            }
+        }
+        if (cls.extraFields) {
+            java += "\n";
+            for (const f of cls.extraFields) {
+                const val = f.isNumber ? dt(f.value) : st(f.value);
+                java += `\n    ${mn("private")} ${mn(f.type)} ${f.name} = ${val};`;
+            }
+        }
+        java += `\n}\n\n`;
+    }
+    document.getElementById("educationjava-pre").innerHTML = java;
+}
+
+function renderSkillsBash() {
+    let bash = `${cm("# Skills")}\n`;
+    for (const group of DATA.skillsBash) {
+        bash += `\n${dt("$")} ${mn(group.varName)}=${pn("(")}`;
+        for (const v of group.values) {
+            bash += `\n    ${st(v)}`;
+        }
+        bash += `\n${pn(")")}\n`;
+    }
+    document.getElementById("skillsbash-pre").innerHTML = bash;
+}
+
+function renderInterestsJson() {
+    const d = DATA.interests;
+    let json = `${cm("// My hobbies and interests")}\n${pn("{")}`;
+    d.entries.forEach((e, i) => {
+        json += `\n    ${mn('"' + e.name + '"')}${pn(":")} ${pn("{")}
+        ${mn('"description"')}${pn(":")} ${st(e.description)}${pn(",")}
+        ${mn('"image"')}${pn(":")} ${st(e.image)}
+    ${pn("}")}${pn(",")}`;
+    });
+    json += `\n\n    ${mn('"Other"')}${pn(":")} ${pn("[")}`;
+    d.other.forEach((o, i) => {
+        json += `\n        ${st(o)}${i < d.other.length - 1 ? pn(",") : ""}`;
+    });
+    json += `\n    ${pn("]")}`;
+    json += `\n${pn("}")}`;
+    document.getElementById("interestsjson-pre").innerHTML = json;
+
+    // Render images
+    let imgHtml = "";
+    for (const e of d.entries) {
+        imgHtml += `<div style="text-align: center;">
+            <img src="${e.image}" alt="${e.name}" style="height: 150px; border-radius: 5px; display: block; margin: 0 auto;">
+            <p style="color: #ffffff; font-family: 'Fira Code', monospace; font-size: 0.85rem;">${e.image}</p>
+        </div>`;
+    }
+    document.getElementById("interests-images").innerHTML = imgHtml;
+}
+
+// ---- Init ----
+function renderAll() {
+    renderSidebar();
+    renderAboutMe();
+    renderContact();
+    renderHomeExperience();
+    renderHomeSkills();
+    renderHomeEducation();
+    renderExperiencePy();
+    renderProjectsC();
+    renderEducationJava();
+    renderSkillsBash();
+    renderInterestsJson();
+}
+
+document.addEventListener("DOMContentLoaded", renderAll);
+
+// ---- Tab switching ----
 const tabs = document.querySelectorAll('.tab');
 const contents = document.querySelectorAll('.content');
 
@@ -10,12 +305,12 @@ tabs.forEach(tab => {
         const targets = tab.dataset.target.split(',');
         targets.forEach(id => {
             const section = document.getElementById(id.trim());
-            if (section) section.style.display = 'block';
+            if (section) section.style.display = section.classList.contains('about-me') ? 'flex' : 'block';
         });
     });
 });
 
-// Mobile hamburger menu
+// ---- Mobile hamburger menu ----
 document.addEventListener("DOMContentLoaded", function () {
     const hamburger = document.querySelector(".hamburger");
     const tabsEl = document.querySelector(".tabs");

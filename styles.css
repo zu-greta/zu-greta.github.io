@@ -115,12 +115,24 @@ main {
 
 .content {
     display: block;
-    padding: 30px;
+    padding: 20px;
     text-align: center;
 }
 
 .content a {
     color: #ff9da4;
+}
+
+#contact-me {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+#contact-me h2 {
+    width: 100%;
 }
 
 #contact-me a {
@@ -198,6 +210,36 @@ main {
 
 .colour_white {
     color: #ffffff;
+}
+
+/* Code-themed tabs */
+.code-tab {
+    text-align: left;
+    padding: 20px;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.95rem;
+    background-color: #002451;
+    border-radius: 10px;
+    overflow: auto;
+}
+
+.code-pre {
+    background-color: #002451;
+    color: #ffffff;
+    padding: 15px;
+    border-radius: 10px;
+    overflow-x: auto;
+}
+
+/* Interests gallery */
+.interests-gallery {
+    background-color: #001c40;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    overflow-x: auto;
+    display: flex;
+    gap: 30px;
 }
 
 /* for mobile */
