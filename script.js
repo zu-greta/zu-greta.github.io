@@ -520,6 +520,18 @@ document.addEventListener("DOMContentLoaded", function () {
     initSidebarAccordion();
 });
 
+// ---- Shortcuts popup ----
+document.addEventListener("DOMContentLoaded", function () {
+    const btn = document.getElementById("shortcuts-btn");
+    const popup = document.getElementById("shortcuts-popup");
+    btn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        popup.classList.toggle("show");
+    });
+    document.addEventListener("click", function () { popup.classList.remove("show"); });
+    popup.addEventListener("click", function (e) { e.stopPropagation(); });
+});
+
 // ---- Language toggle ----
 document.addEventListener("DOMContentLoaded", function () {
     const toggle = document.getElementById("lang-toggle");
@@ -577,6 +589,7 @@ document.addEventListener("DOMContentLoaded", function () {
   <span style="color:var(--syn-string)">git log</span>     — timeline of my journey
   <span style="color:var(--syn-string)">date</span>        — current date
   <span style="color:var(--syn-string)">echo [msg]</span>  — repeat after me
+  <span style="color:var(--syn-string)">print cv</span>    — printable CV layout
   <span style="color:var(--syn-string)">theme [name]</span>— switch theme (dark/light/monokai)
   <span style="color:var(--syn-string)">clear</span>       — clear terminal
   <span style="color:var(--syn-string)">exit</span>        — close terminal`,
@@ -614,15 +627,21 @@ Currently: Summer@EPFL in the SaCS Lab 🇨🇭`,
 
         date: () => new Date().toString(),
 
+        "print cv": () => {
+            window.open("assets/Greta_Zu_CV.pdf", "_blank");
+            return "Opening CV...";
+        },
+
         "git log": () => {
             const events = [
-                ...DATA.education.map(e => ({ date: e.dates.split("-")[0].trim(), msg: `grad: ${e.degree} @ ${e.school}`, color: "var(--syn-dot)" })),
-                ...DATA.workExperience.map(e => ({ date: e.dates.split("-")[0].trim(), msg: `work: ${e.role} @ ${e.company}`, color: "var(--syn-function)" })),
-                ...DATA.researchExperience.map(e => ({ date: e.dates.split("-")[0].trim(), msg: `research: ${e.role} @ ${e.institution}`, color: "var(--syn-string)" }))
+                ...DATA.education.map(e => ({ date: e.dates.split("-")[0].trim(), msg: e.degree + " @ " + e.school, type: "edu" })),
+                ...DATA.workExperience.map(e => ({ date: e.dates.split("-")[0].trim(), msg: e.role + " @ " + e.company, type: "work" })),
+                ...DATA.researchExperience.map(e => ({ date: e.dates.split("-")[0].trim(), msg: e.role + " @ " + e.institution, type: "research" }))
             ];
+            const colors = { edu: "var(--syn-dot)", work: "var(--syn-function)", research: "var(--syn-string)" };
             return events.map(e =>
-                `<span style="color:var(--syn-function)">*</span> <span style="color:var(--text-muted)">${e.date}</span> - <span style="color:${e.color}">${e.msg}</span>`
-            ).join("\n");
+                `<span style="color:var(--syn-function)">*</span> <span style="color:var(--text-muted)">${e.date.padEnd(16)}</span> <span style="color:${colors[e.type]}">${e.msg}</span>`
+            ).join("\n") + "\n\n<span style=\"color:var(--text-muted)\">  edu=blue  work=orange  research=green</span>";
         },
 
         clear: () => null,
@@ -631,7 +650,7 @@ Currently: Summer@EPFL in the SaCS Lab 🇨🇭`,
 
     function addOutput(html) {
         const div = document.createElement("div");
-        div.innerHTML = html;
+        div.innerHTML = html.replace(/\n/g, "<br>");
         output.appendChild(div);
         output.scrollTop = output.scrollHeight;
     }
@@ -689,20 +708,38 @@ Currently: Summer@EPFL in the SaCS Lab 🇨🇭`,
 (function() {
     const pets = [
         { idle: "/\\_/\\  \n(o.o)", name: "cat" },
-        { idle: "(^.^)", name: "kitty" }
+        { idle: "(^.^)", name: "kitty" },
+        { idle: "(\\ /)\n( . .)\no(\")(\")", name: "bunny" },
+        { idle: "<`)))><", name: "fish" },
+        { idle: "(~^.^)~", name: "dancer" },
+        { idle: "=^..^=", name: "neko" },
+        { idle: "(o_O)", name: "owl" },
+        { idle: "d(^_^)b", name: "dj" }
     ];
-    const pet = pets[Math.floor(Math.random() * pets.length)];
+    let petIndex = Math.floor(Math.random() * pets.length);
     const el = document.getElementById("sidebar-pet");
     if (!el) return;
     const petEl = document.createElement("span");
     petEl.className = "pet";
-    petEl.textContent = pet.idle;
+    petEl.textContent = pets[petIndex].idle;
     petEl.title = "Click me!";
     const zzzEl = document.createElement("span");
     zzzEl.className = "pet-zzz";
     zzzEl.textContent = "z Z z";
     el.appendChild(petEl);
     el.appendChild(zzzEl);
+
+    // Swap pet every 4-6 animation iterations (2-3 full left-right cycles)
+    let bounces = 0;
+    const swapEvery = 4 + Math.floor(Math.random() * 3);
+    petEl.addEventListener("animationiteration", function() {
+        bounces++;
+        if (bounces >= swapEvery) {
+            bounces = 0;
+            petIndex = (petIndex + 1) % pets.length;
+            petEl.textContent = pets[petIndex].idle;
+        }
+    });
 
     let sleeping = false;
     petEl.addEventListener("click", function() {
@@ -762,31 +799,30 @@ document.addEventListener("keydown", function(e) {
     }
     if (e.key === "Escape") document.querySelector('.tab[data-target*="home"]').click();
     if (e.key === "/" && !e.ctrlKey) { e.preventDefault(); document.getElementById("terminal-btn").click(); }
-    if (e.key.toLowerCase() === "t" && !e.ctrlKey && !e.metaKey) document.getElementById("theme-toggle").click();
+    if (e.key === "`" && !e.ctrlKey && !e.metaKey) document.getElementById("theme-toggle").click();
 });
 
-// ---- Konami code easter egg ----
+// ---- Easter egg — type "greta" anywhere ----
 (function() {
-    const code = [38,38,40,40,37,39,37,39,66,65];
-    let pos = 0;
+    const secret = "greta";
+    let buffer = "";
     document.addEventListener("keydown", function(e) {
-        if (e.keyCode === code[pos]) {
-            pos++;
-            if (pos === code.length) {
-                pos = 0;
-                // Confetti burst
-                for (let i = 0; i < 80; i++) {
-                    const c = document.createElement("div");
-                    c.className = "confetti";
-                    c.style.left = Math.random() * 100 + "vw";
-                    c.style.background = ["var(--syn-main)","var(--syn-string)","var(--syn-function)","var(--syn-dot)","var(--syn-reserved)"][Math.floor(Math.random()*5)];
-                    c.style.animationDuration = (Math.random() * 2 + 1) + "s";
-                    c.style.animationDelay = Math.random() * 0.5 + "s";
-                    document.body.appendChild(c);
-                    setTimeout(() => c.remove(), 3500);
-                }
+        if (e.target.tagName === "INPUT") return;
+        buffer += e.key.toLowerCase();
+        if (buffer.length > secret.length) buffer = buffer.slice(-secret.length);
+        if (buffer === secret) {
+            buffer = "";
+            for (let i = 0; i < 80; i++) {
+                const c = document.createElement("div");
+                c.className = "confetti";
+                c.style.left = Math.random() * 100 + "vw";
+                c.style.background = ["var(--syn-main)","var(--syn-string)","var(--syn-function)","var(--syn-dot)","var(--syn-reserved)"][Math.floor(Math.random()*5)];
+                c.style.animationDuration = (Math.random() * 2 + 1) + "s";
+                c.style.animationDelay = Math.random() * 0.5 + "s";
+                document.body.appendChild(c);
+                setTimeout(() => c.remove(), 3500);
             }
-        } else { pos = 0; }
+        }
     });
 })();
 
