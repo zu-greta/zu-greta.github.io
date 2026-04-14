@@ -100,6 +100,45 @@ body {
     display: none;
 }
 
+/* Code rain */
+.code-rain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.04;
+}
+
+[data-theme="light"] .code-rain {
+    opacity: 0;
+}
+
+/* Confetti */
+.confetti {
+    position: fixed;
+    top: -10px;
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    z-index: 9999;
+    pointer-events: none;
+    animation: confetti-fall linear forwards;
+}
+@keyframes confetti-fall {
+    to { top: 110vh; transform: rotate(720deg); opacity: 0; }
+}
+
+/* Typing cursor */
+.cursor-blink {
+    animation: blink 1s step-end infinite;
+}
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
 /* Sidebar */
 .sidebar {
     width: 20%;
@@ -272,6 +311,22 @@ body {
     background-color: var(--bg-highlight);
 }
 
+.project-item {
+    transition: background-color 0.3s ease, padding-left 0.2s ease;
+}
+
+.project-item:hover {
+    padding-left: 12%;
+}
+
+.projects-folder:hover > .folder-arrow {
+    animation: folder-bounce 0.4s ease;
+}
+@keyframes folder-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
 /* Project detail card */
 .project-card {
     background-color: var(--bg-sidebar);
@@ -350,6 +405,63 @@ body {
     color: var(--link-hover);
 }
 
+/* Sidebar pet */
+.sidebar-pet {
+    height: 40px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.pet {
+    position: absolute;
+    bottom: 0;
+    font-size: 1.2rem;
+    line-height: 1;
+    animation: pet-walk 8s linear infinite alternate;
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.2s;
+}
+
+.pet:hover {
+    transform: scale(1.3);
+}
+
+.pet.flip {
+    transform: scaleX(-1);
+}
+
+@keyframes pet-walk {
+    0% { left: 0; }
+    100% { left: calc(100% - 20px); }
+}
+
+.pet-zzz {
+    position: absolute;
+    bottom: 20px;
+    font-size: 0.6rem;
+    color: var(--text-muted);
+    opacity: 0;
+    animation: zzz 3s ease-in-out infinite;
+}
+
+@keyframes zzz {
+    0%, 100% { opacity: 0; transform: translateY(0); }
+    50% { opacity: 1; transform: translateY(-8px); }
+}
+
+/* Scroll progress */
+.scroll-progress {
+    position: sticky;
+    top: 0;
+    height: 3px;
+    background: var(--syn-function);
+    width: 0%;
+    z-index: 1001;
+    transition: width 0.1s;
+}
+
 /* Tabs */
 .tabs {
     position: sticky;
@@ -368,6 +480,12 @@ body {
 
 .tab.active {
     background-color: var(--bg-tab-active);
+}
+
+.tab.active::after {
+    content: "|";
+    animation: blink 1s step-end infinite;
+    margin-left: 2px;
 }
 
 .tab-close-btn {
@@ -391,6 +509,11 @@ main {
     display: block;
     padding: 20px;
     text-align: center;
+    animation: fadeIn 0.3s ease;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .content a {

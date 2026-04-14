@@ -15,6 +15,21 @@ const link = (url, label) => `<a href="${url}" target="_blank" style="color:var(
 
 function escHtml(s) { return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
 
+// ---- Typing animation ----
+let typeTimer = null;
+function typeText(elId, text, speed = 60) {
+    clearInterval(typeTimer);
+    const el = document.getElementById(elId);
+    if (!el) return;
+    el.textContent = "";
+    let i = 0;
+    typeTimer = setInterval(() => {
+        el.textContent += text[i];
+        i++;
+        if (i >= text.length) clearInterval(typeTimer);
+    }, speed);
+}
+
 // ---- Helpers for i18n ----
 function t(key) {
     if (currentLang === "fr" && FR.headings && FR.headings[key]) return FR.headings[key];
@@ -471,10 +486,11 @@ function initProfilePopup() {
 
 // ---- Init ----
 function renderAll() {
-    // Update greeting
-    document.getElementById("home").innerHTML = `<h1 style="text-align: center;" class="colour_main">${
-        currentLang === "fr" ? FR.greeting : "Hello World, I'm Greta"
-    }</h1>`;
+    // Update greeting with typing animation
+    const greetText = currentLang === "fr" ? FR.greeting : "Hello World, I'm Greta";
+    const homeEl = document.getElementById("home");
+    homeEl.innerHTML = `<h1 style="text-align: center;" class="colour_main"><span id="typed-greeting"></span><span class="cursor-blink">|</span></h1>`;
+    typeText("typed-greeting", greetText);
     // Update profile status
     const statusEl = document.querySelector(".profile-status");
     if (statusEl) statusEl.textContent = t("status");
@@ -491,6 +507,11 @@ function renderAll() {
     renderSkillsBash();
     renderInterestsJson();
     renderProfilePopup();
+
+    // Footer
+    const now = new Date();
+    const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    document.getElementById("footer").innerHTML = `<p style="color:var(--text-muted);font-size:0.8rem;">// last modified: ${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()} | Greta Zu</p>`;
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -553,6 +574,7 @@ document.addEventListener("DOMContentLoaded", function () {
   <span style="color:var(--syn-string)">projects</span>    — list projects
   <span style="color:var(--syn-string)">interests</span>   — hobbies & fun
   <span style="color:var(--syn-string)">fortune</span>     — random quote
+  <span style="color:var(--syn-string)">git log</span>     — timeline of my journey
   <span style="color:var(--syn-string)">date</span>        — current date
   <span style="color:var(--syn-string)">echo [msg]</span>  — repeat after me
   <span style="color:var(--syn-string)">theme [name]</span>— switch theme (dark/light/monokai)
@@ -592,6 +614,17 @@ Currently: Summer@EPFL in the SaCS Lab 🇨🇭`,
 
         date: () => new Date().toString(),
 
+        "git log": () => {
+            const events = [
+                ...DATA.education.map(e => ({ date: e.dates.split("-")[0].trim(), msg: `grad: ${e.degree} @ ${e.school}`, color: "var(--syn-dot)" })),
+                ...DATA.workExperience.map(e => ({ date: e.dates.split("-")[0].trim(), msg: `work: ${e.role} @ ${e.company}`, color: "var(--syn-function)" })),
+                ...DATA.researchExperience.map(e => ({ date: e.dates.split("-")[0].trim(), msg: `research: ${e.role} @ ${e.institution}`, color: "var(--syn-string)" }))
+            ];
+            return events.map(e =>
+                `<span style="color:var(--syn-function)">*</span> <span style="color:var(--text-muted)">${e.date}</span> - <span style="color:${e.color}">${e.msg}</span>`
+            ).join("\n");
+        },
+
         clear: () => null,
         exit: () => null
     };
@@ -614,6 +647,7 @@ Currently: Summer@EPFL in the SaCS Lab 🇨🇭`,
         const parts = raw.split(" ");
         const cmd = parts[0].toLowerCase();
         const args = parts.slice(1).join(" ");
+        const fullCmd = raw.toLowerCase();
 
         if (cmd === "clear") {
             output.innerHTML = "";
@@ -639,7 +673,10 @@ Currently: Summer@EPFL in the SaCS Lab 🇨🇭`,
             }
             return;
         }
-        if (commands[cmd]) {
+        if (commands[fullCmd]) {
+            const result = commands[fullCmd]();
+            if (result) addOutput(result);
+        } else if (commands[cmd]) {
             const result = commands[cmd]();
             if (result) addOutput(result);
         } else {
@@ -647,6 +684,111 @@ Currently: Summer@EPFL in the SaCS Lab 🇨🇭`,
         }
     });
 });
+
+// ---- Sidebar pet ----
+(function() {
+    const pets = [
+        { idle: "/\\_/\\  \n(o.o)", name: "cat" },
+        { idle: "(^.^)", name: "kitty" }
+    ];
+    const pet = pets[Math.floor(Math.random() * pets.length)];
+    const el = document.getElementById("sidebar-pet");
+    if (!el) return;
+    const petEl = document.createElement("span");
+    petEl.className = "pet";
+    petEl.textContent = pet.idle;
+    petEl.title = "Click me!";
+    const zzzEl = document.createElement("span");
+    zzzEl.className = "pet-zzz";
+    zzzEl.textContent = "z Z z";
+    el.appendChild(petEl);
+    el.appendChild(zzzEl);
+
+    let sleeping = false;
+    petEl.addEventListener("click", function() {
+        if (!sleeping) {
+            petEl.style.animationPlayState = "paused";
+            zzzEl.style.left = petEl.style.left || "0px";
+            zzzEl.style.animationPlayState = "running";
+            sleeping = true;
+        } else {
+            petEl.style.animationPlayState = "running";
+            zzzEl.style.animationPlayState = "paused";
+            zzzEl.style.opacity = "0";
+            sleeping = false;
+        }
+    });
+})();
+
+// ---- Code rain ----
+(function() {
+    const canvas = document.getElementById("code-rain");
+    const ctx = canvas.getContext("2d");
+    function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    resize();
+    window.addEventListener("resize", resize);
+    const chars = "01{}[]<>/;:=+-*&|!?.#abcdef".split("");
+    const fontSize = 14;
+    let columns = Math.floor(canvas.width / fontSize);
+    let drops = Array(columns).fill(1);
+    function draw() {
+        ctx.fillStyle = "rgba(0,0,0,0.05)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "#0f0";
+        ctx.font = fontSize + "px monospace";
+        for (let i = 0; i < drops.length; i++) {
+            ctx.fillText(chars[Math.floor(Math.random() * chars.length)], i * fontSize, drops[i] * fontSize);
+            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+            drops[i]++;
+        }
+    }
+    setInterval(draw, 80);
+})();
+
+// ---- Scroll progress bar ----
+document.querySelector("main").addEventListener("scroll", function() {
+    const el = this;
+    const pct = el.scrollTop / (el.scrollHeight - el.clientHeight) * 100;
+    document.getElementById("scroll-progress").style.width = Math.min(pct, 100) + "%";
+});
+
+// ---- Keyboard shortcuts ----
+document.addEventListener("keydown", function(e) {
+    if (e.target.tagName === "INPUT") return;
+    const tabKeys = {"1":0,"2":1,"3":2,"4":3,"5":4,"6":5};
+    if (tabKeys[e.key] !== undefined) {
+        const allTabs = document.querySelectorAll(".tabs .tab:not(.hidden):not(#current-project-tab):not(.toolbar-group *)");
+        if (allTabs[tabKeys[e.key]]) allTabs[tabKeys[e.key]].click();
+    }
+    if (e.key === "Escape") document.querySelector('.tab[data-target*="home"]').click();
+    if (e.key === "/" && !e.ctrlKey) { e.preventDefault(); document.getElementById("terminal-btn").click(); }
+    if (e.key.toLowerCase() === "t" && !e.ctrlKey && !e.metaKey) document.getElementById("theme-toggle").click();
+});
+
+// ---- Konami code easter egg ----
+(function() {
+    const code = [38,38,40,40,37,39,37,39,66,65];
+    let pos = 0;
+    document.addEventListener("keydown", function(e) {
+        if (e.keyCode === code[pos]) {
+            pos++;
+            if (pos === code.length) {
+                pos = 0;
+                // Confetti burst
+                for (let i = 0; i < 80; i++) {
+                    const c = document.createElement("div");
+                    c.className = "confetti";
+                    c.style.left = Math.random() * 100 + "vw";
+                    c.style.background = ["var(--syn-main)","var(--syn-string)","var(--syn-function)","var(--syn-dot)","var(--syn-reserved)"][Math.floor(Math.random()*5)];
+                    c.style.animationDuration = (Math.random() * 2 + 1) + "s";
+                    c.style.animationDelay = Math.random() * 0.5 + "s";
+                    document.body.appendChild(c);
+                    setTimeout(() => c.remove(), 3500);
+                }
+            }
+        } else { pos = 0; }
+    });
+})();
 
 // ---- Tab switching ----
 const tabs = document.querySelectorAll('.tab');

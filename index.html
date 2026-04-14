@@ -26,6 +26,7 @@
                 </div>
                 <ul class="projects-list sidebar-section-body" id="sidebar-experience" style="display:none;"></ul>
             </div>
+            <div class="sidebar-pet" id="sidebar-pet"></div>
             <div class="profile" id="profile-btn">
                 <i class="fa fa-user-circle"></i>
                 <span>Greta Ru-Mei Zu</span>
@@ -39,12 +40,14 @@
 
         <!-- Main Content -->
         <main>
+            <!-- Scroll progress -->
+            <div class="scroll-progress" id="scroll-progress"></div>
             <!-- Tabs -->
             <div class="hamburger" style="padding: 12px 16px;">
                 <i class="fa fa-bars"></i>
             </div>
             <div class="tabs">
-                <div class="tab active" data-target="home,about-me,contact-me,experience,skills,education">Home.txt</div>
+                <div class="tab active" data-target="home,about-me,contact-me,experience,skills,education,footer">Home.txt</div>
                 <div class="tab" data-target="experiencepy">Experience.py</div>
                 <div class="tab" data-target="projectsc">Projects.c</div>
                 <div class="tab" data-target="educationjava">Education.java</div>
@@ -66,6 +69,9 @@
             <div class="content" id="experience" style="text-align: left;"></div>
             <div class="content" id="skills" style="text-align: left;"></div>
             <div class="content" id="education" style="text-align: left;"></div>
+
+            <!-- Footer -->
+            <div class="content footer" id="footer"></div>
 
             <!-- ===== Code-themed tabs ===== -->
             <div class="content" id="project-detail" style="display: none; text-align: left;"></div>
@@ -100,6 +106,9 @@
             </div>
         </main>
     </div>
+
+    <!-- Code rain canvas -->
+    <canvas id="code-rain" class="code-rain"></canvas>
 
     <!-- Floating contact bar -->
     <div class="contact-bar" id="contact-bar"></div>
