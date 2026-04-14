@@ -21,9 +21,14 @@
                     <!-- Rendered by script.js from data.js -->
                 </ul>
             </div>
-            <div class="profile">
+            <div class="profile" id="profile-btn">
                 <i class="fa fa-user-circle"></i>
                 <span>Greta Ru-Mei Zu</span>
+                <span class="status-dot"></span>
+                <div class="profile-popup" id="profile-popup">
+                    <div class="profile-status">🟢 Open to opportunities</div>
+                    <div class="profile-links" id="profile-links"></div>
+                </div>
             </div>
         </aside>
 
@@ -41,6 +46,7 @@
                 <div class="tab" data-target="skillsbash">Skills.bash</div>
                 <div class="tab" data-target="interestsjson">Interests.json</div>
                 <div class="tab hidden" id="current-project-tab"></div>
+                <div class="lang-toggle" id="lang-toggle">EN / <span class="lang-inactive">FR</span></div>
             </div>
 
             <!-- ===== Home tab sections ===== -->

@@ -15,6 +15,16 @@ const link = (url, label) => `<a href="${url}" target="_blank" style="color:#9cb
 
 function escHtml(s) { return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
 
+// ---- Helpers for i18n ----
+function t(key) {
+    if (currentLang === "fr" && FR.headings && FR.headings[key]) return FR.headings[key];
+    const defaults = { aboutMe: "About Me", contactMe: "Contact Me", experience: "Experience",
+        skills: "Skills", education: "Education", work: "Work", supervisor: "Supervisor",
+        project: "Project", relevantCourses: "Relevant courses", awards: "Awards",
+        status: "🟢 Open to opportunities" };
+    return defaults[key] || key;
+}
+
 // ---- Sidebar ----
 function renderSidebar() {
     const el = document.getElementById("sidebar-projects");
@@ -38,58 +48,64 @@ function renderSidebar() {
 // ---- Home tab sections ----
 function renderAboutMe() {
     const d = DATA.aboutMe;
+    const text = (currentLang === "fr" && FR.aboutMe) ? FR.aboutMe.text : d.text;
     document.getElementById("about-me").innerHTML = `
         <div class="about-me-img"><img src="${d.image}" alt="Greta's Profile Picture"></div>
-        <div class="about-me-text"><h2>About Me</h2><br><p>${d.text}</p></div>`;
+        <div class="about-me-text"><h2>${t("aboutMe")}</h2><br><p>${text}</p></div>`;
 }
 
 function renderContact() {
     const el = document.getElementById("contact-me");
-    el.innerHTML = "<h2>Contact Me</h2>" +
+    el.innerHTML = `<h2>${t("contactMe")}</h2>` +
         DATA.contact.map(c => `<a href="${c.url}" target="_blank"><i class="fa ${c.icon}"></i> ${c.label}</a>`).join("\n");
 }
 
 function renderHomeExperience() {
-    let html = '<h2 style="text-align: center;">Experience</h2><br>';
-    for (const e of DATA.workExperience) {
+    let html = `<h2 style="text-align: center;">${t("experience")}</h2><br>`;
+    DATA.workExperience.forEach((e, i) => {
+        const fr = (currentLang === "fr" && FR.workExperience) ? FR.workExperience[i] : {};
         html += `<blockquote><b style="font-size:1.2rem;">${e.company}</b>
             <ul style="list-style-type:none;padding-left:0;margin:0;">
-                <li><b style="font-size:1rem;">${e.role}</b> (${e.dates})</li>
-                <li><b style="font-size:1rem;">Work: </b> ${escHtml(e.work)}</li>
+                <li><b style="font-size:1rem;">${fr.role || e.role}</b> (${e.dates})</li>
+                <li><b style="font-size:1rem;">${t("work")}: </b> ${escHtml(fr.work || e.work)}</li>
             </ul></blockquote><br>`;
-    }
+    });
     html += "<hr><br>";
-    for (const r of DATA.researchExperience) {
+    DATA.researchExperience.forEach((r, i) => {
+        const fr = (currentLang === "fr" && FR.researchExperience) ? FR.researchExperience[i] : {};
         html += `<blockquote><b style="font-size:1.2rem;">${r.institution}</b>
             <ul style="list-style-type:none;padding-left:0;margin:0;">
-                <li><b style="font-size:1rem;">${r.role}</b> (${r.dates})</li>
-                <li><b style="font-size:1rem;">Supervisor: </b> ${r.supervisor}</li>
-                <li><b style="font-size:1rem;">Project: </b> ${r.project}</li>
+                <li><b style="font-size:1rem;">${fr.role || r.role}</b> (${r.dates})</li>
+                <li><b style="font-size:1rem;">${t("supervisor")}: </b> ${fr.supervisor || r.supervisor}</li>
+                <li><b style="font-size:1rem;">${t("project")}: </b> ${fr.project || r.project}</li>
             </ul></blockquote><br>`;
-    }
+    });
     document.getElementById("experience").innerHTML = html;
 }
 
 function renderHomeSkills() {
-    let html = '<h2 style="text-align: center;">Skills</h2><br><ul style="list-style-type:none;padding-left:0;margin:0;">';
-    for (const s of DATA.skills) {
-        html += `<li><b>${s.category}:</b> ${s.items}</li>`;
-    }
+    let html = `<h2 style="text-align: center;">${t("skills")}</h2><br><ul style="list-style-type:none;padding-left:0;margin:0;">`;
+    DATA.skills.forEach((s, i) => {
+        const fr = (currentLang === "fr" && FR.skills) ? FR.skills[i] : {};
+        html += `<li><b>${fr.category || s.category}:</b> ${fr.items || s.items}</li>`;
+    });
     html += "</ul>";
     document.getElementById("skills").innerHTML = html;
 }
 
 function renderHomeEducation() {
-    let html = '<h2 style="text-align: center;">Education</h2>';
+    let html = `<h2 style="text-align: center;">${t("education")}</h2>`;
     DATA.education.forEach((e, i) => {
+        const fr = (currentLang === "fr" && FR.education) ? FR.education[i] : {};
         if (i > 0) html += "<br><hr><br>";
         html += `<blockquote><b style="font-size:1.2rem;">${e.school}</b>
             <ul style="list-style-type:none;padding-left:0;margin:0;">
-                <li><b style="font-size:1rem;">${e.degree}</b> (${e.dates})</li>`;
+                <li><b style="font-size:1rem;">${fr.degree || e.degree}</b> (${fr.dates || e.dates})</li>`;
         if (e.gpa) html += `<li><b style="font-size:1rem;">cGPA: </b> ${e.gpa}</li>`;
         if (e.rScore) html += `<li><b style="font-size:1rem;">R-Score: </b> ${e.rScore}</li>`;
-        if (e.courses) html += `<li><b style="font-size:1rem;">Relevant courses: </b>${e.courses}</li>`;
-        if (e.awards) html += `<li><b style="font-size:1rem;">Awards: </b> ${e.awards}</li>`;
+        if (e.courses) html += `<li><b style="font-size:1rem;">${t("relevantCourses")}: </b>${e.courses}</li>`;
+        const awards = fr.awards || e.awards;
+        if (awards) html += `<li><b style="font-size:1rem;">${t("awards")}: </b> ${awards}</li>`;
         html += `</ul></blockquote>`;
     });
     document.getElementById("education").innerHTML = html;
@@ -252,8 +268,9 @@ function renderInterestsJson() {
     const d = DATA.interests;
     let json = `${cm("// My hobbies and interests")}\n${pn("{")}`;
     d.entries.forEach((e, i) => {
+        const fr = (currentLang === "fr" && FR.interests && FR.interests.entries) ? FR.interests.entries[i] : {};
         json += `\n    ${mn('"' + e.name + '"')}${pn(":")} ${pn("{")}
-        ${mn('"description"')}${pn(":")} ${st(e.description)}${pn(",")}
+        ${mn('"description"')}${pn(":")} ${st(fr.description || e.description)}${pn(",")}
         ${mn('"image"')}${pn(":")} ${st(e.image)}
     ${pn("}")}${pn(",")}`;
     });
@@ -276,8 +293,40 @@ function renderInterestsJson() {
     document.getElementById("interests-images").innerHTML = imgHtml;
 }
 
+// ---- Profile popup ----
+function renderProfilePopup() {
+    const el = document.getElementById("profile-links");
+    el.innerHTML = DATA.contact.map(c =>
+        `<a href="${c.url}" target="_blank"><i class="fa ${c.icon}"></i> ${c.label}</a>`
+    ).join("");
+}
+
+function initProfilePopup() {
+    const btn = document.getElementById("profile-btn");
+    const popup = document.getElementById("profile-popup");
+
+    btn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        popup.classList.toggle("show");
+    });
+
+    document.addEventListener("click", function (e) {
+        if (!popup.contains(e.target)) popup.classList.remove("show");
+    });
+
+    popup.addEventListener("click", function (e) { e.stopPropagation(); });
+}
+
 // ---- Init ----
 function renderAll() {
+    // Update greeting
+    document.getElementById("home").innerHTML = `<h1 style="text-align: center;" class="colour_main">${
+        currentLang === "fr" ? FR.greeting : "Hello World, I'm Greta"
+    }</h1>`;
+    // Update profile status
+    const statusEl = document.querySelector(".profile-status");
+    if (statusEl) statusEl.textContent = t("status");
+
     renderSidebar();
     renderAboutMe();
     renderContact();
@@ -289,9 +338,27 @@ function renderAll() {
     renderEducationJava();
     renderSkillsBash();
     renderInterestsJson();
+    renderProfilePopup();
 }
 
-document.addEventListener("DOMContentLoaded", renderAll);
+document.addEventListener("DOMContentLoaded", function () {
+    renderAll();
+    initProfilePopup();
+});
+
+// ---- Language toggle ----
+document.addEventListener("DOMContentLoaded", function () {
+    const toggle = document.getElementById("lang-toggle");
+    toggle.addEventListener("click", function () {
+        currentLang = currentLang === "en" ? "fr" : "en";
+        if (currentLang === "fr") {
+            toggle.innerHTML = '<span class="lang-inactive">EN</span> / FR';
+        } else {
+            toggle.innerHTML = 'EN / <span class="lang-inactive">FR</span>';
+        }
+        renderAll();
+    });
+});
 
 // ---- Tab switching ----
 const tabs = document.querySelectorAll('.tab');

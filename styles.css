@@ -37,10 +37,59 @@ body {
     font-size: 1.2rem;
     margin-bottom: 20px;
     color: #7385b7;
+    position: relative;
+    cursor: pointer;
 }
 .profile i {
     font-size: 2rem;
     margin-right: 3%;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #a3d572;
+    border-radius: 50%;
+    margin-left: 8px;
+}
+
+.profile-popup {
+    display: none;
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    background-color: #001c40;
+    border: 1px solid #415570;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 8px;
+    min-width: 220px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    z-index: 100;
+}
+
+.profile-popup.show {
+    display: block;
+}
+
+.profile-status {
+    font-size: 0.85rem;
+    color: #d1f1a9;
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #415570;
+}
+
+.profile-links a {
+    display: block;
+    color: #bbdaff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 4px 0;
+}
+
+.profile-links a:hover {
+    color: #ffc590;
 }
 
 .folders {
@@ -210,6 +259,25 @@ main {
 
 .colour_white {
     color: #ffffff;
+}
+
+/* Language toggle */
+.lang-toggle {
+    margin-left: auto;
+    padding: 0.5% 1.5%;
+    color: #d4d4d4;
+    cursor: pointer;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    user-select: none;
+}
+
+.lang-toggle:hover {
+    color: #ffc590;
+}
+
+.lang-inactive {
+    color: #7385b7;
 }
 
 /* Code-themed tabs */

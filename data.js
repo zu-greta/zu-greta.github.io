@@ -402,3 +402,112 @@ const DATA = {
         other: ["Piano", "Figure Skating", "Basketball", "Drawing", "Reading"]
     }
 };
+
+// ============================================================
+// FRENCH TRANSLATIONS — Only override text that needs translating.
+// Code-themed tabs stay in English (they're "code").
+// ============================================================
+
+const FR = {
+    greeting: "Hello World, je suis Greta",
+    headings: {
+        aboutMe: "À propos de moi",
+        contactMe: "Me contacter",
+        experience: "Expérience",
+        skills: "Compétences",
+        education: "Éducation",
+        work: "Travail",
+        supervisor: "Superviseur",
+        project: "Projet",
+        relevantCourses: "Cours pertinents",
+        awards: "Prix",
+        status: "🟢 Ouverte aux opportunités"
+    },
+
+    aboutMe: {
+        text: `Bonjour! Je suis Greta et je suis étudiante en maîtrise (MSc) à
+            <a href="https://www.imperial.ac.uk/">Imperial College London</a>, en informatique (génie logiciel).
+            <br>
+            Je suis passionnée par le développement logiciel et l'apprentissage automatique, et je cherche toujours des
+            opportunités pour apprendre et évoluer dans le domaine.
+            <br>
+            Actuellement, je participe au programme Summer@EPFL dans le <a href="https://www.epfl.ch/labs/sacs/">laboratoire SaCS</a> sous la direction de professeure Anne-Marie Kermarrec.`
+    },
+
+    workExperience: [
+        {
+            role: "Stagiaire développeuse en intelligence artificielle",
+            work: "Implémentation et déploiement d'un chatbot RAG utilisant Hopsworks, DeepEval et les modèles EricAI. Amélioration d'un outil de dimensionnement (CANDI) avec des capacités IA/ML et automatisation de la construction du modèle de prédiction. Conception et déploiement d'un outil de prédiction de prix avec regex et processus LLM, et entraînement d'un modèle LightBGM pour la prédiction de tendances."
+        },
+        {
+            role: "Stagiaire en apprentissage automatique",
+            work: "Conception et déploiement de pipelines de génération augmentée par récupération (RAG) utilisant AWS Lambda, Bedrock et S3. Création de flux de travail agentiques en Python pour générer des jeux de données pour le fine-tuning; amélioration de la latence et des résultats de ~40%. Conception et implémentation d'un assistant de codage CLI utilisant Langchain DeepAgents."
+        },
+        {
+            role: "Preneur de notes (Science des données)",
+            work: "Création de notes organisées et bien rédigées pour le programme d'accessibilité et de réussite étudiante de McGill."
+        },
+        {
+            role: "Correctrice (Laboratoires de physique)",
+            work: "Correction de rapports de laboratoire et rétroaction aux étudiants pour améliorer leur compréhension des concepts de physique."
+        }
+    ],
+
+    researchExperience: [
+        {
+            role: "Assistante de recherche",
+            supervisor: "Professeure Anne-Marie Kermarrec",
+            project: "À déterminer"
+        },
+        {
+            role: "Assistante de recherche",
+            supervisor: "Professeure Oana Balmau et Professeure Bettina Kemme",
+            project: "Efficacité énergétique des algorithmes d'apprentissage automatique"
+        },
+        {
+            role: "Assistante de recherche",
+            supervisor: "Professeur Joseph Vybihal",
+            project: "Analyse de l'algorithme TikTok — conception de bots pour collecter plus de 400 vidéos et analyse statistique des biais algorithmiques"
+        }
+    ],
+
+    skills: [
+        { category: "Langages de programmation" },
+        { category: "Balisage et Frontend" },
+        { category: "Bases de données" },
+        { category: "Technologies" },
+        { category: "Frameworks et outils" },
+        { category: "Piles web" },
+        { category: "IDE/Outils" },
+        { category: "Langues", items: "Anglais et français (les deux de langue maternelle)" }
+    ],
+
+    education: [
+        {
+            degree: "Maîtrise en informatique (génie logiciel)",
+            dates: "Septembre 2026 - septembre 2027 prévu"
+        },
+        {
+            degree: "Baccalauréat en informatique (Intelligence artificielle)",
+            dates: "Août 2022 - mai 2026",
+            awards: "Bourse Alma Mater"
+        },
+        {
+            degree: "DEC en Sciences de la santé (Honours)",
+            dates: "Août 2020 - juin 2022",
+            awards: "Liste du doyen automne 2020 et hiver 2021"
+        }
+    ],
+
+    interests: {
+        entries: [
+            { description: "Je suis une danseuse active à K-RAVE McGill et Emoria." },
+            { description: "J'ai commencé à jouer au volleyball à McGill dans des équipes intra-muros cette année!" },
+            { description: "J'ai pagayé avec l'équipe McGill DragonBoatZ et aussi l'équipe de bateau-dragon de l'UdeM." },
+            { description: "J'aime voyager dans différents pays et découvrir la cuisine et la culture locales!" }
+        ]
+    }
+};
+
+// Current language state
+let currentLang = "en";
