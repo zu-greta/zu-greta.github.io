@@ -542,6 +542,12 @@ main {
 #contact-me a:hover {
     color: var(--link-hover);
 }
+#contact-me a.cv-highlight {
+    background-color: var(--link-hover);
+    color: var(--bg-main);
+    padding: 4px 10px;
+    border-radius: 4px;
+}
 
 .about-me {
     display: flex;
@@ -741,6 +747,19 @@ main {
 
 .contact-bar a:hover span {
     display: inline;
+}
+
+.contact-bar a.cv-highlight {
+    background-color: var(--link-hover);
+    color: var(--bg-main);
+    animation: cv-pulse 2s ease-in-out infinite;
+}
+.contact-bar a.cv-highlight:hover {
+    animation: none;
+}
+@keyframes cv-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
 }
 
 /* Terminal */

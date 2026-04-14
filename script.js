@@ -210,11 +210,11 @@ function renderAboutMe() {
 function renderContact() {
     const el = document.getElementById("contact-me");
     el.innerHTML = `<h2>${t("contactMe")}</h2>` +
-        DATA.contact.map(c => `<a href="${c.url}" target="_blank"><i class="fa ${c.icon}"></i> ${c.label}</a>`).join("\n");
+        DATA.contact.map(c => `<a href="${c.url}" target="_blank" class="${c.label === 'CV' ? 'cv-highlight' : ''}"><i class="fa ${c.icon}"></i> ${c.label}</a>`).join("\n");
 
     // Floating contact bar
     document.getElementById("contact-bar").innerHTML = DATA.contact.map(c =>
-        `<a href="${c.url}" target="_blank"><i class="fa ${c.icon}"></i><span>${c.label}</span></a>`
+        `<a href="${c.url}" target="_blank" class="${c.label === 'CV' ? 'cv-highlight' : ''}"><i class="fa ${c.icon}"></i><span>${c.label}</span></a>`
     ).join("");
 }
 
