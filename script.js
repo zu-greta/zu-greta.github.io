@@ -27,15 +27,14 @@ function t(key) {
 
 // ---- Sidebar ----
 function statusColor(status) {
-    if (status === "M") return "var(--syn-string)";   // green — modified/in-progress
-    if (status === "A") return "var(--syn-function)";  // orange — added/recently done
+    if (status === "M") return "var(--syn-string)";
+    if (status === "A") return "var(--syn-function)";
     return "";
 }
 
-function renderSidebar() {
-    const el = document.getElementById("sidebar-projects");
+function renderSidebarList(el, items, detailSource) {
     let html = "";
-    for (const entry of DATA.projectsC.sidebar) {
+    for (const entry of items) {
         if (entry.folder) {
             html += `<div class="projects-folder" onclick="this.classList.toggle('collapsed')">
                 <i class="fa fa-angle-down folder-arrow"></i> ${entry.folder}
@@ -44,83 +43,105 @@ function renderSidebar() {
                 const color = statusColor(item.status);
                 const style = color ? ` style="color:${color}"` : "";
                 const badge = item.status ? `<span class="git-badge">${item.status}</span>` : "";
-                html += `<li class="project-item"${style} data-project-id="${item.id}">${item.short}${badge}</li>`;
+                html += `<li class="project-item"${style} data-item-id="${item.id}" data-source="${detailSource}">${item.short}${badge}</li>`;
             }
             html += `</ul></div>`;
         } else {
             const color = statusColor(entry.status);
             const style = color ? ` style="color:${color}"` : "";
             const badge = entry.status ? `<span class="git-badge">${entry.status}</span>` : "";
-            html += `<li class="project-item"${style} data-project-id="${entry.id}">${entry.short}${badge}</li>`;
+            html += `<li class="project-item"${style} data-item-id="${entry.id}" data-source="${detailSource}">${entry.short}${badge}</li>`;
         }
     }
     el.innerHTML = html;
-
-    // Click handler for project items
     el.querySelectorAll(".project-item").forEach(item => {
         item.addEventListener("click", function (e) {
             e.stopPropagation();
-            const id = this.dataset.projectId;
-            openProjectDetail(id);
-            // Highlight active
-            el.querySelectorAll(".project-item").forEach(p => p.classList.remove("active"));
+            const id = this.dataset.itemId;
+            const source = this.dataset.source;
+            const details = source === "experience" ? DATA.experienceDetails : DATA.projectsC.details;
+            openDetailPanel(id, details);
+            document.querySelectorAll(".project-item").forEach(p => p.classList.remove("active"));
             this.classList.add("active");
         });
     });
 }
 
-function openProjectDetail(id) {
-    const p = DATA.projectsC.details[id];
-    if (!p) return;
+function renderSidebar() {
+    renderSidebarList(document.getElementById("sidebar-projects"), DATA.projectsC.sidebar, "projects");
+    renderSidebarList(document.getElementById("sidebar-experience"), DATA.experienceSidebar, "experience");
+}
 
+function openDetailPanel(id, detailsMap) {
+    const p = detailsMap[id];
+    if (!p) return;
     const tab = document.getElementById("current-project-tab");
-    tab.textContent = p.title + " ✕";
+    const label = p.title.length > 25 ? p.title.substring(0, 25) + "…" : p.title;
+    tab.textContent = label + " ✕";
     tab.dataset.target = "project-detail";
     tab.classList.remove("hidden");
     tab.style.display = "";
-
-    // Activate this tab
     document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
     tab.classList.add("active");
     document.querySelectorAll(".content").forEach(c => c.style.display = "none");
-
-    const statusColors = { "M": "var(--syn-string)", "A": "var(--syn-function)", "": "var(--text-muted)" };
-    const statusColor = statusColors[p.status] || "var(--text-muted)";
-
+    const sColors = { "M": "var(--syn-string)", "A": "var(--syn-function)", "": "var(--text-muted)" };
+    const sColor = sColors[p.status] || "var(--text-muted)";
+    const context = p.course || p.company || "";
     const detail = document.getElementById("project-detail");
     detail.style.display = "block";
     detail.innerHTML = `
         <div class="project-card">
             <div class="project-card-header">
                 <h2>${p.title}</h2>
-                <span class="project-status" style="color:${statusColor}">● ${p.statusLabel}</span>
+                <span class="project-status" style="color:${sColor}">● ${p.statusLabel}</span>
             </div>
             <div class="project-meta">
                 <span>📅 ${p.dates}</span>
-                <span>📚 ${p.course}</span>
+                <span>🏢 ${context}</span>
             </div>
             <p class="project-desc">${p.description}</p>
             <div class="project-tech">
                 ${p.tech.map(t => `<span class="tech-tag">${t}</span>`).join("")}
             </div>
-            ${p.links.length ? `<div class="project-links">
+            ${p.links && p.links.length ? `<div class="project-links">
                 ${p.links.map(l => `<a href="${l.url}" target="_blank">${l.label}</a>`).join("")}
             </div>` : ""}
         </div>`;
-
-    // Close tab on click
     tab.onclick = function (e) {
         e.stopImmediatePropagation();
         tab.classList.add("hidden");
         tab.classList.remove("active");
         tab.style.display = "none";
         detail.style.display = "none";
-        document.querySelectorAll("#sidebar-projects .project-item").forEach(p => p.classList.remove("active"));
-        // Go back to home
+        document.querySelectorAll(".project-item").forEach(p => p.classList.remove("active"));
         document.querySelector('.tab[data-target*="home"]').click();
     };
 }
 
+function initSidebarAccordion() {
+    document.querySelectorAll(".sidebar-section[data-section]").forEach(header => {
+        header.addEventListener("click", function () {
+            const section = this.dataset.section;
+            const projBody = document.getElementById("sidebar-projects");
+            const expBody = document.getElementById("sidebar-experience");
+            const projH = document.getElementById("sidebar-projects-header");
+            const expH = document.getElementById("sidebar-experience-header");
+            if (section === "projects") {
+                const open = projBody.style.display !== "none";
+                projBody.style.display = open ? "none" : "";
+                projH.querySelector(".folder-arrow").className = "fa folder-arrow " + (open ? "fa-angle-right" : "fa-angle-down");
+                projH.classList.toggle("active", !open);
+                if (!open) { expBody.style.display = "none"; expH.querySelector(".folder-arrow").className = "fa folder-arrow fa-angle-right"; expH.classList.remove("active"); }
+            } else {
+                const open = expBody.style.display !== "none";
+                expBody.style.display = open ? "none" : "";
+                expH.querySelector(".folder-arrow").className = "fa folder-arrow " + (open ? "fa-angle-right" : "fa-angle-down");
+                expH.classList.toggle("active", !open);
+                if (!open) { projBody.style.display = "none"; projH.querySelector(".folder-arrow").className = "fa folder-arrow fa-angle-right"; projH.classList.remove("active"); }
+            }
+        });
+    });
+}
 // ---- Home tab sections ----
 function renderAboutMe() {
     const d = DATA.aboutMe;
@@ -376,10 +397,16 @@ function renderInterestsJson() {
 
 // ---- Profile popup ----
 function renderProfilePopup() {
-    const el = document.getElementById("profile-links");
-    el.innerHTML = DATA.contact.map(c =>
-        `<a href="${c.url}" target="_blank"><i class="fa ${c.icon}"></i> ${c.label}</a>`
+    const stats = [
+        { value: Object.keys(DATA.projectsC.details).length, label: "Projects" },
+        { value: DATA.skills[0].items.split(",").length, label: "Languages" },
+        { value: DATA.workExperience.length + DATA.researchExperience.length, label: "Positions" },
+        { value: DATA.education.length, label: "Degrees" }
+    ];
+    document.getElementById("profile-stats").innerHTML = stats.map(s =>
+        `<div class="stat-item"><div class="stat-value">${s.value}</div><div class="stat-label">${s.label}</div></div>`
     ).join("");
+    document.getElementById("profile-status-text").textContent = t("status");
 }
 
 function initProfilePopup() {
@@ -425,6 +452,7 @@ function renderAll() {
 document.addEventListener("DOMContentLoaded", function () {
     renderAll();
     initProfilePopup();
+    initSidebarAccordion();
 });
 
 // ---- Language toggle ----

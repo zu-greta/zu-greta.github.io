@@ -23,6 +23,72 @@ const DATA = {
         { icon: "fa-file", label: "CV", url: "assets/Greta_Zu_CV.pdf" }
     ],
 
+    experienceSidebar: [
+        { folder: "Work", items: [
+            { id: "exp-ericsson-ai", short: "Ericsson — AI Dev", status: "M" },
+            { id: "exp-ericsson-ml", short: "Ericsson — ML Intern", status: "" },
+            { id: "exp-mcgill-notes", short: "McGill — Notetaker", status: "" },
+            { id: "exp-marianopolis", short: "Marianopolis — Corrector", status: "" }
+        ]},
+        { folder: "Research", items: [
+            { id: "exp-epfl", short: "EPFL — SaCS Lab", status: "M" },
+            { id: "exp-disc", short: "McGill — DISC Lab", status: "" },
+            { id: "exp-prometheus", short: "McGill — Prometheus Lab", status: "" }
+        ]}
+    ],
+
+    experienceDetails: {
+        "exp-ericsson-ai": {
+            title: "Artificial Intelligence Software Developer Intern",
+            company: "Ericsson Canada", dates: "Jan 2026 - May 2026",
+            status: "M", statusLabel: "Current",
+            description: "Implemented and deployed RAG chatbot using Hopsworks, DeepEval, and EricAI models. Enhancing a dimensioning tool (CANDI) with AI/ML capabilities. Designed a price-predictor tool with regex/LLM and trained a LightBGM model.",
+            tech: ["Python", "Hopsworks", "DeepEval", "LightGBM", "RAG"]
+        },
+        "exp-ericsson-ml": {
+            title: "Machine Learning Intern",
+            company: "Ericsson Canada", dates: "May 2025 - Dec 2025",
+            status: "", statusLabel: "Completed",
+            description: "Designed and deployed RAG pipelines using AWS Lambda, Bedrock, and S3. Created agentic workflows for fine-tuning datasets; improved latency by ~40%. Built a CLI coding assistant using Langchain DeepAgents.",
+            tech: ["Python", "AWS", "Bedrock", "Langchain"]
+        },
+        "exp-mcgill-notes": {
+            title: "Notetaker (Data Science)",
+            company: "McGill University", dates: "Jan 2024 - May 2025",
+            status: "", statusLabel: "Completed",
+            description: "Created organized and well-written notes for the McGill Student Accessibility & Achievement program.",
+            tech: ["Data Science", "Technical Writing"]
+        },
+        "exp-marianopolis": {
+            title: "Corrector (Physics Labs)",
+            company: "Marianopolis College", dates: "Aug 2022 - Jun 2023",
+            status: "", statusLabel: "Completed",
+            description: "Grading student lab reports and providing feedback to improve their understanding of physics concepts.",
+            tech: ["Physics", "Grading"]
+        },
+        "exp-epfl": {
+            title: "Research Assistant — Summer@EPFL",
+            company: "EPFL — SaCS Lab", dates: "June 2026 - Aug 2026",
+            status: "M", statusLabel: "Upcoming",
+            description: "Summer@EPFL program in the SaCS Lab under Professor Anne-Marie Kermarrec. Project TBD.",
+            tech: ["TBD"]
+        },
+        "exp-disc": {
+            title: "Research Assistant — DISC Lab",
+            company: "McGill University", dates: "June 2025 - Dec 2025",
+            status: "", statusLabel: "Completed",
+            description: "Instrumented Switch-Transformers and Qwen MoE models using CodeCarbon on DeepSpeed. Reduced energy usage by ~66% without loss in accuracy. Prepared Responsible AI course project.",
+            tech: ["Python", "CodeCarbon", "DeepSpeed", "PyTorch"]
+        },
+        "exp-prometheus": {
+            title: "Research Assistant — Prometheus Lab",
+            company: "McGill University", dates: "Sept 2024 - Dec 2024",
+            status: "", statusLabel: "Completed",
+            description: "Designed bots to collect 400+ TikTok videos bypassing scraping restrictions. Statistical analysis using Pandas and Scikit-learn on algorithmic bias.",
+            tech: ["Python", "Pandas", "Scikit-learn"]
+        }
+    },
+
     workExperience: [
         {
             company: "Ericsson Canada",

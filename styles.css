@@ -114,7 +114,8 @@ body {
     display: flex;
     align-items: center;
     font-size: 1.2rem;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    margin-top: auto;
     color: var(--text-muted);
     position: relative;
     cursor: pointer;
@@ -159,16 +160,28 @@ body {
     border-bottom: 1px solid var(--bg-highlight);
 }
 
-.profile-links a {
-    display: block;
-    color: var(--link-contact);
-    text-decoration: none;
-    font-size: 0.9rem;
-    padding: 4px 0;
+.profile-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
 }
 
-.profile-links a:hover {
-    color: var(--link-hover);
+.stat-item {
+    text-align: center;
+    padding: 6px 4px;
+    border-radius: 4px;
+    background-color: var(--bg-highlight);
+}
+
+.stat-value {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--syn-function);
+}
+
+.stat-label {
+    font-size: 0.7rem;
+    color: var(--text-muted);
 }
 
 .folders {
@@ -176,10 +189,24 @@ body {
     flex-direction: column;
 }
 
-.projects-header {
+.projects-header,
+.sidebar-section {
     font-weight: bold;
-    font-size: 1.2rem;
-    padding: 3% 0;
+    font-size: 1.1rem;
+    padding: 8px 0;
+    cursor: pointer;
+    color: var(--text-muted);
+    user-select: none;
+}
+
+.sidebar-section.active {
+    color: var(--text-white);
+}
+
+.sidebar-section .folder-arrow {
+    transition: transform 0.2s;
+    display: inline-block;
+    width: 14px;
 }
 
 .projects-list {
@@ -455,8 +482,7 @@ main {
 .contact-bar {
     position: fixed;
     left: 0;
-    top: 65%;
-    transform: translateY(-50%);
+    bottom: 80px;
     display: flex;
     flex-direction: column;
     gap: 2px;
@@ -467,12 +493,12 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
+    width: 28px;
+    height: 28px;
     background-color: var(--bg-highlight);
     color: var(--text-white);
     text-decoration: none;
-    font-size: 1rem;
+    font-size: 0.8rem;
     transition: width 0.2s, background-color 0.2s;
     overflow: hidden;
     white-space: nowrap;

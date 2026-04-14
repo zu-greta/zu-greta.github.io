@@ -16,18 +16,23 @@
         <!-- Sidebar -->
         <aside class="sidebar">
             <div class="folders">
-                <div class="projects-header"><i class="fa fa-angle-down"></i> Projects</div>
-                <ul class="projects-list" id="sidebar-projects">
-                    <!-- Rendered by script.js from data.js -->
-                </ul>
+                <div class="sidebar-section active" id="sidebar-projects-header" data-section="projects">
+                    <i class="fa fa-angle-down folder-arrow"></i> Projects
+                </div>
+                <ul class="projects-list sidebar-section-body" id="sidebar-projects"></ul>
+
+                <div class="sidebar-section" id="sidebar-experience-header" data-section="experience">
+                    <i class="fa fa-angle-right folder-arrow"></i> Experience
+                </div>
+                <ul class="projects-list sidebar-section-body" id="sidebar-experience" style="display:none;"></ul>
             </div>
             <div class="profile" id="profile-btn">
                 <i class="fa fa-user-circle"></i>
                 <span>Greta Ru-Mei Zu</span>
                 <span class="status-dot"></span>
                 <div class="profile-popup" id="profile-popup">
-                    <div class="profile-status">🟢 Open to opportunities</div>
-                    <div class="profile-links" id="profile-links"></div>
+                    <div class="profile-status" id="profile-status-text">🟢 Open to opportunities</div>
+                    <div class="profile-stats" id="profile-stats"></div>
                 </div>
             </div>
         </aside>
