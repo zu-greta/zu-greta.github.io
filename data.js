@@ -6,14 +6,16 @@
 const DATA = {
 
     aboutMe: {
-        image: "./assets/Linkedin-3.jpg",
+        image: "./assets/Linkedin_picture.jpg",
         text: `Hello! I'm Greta and I am a postgraduate taught (MSc) student at
-            <a href="https://www.imperial.ac.uk/">Imperial College London</a>, in Computing (Software Engineering).
+            <a href="https://www.imperial.ac.uk/">Imperial College London</a>, in <b>Computing (Software Engineering)</b> (graduating in September 2027).
             <br>
             I am passionate about software development and machine learning, and I am always looking for
-            opportunities to learn and grow in the field.
+            opportunities to learn and grow in the field. 
+            Previously, I completed a research project on Energy Efficiency and Machine Learning algorithms in the <a href="https://sites.google.com/view/discslab">McGill DISC Lab</a>, 
+            and two software development and ai/ml internships at <a href="https://www.ericsson.com/en/about-us/company-facts/ericsson-worldwide/canada">Ericsson Canada</a>.
             <br>
-            Currently, I am participating in the Summer@EPFL program in the <a href="https://www.epfl.ch/labs/sacs/">SaCS Lab</a> under Professor Anne-Marie Kermarrec.`
+            During the summer of 2026, I am participating in the Summer@EPFL program in the <a href="https://www.epfl.ch/labs/sacs/">SaCS Lab</a> under Professor Anne-Marie Kermarrec.`
     },
 
     contact: [
@@ -325,7 +327,7 @@ const DATA = {
                 course: "COMP 424 — Artificial Intelligence",
                 links: [
                     { label: "💻 Code", url: "https://github.com/zu-greta/424project" },
-                    { label: "📄 Report", url: "assets/424Report.pdf" }
+                    { label: "📄 Report", url: "assets/reports/424Report.pdf" }
                 ]
             },
             "paxos": {
@@ -409,7 +411,7 @@ const DATA = {
                 tech: ["Python", "CodeCarbon", "DeepSpeed", "PyTorch"],
                 course: "McGill DISC Lab — Prof. Balmau & Prof. Kemme",
                 links: [
-                    { label: "📄 Report", url: "assets/energy_eff_report.pdf" }
+                    { label: "📄 Report", url: "assets/reports/energy_eff_report.pdf" }
                 ]
             },
             "tiktok": {
@@ -421,7 +423,7 @@ const DATA = {
                 tech: ["Python", "Pandas", "Scikit-learn", "Web Scraping"],
                 course: "Prometheus Lab — Prof. Vybihal",
                 links: [
-                    { label: "📄 Report", url: "assets/Tik_Tok_Research_Project.pdf" }
+                    { label: "📄 Report", url: "assets/reports/Tik_Tok_Research_Project.pdf" }
                 ]
             },
             "depression": {
@@ -433,7 +435,7 @@ const DATA = {
                 tech: ["Research", "Statistical Analysis"],
                 course: "Marianopolis College — Health Science",
                 links: [
-                    { label: "📄 Report", url: "assets/eating_disorders_depression.pdf" },
+                    { label: "📄 Report", url: "assets/reports/eating_disorders_depression.pdf" },
                     { label: "📊 Presentation", url: "assets/eating_disorders_depression_poster_prsentation.pdf" }
                 ]
             }
@@ -448,7 +450,7 @@ const DATA = {
                 tech: "Python",
                 links: {
                     code_link: { url: "https://github.com/zu-greta/424project", label: "https://github.com/zu-greta/424project" },
-                    report_link: { url: "assets/424Report.pdf", label: "assets/424Report.pdf" }
+                    report_link: { url: "assets/reports/424Report.pdf", label: "assets/reports/424Report.pdf" }
                 }
             },
             {
@@ -553,21 +555,21 @@ const DATA = {
                 comment: "Energy Efficiency in ML Algorithms",
                 title: "Energy Efficiency in ML Algorithms",
                 description: "Instrumented Switch-Transformers and Qwen MoE models\n                    using CodeCarbon on DeepSpeed; profiled GPU energy consumption and identified\n                    optimization strategies that reduced energy usage by ~66% without loss in accuracy.",
-                reportLink: { url: "assets/energy_eff_report.pdf", label: "assets/energy_eff_report.pdf" }
+                reportLink: { url: "assets/reports/energy_eff_report.pdf", label: "assets/reports/energy_eff_report.pdf" }
             },
             {
                 name: "TikTok_Impact_Project",
                 comment: "TikTok Impact on Society Analysis",
                 title: "TikTok Impact on Society Analysis",
                 description: "Designed Python-based bots to collect 400+ TikTok videos\n                    while bypassing scraping restrictions; conducted statistical analysis using\n                    Pandas and Scikit-learn to quantify algorithmic bias in engagement rates.",
-                reportLink: { url: "assets/Tik_Tok_Research_Project.pdf", label: "assets/Tik_Tok_Research_Project.pdf" }
+                reportLink: { url: "assets/reports/Tik_Tok_Research_Project.pdf", label: "assets/reports/Tik_Tok_Research_Project.pdf" }
             },
             {
                 name: "Depression_Eating_Disorders_Project",
                 comment: "Depression and Eating Disorders",
                 title: "Depression and Eating Disorders",
                 description: "Researching correlation between eating disorders and depression, \n                        analyzing treatment impact",
-                reportLink: { url: "assets/eating_disorders_depression.pdf", label: "assets/eating_disorders_depression.pdf" }
+                reportLink: { url: "assets/reports/eating_disorders_depression.pdf", label: "assets/reports/eating_disorders_depression.pdf" }
             }
         ]
     },
@@ -626,19 +628,23 @@ const DATA = {
     // Interests.json tab
     interests: {
         entries: [
-            { name: "Dancing", description: "I am an active dancer at K-RAVE McGill, Emoria, and Kreation.", image: "./assets/dance.JPG" },
-            { name: "Volleyball", description: "I have started playing volleyball at McGill in intramural teams this year!", image: "./assets/volleyball.jpg" },
-            { name: "Dragon Boat", description: "I paddled with the McGill DragonBoatZ team and also the UDEM Dragon boat team.", image: "./assets/db.JPG" },
-            { name: "Travelling", description: "I enjoy travelling to different countries and discovering local foods/culture!", image: "./assets/plane.jpg" }
+            { name: "Dancing", description: "I am an active dancer at K-RAVE McGill, Emoria, and Kreation.", image: "./assets/interests/dance.JPG" },
+            { name: "Volleyball", description: "I have started playing volleyball at McGill in intramural teams this year!", image: "./assets/interests/volleyball.jpg" },
+            { name: "Dragon Boat", description: "I paddled with the McGill DragonBoatZ team and also the UDEM Dragon boat team.", image: "./assets/interests/db.JPG" },
+            { name: "Travelling", description: "I enjoy travelling to different countries and discovering local foods/culture!", image: "./assets/interests/plane.jpg" }
         ],
         // Gallery: just add { name, image } to show more photos as polaroids
         gallery: [
-            { name: "Dancing", image: "./assets/dance.JPG" },
-            { name: "Volleyball", image: "./assets/volleyball.jpg" },
-            { name: "Dragon Boat", image: "./assets/db.JPG" },
-            { name: "Travelling", image: "./assets/plane.jpg" }
+            { name: "Dance.jpg", image: "./assets/interests/dance.JPG" },
+            { name: "Volleyball.jpg", image: "./assets/interests/volleyball.jpg" },
+            { name: "Dragon_Boat.jpg", image: "./assets/interests/db.JPG" },
+            { name: "Travelling.jpg", image: "./assets/interests/plane.jpg" },
+            { name: "Airshows.jpg", image: "./assets/interests/airshow.jpg" },
+            { name: "Birds.jpg", image: "./assets/interests/birds.jpg" },
+            { name: "Cars.jpg", image: "./assets/interests/cars.jpg" },
+            { name: "Photography.jpg", image: "./assets/interests/photography.jpg" },
         ],
-        other: ["Piano", "Figure Skating", "Basketball", "Drawing", "Reading"]
+        other: ["Piano", "Figure Skating", "Snowboarding","Basketball", "Drawing", "Reading"]
     }
 };
 
@@ -665,10 +671,11 @@ const FR = {
 
     aboutMe: {
         text: `Bonjour! Je suis Greta et je suis étudiante en maîtrise (MSc) à
-            <a href="https://www.imperial.ac.uk/">Imperial College London</a>, en informatique (génie logiciel).
+            <a href="https://www.imperial.ac.uk/">Imperial College London</a>, en <b>informatique (génie logiciel)</b> (graduant en septembre 2027).
             <br>
             Je suis passionnée par le développement logiciel et l'apprentissage automatique, et je cherche toujours des
-            opportunités pour apprendre et évoluer dans le domaine.
+            opportunités pour apprendre et évoluer dans le domaine. Précédemment, j'ai complété un baccalauréat en informatique (intelligence artificielle) à <a href="https://www.mcgill.ca/">l'Université McGill</a> (2022-2026) et un DEC en sciences de la santé au <a href="https://www.marianopolis.edu/">Collège Marianopolis</a> (2020-2022).
+            J'ai acquis de l'expérience dans divers rôles de stage, notamment en tant que développeuse en intelligence artificielle chez <a href="https://www.ericsson.com/en/about-us/company-facts/ericsson-worldwide/canada">Ericsson Canada</a>, et j'ai également travaillé sur plusieurs projets de recherche liés à l'efficacité énergétique des algorithmes d'apprentissage automatique dans le <a href="https://sites.google.com/view/discslab">McGill DISC Lab</a>.
             <br>
             Actuellement, je participe au programme Summer@EPFL dans le <a href="https://www.epfl.ch/labs/sacs/">laboratoire SaCS</a> sous la direction de professeure Anne-Marie Kermarrec.`
     },
