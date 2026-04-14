@@ -687,10 +687,10 @@ const DATA = {
             { name: "Volleyball.jpg", image: "./assets/interests/volleyball.jpg" },
             { name: "Dragon_Boat.jpg", image: "./assets/interests/db.JPG" },
             { name: "Travelling.jpg", image: "./assets/interests/plane.jpg" },
-            { name: "Airshows.jpg", image: "./assets/interests/airshow.jpg" },
-            { name: "Birds.jpg", image: "./assets/interests/birds.jpg" },
-            { name: "Cars.jpg", image: "./assets/interests/cars.jpg" },
-            { name: "Photography.jpg", image: "./assets/interests/photography.jpg" },
+            { name: "Airshows.jpg", image: "./assets/interests/airshow.JPG" },
+            { name: "Birds.jpg", image: "./assets/interests/birds.JPG" },
+            { name: "Cars.jpg", image: "./assets/interests/cars.JPG" },
+            { name: "Photography.jpg", image: "./assets/interests/photography.JPG" },
         ],
         other: ["Piano", "Figure Skating", "Snowboarding","Basketball", "Drawing", "Reading"]
     }
