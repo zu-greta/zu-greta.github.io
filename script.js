@@ -26,13 +26,47 @@ function t(key) {
 }
 
 // ---- Sidebar ----
+const monthMap = { jan:0, feb:1, mar:2, apr:3, may:4, jun:5, june:5, jul:6, july:6, aug:7, august:7, sep:8, sept:8, september:8, oct:9, nov:10, dec:11, december:11 };
+function parseEndDate(dates) {
+    if (!dates) return null;
+    const end = dates.split("-").pop().trim().toLowerCase();
+    if (end === "present" || end === "ongoing" || end === "tbd") return new Date(9999, 0);
+    const parts = end.split(/\s+/);
+    if (parts.length >= 2) {
+        const m = monthMap[parts[0]];
+        const y = parseInt(parts[1]);
+        if (m !== undefined && y) return new Date(y, m + 1, 0);
+    }
+    return null;
+}
+
+function autoStatus(dates) {
+    const now = new Date();
+    const end = parseEndDate(dates);
+    if (!end) return "";
+    // Check if start date is in the future → upcoming (A)
+    const startStr = dates.split("-")[0].trim().toLowerCase();
+    const startParts = startStr.split(/\s+/);
+    if (startParts.length >= 2) {
+        const m = monthMap[startParts[0]];
+        const y = parseInt(startParts[1]);
+        if (m !== undefined && y) {
+            const startDate = new Date(y, m, 1);
+            if (startDate > now) return "A";             // upcoming / not started yet
+        }
+    }
+    if (end >= now) return "M";                          // in progress
+    return "";                                            // done
+}
+
 function statusColor(status) {
-    if (status === "M") return "var(--syn-string)";
-    if (status === "A") return "var(--syn-function)";
+    if (status === "M") return "var(--syn-function)";  // orange — modified/in-progress
+    if (status === "A") return "var(--syn-string)";    // green — added/recently done
     return "";
 }
 
 function renderSidebarList(el, items, detailSource) {
+    const detailsMap = detailSource === "experience" ? DATA.experienceDetails : DATA.projectsC.details;
     let html = "";
     for (const entry of items) {
         if (entry.folder) {
@@ -40,16 +74,20 @@ function renderSidebarList(el, items, detailSource) {
                 <i class="fa fa-angle-down folder-arrow"></i> ${entry.folder}
                 <ul class="projects-list folder-contents" style="padding: 1.5% 2%;">`;
             for (const item of entry.items) {
-                const color = statusColor(item.status);
+                const detail = detailsMap[item.id];
+                const status = detail ? autoStatus(detail.dates) : "";
+                const color = statusColor(status);
                 const style = color ? ` style="color:${color}"` : "";
-                const badge = item.status ? `<span class="git-badge">${item.status}</span>` : "";
+                const badge = status ? `<span class="git-badge">${status}</span>` : "";
                 html += `<li class="project-item"${style} data-item-id="${item.id}" data-source="${detailSource}">${item.short}${badge}</li>`;
             }
             html += `</ul></div>`;
         } else {
-            const color = statusColor(entry.status);
+            const detail = detailsMap[entry.id];
+            const status = detail ? autoStatus(detail.dates) : "";
+            const color = statusColor(status);
             const style = color ? ` style="color:${color}"` : "";
-            const badge = entry.status ? `<span class="git-badge">${entry.status}</span>` : "";
+            const badge = status ? `<span class="git-badge">${status}</span>` : "";
             html += `<li class="project-item"${style} data-item-id="${entry.id}" data-source="${detailSource}">${entry.short}${badge}</li>`;
         }
     }
@@ -84,8 +122,11 @@ function openDetailPanel(id, detailsMap) {
     document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
     tab.classList.add("active");
     document.querySelectorAll(".content").forEach(c => c.style.display = "none");
-    const sColors = { "M": "var(--syn-string)", "A": "var(--syn-function)", "": "var(--text-muted)" };
-    const sColor = sColors[p.status] || "var(--text-muted)";
+    const status = autoStatus(p.dates);
+    const statusLabels = { "M": "In Progress", "A": "Upcoming", "": "Completed" };
+    const sColors = { "M": "var(--syn-function)", "A": "var(--syn-string)", "": "var(--text-muted)" };
+    const sColor = sColors[status] || "var(--text-muted)";
+    const sLabel = statusLabels[status] || "Completed";
     const context = p.course || p.company || "";
     const detail = document.getElementById("project-detail");
     detail.style.display = "block";
@@ -93,7 +134,7 @@ function openDetailPanel(id, detailsMap) {
         <div class="project-card">
             <div class="project-card-header">
                 <h2>${p.title}</h2>
-                <span class="project-status" style="color:${sColor}">● ${p.statusLabel}</span>
+                <span class="project-status" style="color:${sColor}">● ${sLabel}</span>
             </div>
             <div class="project-meta">
                 <span>📅 ${p.dates}</span>
