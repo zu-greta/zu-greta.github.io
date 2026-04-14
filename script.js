@@ -145,23 +145,27 @@ function openDetailPanel(id, detailsMap) {
     const context = p.course || p.company || "";
     const detail = document.getElementById("project-detail");
     detail.style.display = "block";
+    const imgHtml = p.image ? `<div class="detail-banner"><img src="${p.image}" alt="${p.title}"><div class="detail-banner-fade"></div></div>` : "";
     detail.innerHTML = `
         <div class="project-card">
-            <div class="project-card-header">
-                <h2>${p.title}</h2>
-                <span class="project-status" style="color:${sColor}">● ${sLabel}</span>
+            ${imgHtml}
+            <div class="project-card-body">
+                <div class="project-card-header">
+                    <h2>${p.title}</h2>
+                    <span class="project-status" style="color:${sColor}">● ${sLabel}</span>
+                </div>
+                <div class="project-meta">
+                    <span>📅 ${p.dates}</span>
+                    <span>🏢 ${context}</span>
+                </div>
+                <p class="project-desc">${p.description}</p>
+                <div class="project-tech">
+                    ${p.tech.map(t => `<span class="tech-tag">${t}</span>`).join("")}
+                </div>
+                ${p.links && p.links.length ? `<div class="project-links">
+                    ${p.links.map(l => `<a href="${l.url}" target="_blank">${l.label}</a>`).join("")}
+                </div>` : ""}
             </div>
-            <div class="project-meta">
-                <span>📅 ${p.dates}</span>
-                <span>🏢 ${context}</span>
-            </div>
-            <p class="project-desc">${p.description}</p>
-            <div class="project-tech">
-                ${p.tech.map(t => `<span class="tech-tag">${t}</span>`).join("")}
-            </div>
-            ${p.links && p.links.length ? `<div class="project-links">
-                ${p.links.map(l => `<a href="${l.url}" target="_blank">${l.label}</a>`).join("")}
-            </div>` : ""}
         </div>`;
     tab.onclick = function (e) {
         e.stopImmediatePropagation();
@@ -202,9 +206,10 @@ function initSidebarAccordion() {
 function renderAboutMe() {
     const d = DATA.aboutMe;
     const text = (currentLang === "fr" && FR.aboutMe) ? FR.aboutMe.text : d.text;
+    const status = DATA.status ? `<p class="about-status">${(currentLang === "fr" && FR.headings && FR.headings.status) ? FR.headings.status : DATA.status}</p>` : "";
     document.getElementById("about-me").innerHTML = `
         <div class="about-me-img"><img src="${d.image}" alt="Greta's Profile Picture"></div>
-        <div class="about-me-text"><h2>${t("aboutMe")}</h2><br><p>${text}</p></div>`;
+        <div class="about-me-text"><h2>${t("aboutMe")}</h2>${status}<p>${text}</p></div>`;
 }
 
 function renderContact() {
@@ -222,21 +227,25 @@ function renderHomeExperience() {
     let html = `<h2 style="text-align: center;">${t("experience")}</h2><br>`;
     DATA.workExperience.forEach((e, i) => {
         const fr = (currentLang === "fr" && FR.workExperience) ? FR.workExperience[i] : {};
-        html += `<blockquote><b style="font-size:1.2rem;">${e.company}</b>
+        const logo = e.logo ? `<img src="${e.logo}" alt="${e.company}" class="exp-logo">` : "";
+        html += `<blockquote class="exp-entry">${logo}<div>
+            <b style="font-size:1.2rem;">${e.company}</b>
             <ul style="list-style-type:none;padding-left:0;margin:0;">
                 <li><b style="font-size:1rem;">${fr.role || e.role}</b> (${e.dates})</li>
                 <li><b style="font-size:1rem;">${t("work")}: </b> ${escHtml(fr.work || e.work)}</li>
-            </ul></blockquote><br>`;
+            </ul></div></blockquote><br>`;
     });
     html += "<hr><br>";
     DATA.researchExperience.forEach((r, i) => {
         const fr = (currentLang === "fr" && FR.researchExperience) ? FR.researchExperience[i] : {};
-        html += `<blockquote><b style="font-size:1.2rem;">${r.institution}</b>
+        const logo = r.logo ? `<img src="${r.logo}" alt="${r.institution}" class="exp-logo">` : "";
+        html += `<blockquote class="exp-entry">${logo}<div>
+            <b style="font-size:1.2rem;">${r.institution}</b>
             <ul style="list-style-type:none;padding-left:0;margin:0;">
                 <li><b style="font-size:1rem;">${fr.role || r.role}</b> (${r.dates})</li>
                 <li><b style="font-size:1rem;">${t("supervisor")}: </b> ${fr.supervisor || r.supervisor}</li>
                 <li><b style="font-size:1rem;">${t("project")}: </b> ${fr.project || r.project}</li>
-            </ul></blockquote><br>`;
+            </ul></div></blockquote><br>`;
     });
     document.getElementById("experience").innerHTML = html;
 }
@@ -256,7 +265,9 @@ function renderHomeEducation() {
     DATA.education.forEach((e, i) => {
         const fr = (currentLang === "fr" && FR.education) ? FR.education[i] : {};
         if (i > 0) html += "<br><hr><br>";
-        html += `<blockquote><b style="font-size:1.2rem;">${e.school}</b>
+        const logoHtml = e.logo ? `<img src="${e.logo}" alt="${e.school}" class="edu-logo">` : "";
+        html += `<blockquote class="edu-entry">${logoHtml}<div>
+            <b style="font-size:1.2rem;">${e.school}</b>
             <ul style="list-style-type:none;padding-left:0;margin:0;">
                 <li><b style="font-size:1rem;">${fr.degree || e.degree}</b> (${fr.dates || e.dates})</li>`;
         if (e.gpa) html += `<li><b style="font-size:1rem;">cGPA: </b> ${e.gpa}</li>`;
@@ -264,9 +275,20 @@ function renderHomeEducation() {
         if (e.courses) html += `<li><b style="font-size:1rem;">${t("relevantCourses")}: </b>${e.courses}</li>`;
         const awards = fr.awards || e.awards;
         if (awards) html += `<li><b style="font-size:1rem;">${t("awards")}: </b> ${awards}</li>`;
-        html += `</ul></blockquote>`;
+        html += `</ul></div></blockquote>`;
     });
     document.getElementById("education").innerHTML = html;
+}
+
+function renderNews() {
+    const el = document.getElementById("news");
+    if (!DATA.news || !DATA.news.length) { el.innerHTML = ""; return; }
+    const heading = currentLang === "fr" ? "Nouvelles" : "News";
+    const items = DATA.news.map((n, i) => {
+        const fr = (currentLang === "fr" && FR.news) ? FR.news[i] : {};
+        return `<tr><td class="news-date">${fr.date || n.date}</td><td>${fr.text || n.text}</td></tr>`;
+    }).join("");
+    el.innerHTML = `<h2 style="text-align:center;">${heading}</h2><table class="news-table">${items}</table>`;
 }
 
 // ---- Code-themed tabs ----
@@ -501,6 +523,7 @@ function renderAll() {
     renderHomeExperience();
     renderHomeSkills();
     renderHomeEducation();
+    renderNews();
     renderExperiencePy();
     renderProjectsC();
     renderEducationJava();

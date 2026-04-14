@@ -7,22 +7,32 @@ const DATA = {
 
     aboutMe: {
         image: "./assets/Linkedin_picture.jpg",
-        text: `Hello! I'm Greta and I am a postgraduate taught (MSc) student at
-            <a href="https://www.imperial.ac.uk/">Imperial College London</a>, in <b>Computing (Software Engineering)</b> (graduating in September 2027).
-            <br>
-            I am passionate about software development and machine learning, and I am always looking for
-            opportunities to learn and grow in the field. 
-            Previously, I completed a research project on Energy Efficiency and Machine Learning algorithms in the <a href="https://sites.google.com/view/discslab">McGill DISC Lab</a>, 
-            and two software development and ai/ml internships at <a href="https://www.ericsson.com/en/about-us/company-facts/ericsson-worldwide/canada">Ericsson Canada</a>.
-            <br>
-            During the summer of 2026, I am participating in the Summer@EPFL program in the <a href="https://www.epfl.ch/labs/sacs/">SaCS Lab</a> under Professor Anne-Marie Kermarrec.`
+        text: `I am a Master of Science in <b>Computing (Software Engineering)</b> student at
+            <a href="https://www.imperial.ac.uk/">Imperial College London</a> (graduating September 2027).
+            My work spans <b>software engineering</b>, <b>machine learning</b>, and <b>energy-efficient AI</b>.
+            <br><br>
+            Previously, I researched at the <a href="https://sites.google.com/view/discslab">McGill DISC Lab</a>
+            with Professors Oana Balmau and Bettina Kemme, where I reduced GPU energy consumption by ~66% on
+            Mixture-of-Experts models without loss in accuracy. I also completed two internships at
+            <a href="https://www.ericsson.com/en/about-us/company-facts/ericsson-worldwide/canada">Ericsson Canada</a>,
+            building RAG pipelines, agentic workflows, and AI-powered prediction tools.
+            <br><br>
+            I hold a B.Sc. in <a href="https://www.cs.mcgill.ca/">Computer Science (Artificial Intelligence)</a>
+            from <b>McGill University</b> (GPA 3.85/4.0, Alma Mater Scholar). During the summer of 2026, I am
+            participating in the <a href="https://www.epfl.ch/labs/sacs/">Summer@EPFL</a> program in the SaCS Lab
+            under Professor Anne-Marie Kermarrec.
+            <br><br>
+            Whether you are a student, a recruiter, or a collaborator curious about software engineering or responsible AI,
+            feel free to connect with me through the links below.`
     },
+
+    status: "Open to opportunities — Summer 2026 & beyond",
 
     contact: [
         { icon: "fa-github", label: "GitHub", url: "https://github.com/zu-greta" },
         { icon: "fa-linkedin", label: "LinkedIn", url: "https://www.linkedin.com/in/greta-ru-mei-zu/" },
         { icon: "fa-envelope", label: "Email", url: "mailto:gretarm.zu@gmail.com" },
-        { icon: "fa-file", label: "CV", url: "assets/Greta_Zu_CV.pdf" }
+        { icon: "fa-file", label: "CV", url: "assets/Greta_Zu_CV.pdf" },
     ],
 
     experienceSidebar: [
@@ -43,6 +53,7 @@ const DATA = {
         "exp-ericsson-ai": {
             title: "Artificial Intelligence Software Developer Intern",
             company: "Ericsson Canada", dates: "Jan 2026 - May 2026",
+            image: "assets/logos/ericsson_banner.png",
             status: "M", statusLabel: "Current",
             description: "Implemented and deployed RAG chatbot using Hopsworks, DeepEval, and EricAI models. Enhancing a dimensioning tool (CANDI) with AI/ML capabilities. Designed a price-predictor tool with regex/LLM and trained a LightBGM model.",
             tech: ["Python", "Hopsworks", "DeepEval", "LightGBM", "RAG"]
@@ -50,6 +61,7 @@ const DATA = {
         "exp-ericsson-ml": {
             title: "Machine Learning Intern",
             company: "Ericsson Canada", dates: "May 2025 - Dec 2025",
+            image: "assets/logos/ericsson_banner.png",
             status: "", statusLabel: "Completed",
             description: "Designed and deployed RAG pipelines using AWS Lambda, Bedrock, and S3. Created agentic workflows for fine-tuning datasets; improved latency by ~40%. Built a CLI coding assistant using Langchain DeepAgents.",
             tech: ["Python", "AWS", "Bedrock", "Langchain"]
@@ -57,6 +69,7 @@ const DATA = {
         "exp-mcgill-notes": {
             title: "Notetaker (Data Science)",
             company: "McGill University", dates: "Jan 2024 - May 2025",
+            image: "assets/logos/mcgill_banner.png",
             status: "", statusLabel: "Completed",
             description: "Created organized and well-written notes for the McGill Student Accessibility & Achievement program.",
             tech: ["Data Science", "Technical Writing"]
@@ -64,6 +77,7 @@ const DATA = {
         "exp-marianopolis": {
             title: "Corrector (Physics Labs)",
             company: "Marianopolis College", dates: "Aug 2022 - Jun 2023",
+            image: "assets/logos/marianopolis.jpg",
             status: "", statusLabel: "Completed",
             description: "Grading student lab reports and providing feedback to improve their understanding of physics concepts.",
             tech: ["Physics", "Grading"]
@@ -71,6 +85,7 @@ const DATA = {
         "exp-epfl": {
             title: "Research Assistant — Summer@EPFL",
             company: "EPFL — SaCS Lab", dates: "June 2026 - Aug 2026",
+            image: "assets/logos/epfl.png",
             status: "M", statusLabel: "Upcoming",
             description: "Summer@EPFL program in the SaCS Lab under Professor Anne-Marie Kermarrec. Project TBD.",
             tech: ["TBD"]
@@ -78,6 +93,7 @@ const DATA = {
         "exp-disc": {
             title: "Research Assistant — DISC Lab",
             company: "McGill University", dates: "June 2025 - Dec 2025",
+            image: "assets/logos/mcgill_banner.png",
             status: "", statusLabel: "Completed",
             description: "Instrumented Switch-Transformers and Qwen MoE models using CodeCarbon on DeepSpeed. Reduced energy usage by ~66% without loss in accuracy. Prepared Responsible AI course project.",
             tech: ["Python", "CodeCarbon", "DeepSpeed", "PyTorch"]
@@ -85,6 +101,7 @@ const DATA = {
         "exp-prometheus": {
             title: "Research Assistant — Prometheus Lab",
             company: "McGill University", dates: "Sept 2024 - Dec 2024",
+            image: "assets/logos/mcgill_banner.png",
             status: "", statusLabel: "Completed",
             description: "Designed bots to collect 400+ TikTok videos bypassing scraping restrictions. Statistical analysis using Pandas and Scikit-learn on algorithmic bias.",
             tech: ["Python", "Pandas", "Scikit-learn"]
@@ -94,24 +111,28 @@ const DATA = {
     workExperience: [
         {
             company: "Ericsson Canada",
+            logo: "assets/logos/ericsson.png",
             role: "Artificial Intelligence Software Developer Intern",
             dates: "Jan 2026 - May 2026",
             work: "Implemented and deployed RAG chatbot using Hopsworks, DeepEval, and EricAI models. Enhancing a dimensioning tool (CANDI) with AI/ML capabilities and automating the building of the prediction model. Designed and deployed a price-predictor tool with regex and LLM process, and trained a LightBGM model for trend prediction."
         },
         {
             company: "Ericsson Canada",
+            logo: "assets/logos/ericsson.png",
             role: "Machine Learning Intern",
             dates: "May 2025 - December 2025",
             work: "Designed and deployed Retrieval-Augmented Generation (RAG) pipelines using AWS Lambda, Bedrock, and S3. Created Python-based agentic workflows to generate datasets for fine-tuning; improved workflow latency & results by ~40%. Designed and implemented a CLI based coding assistant using Langchain DeepAgents."
         },
         {
             company: "McGill University",
+            logo: "assets/logos/mcgill.svg",
             role: "Notetaker (Data Science)",
             dates: "January 2024 - May 2025",
             work: "Created organized and well-written notes for the McGill Student Accessibility & Achievement program."
         },
         {
             company: "Marianopolis College",
+            logo: "assets/logos/marianopolis.jpg",
             role: "Corrector (Physics Labs)",
             dates: "August 2022 - June 2023",
             work: "Grading student lab reports and providing feedback to improve their understanding of physics concepts."
@@ -121,6 +142,7 @@ const DATA = {
     researchExperience: [
         {
             institution: "École Polytechnique de Lausanne - Summer@EPFL",
+            logo: "assets/logos/epfl.png",
             role: "Research Assistant",
             dates: "June 2026 - August 2026",
             supervisor: "Professor Anne-Marie Kermarrec",
@@ -128,6 +150,7 @@ const DATA = {
         },
         {
             institution: "McGill University - DISC Lab",
+            logo: "assets/logos/mcgill.svg",
             role: "Research Assistant",
             dates: "June 2025 - December 2025",
             supervisor: "Professor Oana Balmau & Professor Bettina Kemme",
@@ -135,6 +158,7 @@ const DATA = {
         },
         {
             institution: "McGill University - The Prometheus Lab",
+            logo: "assets/logos/mcgill.svg",
             role: "Research Assistant",
             dates: "September 2024 - December 2024",
             supervisor: "Professor Joseph Vybihal",
@@ -156,11 +180,13 @@ const DATA = {
     education: [
         {
             school: "Imperial College London",
+            logo: "./assets/logos/imperial.jpeg",
             degree: "Postgraduate taught MSc in Computing (Software Engineering)",
             dates: "September 2026 - September 2027 expected"
         },
         {
             school: "McGill University",
+            logo: "./assets/logos/mcgill.svg",
             degree: "Bachelor of Science in Computer Science (Artificial Intelligence)",
             dates: "August 2022 - May 2026",
             gpa: "3.85/4.0",
@@ -169,11 +195,20 @@ const DATA = {
         },
         {
             school: "Marianopolis College",
+            logo: "./assets/logos/marianopolis.jpg",
             degree: "DCS in Honours Health Science",
             dates: "August 2020 - June 2022",
             rScore: "37.825",
             awards: "Dean's List Fall 2020 and Winter 2021"
         }
+    ],
+
+    news: [
+        { date: "Dec 2025", text: 'Completed research at the <a href="https://sites.google.com/view/discslab">DISC Lab</a> — reduced MoE model energy usage by ~66%.' },
+        { date: "Jan 2026", text: 'Began AI Software Developer internship at <a href="https://www.ericsson.com/">Ericsson Canada</a> — building RAG chatbots and prediction tools.' },
+        { date: "May 2026", text: 'Graduated from <a href="https://www.mcgill.ca/">McGill University</a> with a B.Sc. in Computer Science (AI).' },
+        { date: "Jun 2026", text: 'Starting the <a href="https://www.epfl.ch/labs/sacs/">Summer@EPFL</a> program at the SaCS Lab under Prof. Anne-Marie Kermarrec!' },
+        { date: "Sep 2026", text: 'Starting MSc in Computing (Software Engineering) at <a href="https://www.imperial.ac.uk/">Imperial College London</a>!' }
     ],
 
     // ---- Code-themed tab data ----
@@ -279,6 +314,7 @@ const DATA = {
             "brown-lab": {
                 title: "Brown Lab Website",
                 dates: "Jan 2025 - Present",
+                image: "assets/logos/mcgill_banner.png",
                 status: "M",
                 statusLabel: "In Development",
                 description: "Building and maintaining the official website for the Brown Lab at McGill University. Responsive design with dynamic content management for lab publications, team members, and research updates.",
@@ -292,6 +328,7 @@ const DATA = {
             "soc-schedule": {
                 title: "SOC-cessful Schedule Booking Tool",
                 dates: "Nov 2024 - Jan 2025",
+                image: "assets/logos/soc-schedule.png",
                 status: "",
                 statusLabel: "Completed",
                 description: "Full-stack web application creating a booking tool for school staff and students. The frontend uses HTML, CSS and Javascript, and the backend is developed with PHP and a SQLite3 database hosted on the McGill SOCS servers.",
@@ -306,6 +343,7 @@ const DATA = {
             "bcv": {
                 title: "BCV — Best CV Generator",
                 dates: "2025 (Hackathon)",
+                image: "assets/logos/bcv.jpeg",
                 status: "",
                 statusLabel: "Completed",
                 description: "Hackathon project (McWICS 2025). Users enter their experience, skills, and a job description — Gemini API generates a tailored single-page CV ranked by relevance. Includes a SERP API job board carousel.",
@@ -320,6 +358,7 @@ const DATA = {
             "ai-agent": {
                 title: "Artificial Intelligence Agent",
                 dates: "Oct 2023 - Dec 2023",
+                image: "assets/logos/424_agent.webp",
                 status: "",
                 statusLabel: "Completed",
                 description: "Developed an agent that plays and wins against random, human, and other agents in Colosseum Survival. Uses Monte Carlo Tree Search, A* Search, and heuristics to make efficient decisions. Placed in the top 20% of the class tournament.",
@@ -333,6 +372,7 @@ const DATA = {
             "paxos": {
                 title: "Paxos Total Order Game",
                 dates: "Nov 2024 - Dec 2024",
+                image: "assets/logos/paxos.webp",
                 status: "",
                 statusLabel: "Completed",
                 description: "Implemented the Paxos Consensus Algorithm to achieve total order in a Java-based multiplayer distributed systems game. Handles node failures and network partitions gracefully.",
@@ -343,6 +383,7 @@ const DATA = {
             "travel-agency": {
                 title: "Travel Agency Management System",
                 dates: "Jan 2024 - May 2024",
+                image: "assets/logos/travel-agency.png",
                 status: "",
                 statusLabel: "Completed",
                 description: "Designed an application for a travelling agency where users can book flights, hotels, or rent cars. Created relational schemas, E/R diagrams, SQL queries and used JDBC to provide a database and functions to navigate and use it.",
@@ -355,6 +396,7 @@ const DATA = {
             "compiler": {
                 title: "Compiler for Mini-C",
                 dates: "Jan 2025 - May 2025",
+                image: "assets/logos/compiler.png",
                 status: "",
                 statusLabel: "Completed",
                 description: "Built a full compiler from scratch for Mini-C (a subset of C) including lexer, parser, semantic analysis, MIPS code generation, and object-oriented features. Automated with Bash scripts.",
@@ -367,6 +409,7 @@ const DATA = {
             "os-sim": {
                 title: "Operating Systems Simulation",
                 dates: "Jan 2024 - Mar 2024",
+                image: "assets/logos/os-sim.png",
                 status: "",
                 statusLabel: "Completed",
                 description: "Created an operating system simulation including a custom shell, memory management (paging, segmentation), and filesystem management. Containerized with Docker for reproducible testing.",
@@ -379,6 +422,7 @@ const DATA = {
             "mealmates": {
                 title: "MealMates — Food Matching App",
                 dates: "2024 (Hackathon)",
+                image: "assets/logos/mealmates.png",
                 status: "",
                 statusLabel: "Completed",
                 description: "Hackathon project (CodeJam 14). Users swipe through food images from nearby restaurants and curate a list of interested spots. Match with friends on similar restaurants to try out together. Tinder-style UX for food.",
@@ -393,6 +437,7 @@ const DATA = {
             "calendar": {
                 title: "Calendar / Reminder App",
                 dates: "July 2024 - Present",
+                image: "assets/logos/calendar.png",
                 status: "M",
                 statusLabel: "In Development",
                 description: "Personal iOS Calendar and ToDo list application. Exploring differences between iOS and macOS APIs, database syncing between devices, and native SwiftUI design patterns.",
@@ -405,6 +450,7 @@ const DATA = {
             "energy-ml": {
                 title: "Energy Efficiency in ML Algorithms",
                 dates: "June 2025 - Dec 2025",
+                image: "assets/logos/energy-ml.png",
                 status: "A",
                 statusLabel: "Recently Completed",
                 description: "Instrumented Switch-Transformers and Qwen Mixture-of-Experts models using CodeCarbon on DeepSpeed. Profiled GPU energy consumption and identified optimization strategies that reduced energy usage by ~66% without loss in accuracy. Prepared a Responsible AI course project with starter code.",
@@ -417,6 +463,7 @@ const DATA = {
             "tiktok": {
                 title: "TikTok Algorithm Analysis",
                 dates: "Sept 2024 - Dec 2024",
+                image: "assets/logos/mcgill_banner.png",
                 status: "",
                 statusLabel: "Completed",
                 description: "Designed Python-based bots to collect 400+ TikTok videos while bypassing scraping restrictions. Conducted statistical analysis using Pandas and Scikit-learn to quantify algorithmic bias in engagement rates by user gender and content sentiment.",
@@ -429,6 +476,7 @@ const DATA = {
             "depression": {
                 title: "Depression & Eating Disorders",
                 dates: "Jan 2022 - April 2022",
+                image: "assets/logos/marianopolis_banner.png",
                 status: "",
                 statusLabel: "Completed",
                 description: "Researched the correlation between eating disorders and depression, determining whether there is a link in terms of impact and risks. Analyzed if antidepressants can be beneficial to eating disorders such as anorexia nervosa and bulimia nervosa.",
@@ -666,18 +714,27 @@ const FR = {
         project: "Projet",
         relevantCourses: "Cours pertinents",
         awards: "Prix",
-        status: "Ouverte aux opportunités"
+        status: "Ouverte aux opportunités — Été 2026 et au-delà"
     },
 
     aboutMe: {
-        text: `Bonjour! Je suis Greta et je suis étudiante en maîtrise (MSc) à
-            <a href="https://www.imperial.ac.uk/">Imperial College London</a>, en <b>informatique (génie logiciel)</b> (graduant en septembre 2027).
-            <br>
-            Je suis passionnée par le développement logiciel et l'apprentissage automatique, et je cherche toujours des
-            opportunités pour apprendre et évoluer dans le domaine. Précédemment, j'ai complété un baccalauréat en informatique (intelligence artificielle) à <a href="https://www.mcgill.ca/">l'Université McGill</a> (2022-2026) et un DEC en sciences de la santé au <a href="https://www.marianopolis.edu/">Collège Marianopolis</a> (2020-2022).
-            J'ai acquis de l'expérience dans divers rôles de stage, notamment en tant que développeuse en intelligence artificielle chez <a href="https://www.ericsson.com/en/about-us/company-facts/ericsson-worldwide/canada">Ericsson Canada</a>, et j'ai également travaillé sur plusieurs projets de recherche liés à l'efficacité énergétique des algorithmes d'apprentissage automatique dans le <a href="https://sites.google.com/view/discslab">McGill DISC Lab</a>.
-            <br>
-            Actuellement, je participe au programme Summer@EPFL dans le <a href="https://www.epfl.ch/labs/sacs/">laboratoire SaCS</a> sous la direction de professeure Anne-Marie Kermarrec.`
+        text: `Je suis étudiante en maîtrise (MSc) en <b>informatique (génie logiciel)</b> à
+            <a href="https://www.imperial.ac.uk/">Imperial College London</a> (graduant en septembre 2027).
+            Mon travail couvre le <b>génie logiciel</b>, l'<b>apprentissage automatique</b> et l'<b>IA écoénergétique</b>.
+            <br><br>
+            Précédemment, j'ai fait de la recherche au <a href="https://sites.google.com/view/discslab">McGill DISC Lab</a>
+            avec les professeures Oana Balmau et Bettina Kemme, où j'ai réduit la consommation énergétique GPU de ~66% sur
+            des modèles Mixture-of-Experts sans perte de précision. J'ai aussi complété deux stages chez
+            <a href="https://www.ericsson.com/en/about-us/company-facts/ericsson-worldwide/canada">Ericsson Canada</a>,
+            construisant des pipelines RAG, des flux agentiques et des outils de prédiction IA.
+            <br><br>
+            Je détiens un B.Sc. en <a href="https://www.cs.mcgill.ca/">informatique (intelligence artificielle)</a>
+            de l'<b>Université McGill</b> (GPA 3.85/4.0, boursière Alma Mater). Durant l'été 2026, je participe au
+            programme <a href="https://www.epfl.ch/labs/sacs/">Summer@EPFL</a> dans le laboratoire SaCS
+            sous la direction de la professeure Anne-Marie Kermarrec.
+            <br><br>
+            Que vous soyez étudiant(e), recruteur(se) ou collaborateur(trice) curieux(se) du génie logiciel ou de l'IA responsable,
+            n'hésitez pas à me contacter via les liens ci-dessous.`
     },
 
     workExperience: [
@@ -743,6 +800,14 @@ const FR = {
             dates: "Août 2020 - juin 2022",
             awards: "Liste du doyen automne 2020 et hiver 2021"
         }
+    ],
+
+    news: [
+        { date: "Déc 2025", text: 'Recherche complétée au <a href="https://sites.google.com/view/discslab">DISC Lab</a> — réduction de ~66% de la consommation énergétique des modèles MoE.' },
+        { date: "Jan 2026", text: 'Début du stage en développement IA chez <a href="https://www.ericsson.com/">Ericsson Canada</a> — chatbots RAG et outils de prédiction.' },
+        { date: "Mai 2026", text: 'Diplômée de l\'<a href="https://www.mcgill.ca/">Université McGill</a> avec un B.Sc. en informatique (IA).' },
+        { date: "Juin 2026", text: 'Début du programme <a href="https://www.epfl.ch/labs/sacs/">Summer@EPFL</a> au laboratoire SaCS sous la prof. Anne-Marie Kermarrec !' },
+        { date: "Sep 2026", text: 'Début du MSc en informatique (génie logiciel) à <a href="https://www.imperial.ac.uk/">Imperial College London</a> !' }
     ],
 
     interests: {

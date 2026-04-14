@@ -328,13 +328,55 @@ body {
 }
 
 /* Project detail card */
+.exp-entry {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.exp-logo {
+    width: 55px;
+    height: auto;
+    flex-shrink: 0;
+    margin-top: 4px;
+}
+
+.detail-banner {
+    position: relative;
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    border-radius: 10px 10px 0 0;
+    background: var(--bg-highlight);
+}
+
+.detail-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 20px 40px;
+}
+
+.detail-banner-fade {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    background: linear-gradient(transparent, var(--bg-sidebar));
+}
+
+.project-card-body {
+    padding: 24px;
+}
+
 .project-card {
     background-color: var(--bg-sidebar);
     border: 1px solid var(--bg-highlight);
     border-radius: 10px;
-    padding: 24px;
     max-width: 700px;
     margin: 20px auto;
+    overflow: hidden;
 }
 
 .project-card-header {
@@ -563,6 +605,52 @@ main {
 
 .about-me-text {
     text-align: left;
+}
+
+.about-status {
+    color: var(--syn-function);
+    font-style: italic;
+    margin: 4px 0 10px;
+    font-size: 0.95rem;
+}
+
+.edu-entry {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.edu-logo {
+    width: 70px;
+    height: auto;
+    flex-shrink: 0;
+    margin-top: 4px;
+}
+
+.news-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.news-table tr {
+    border-bottom: 1px solid var(--border);
+}
+
+.news-table td {
+    padding: 8px 10px;
+    vertical-align: top;
+}
+
+.news-date {
+    white-space: nowrap;
+    font-weight: bold;
+    color: var(--syn-function);
+    width: 100px;
+}
+
+.news-table a {
+    color: var(--link-contact);
 }
 
 /* Syntax highlight colours — now using CSS variables */
