@@ -631,6 +631,13 @@ const DATA = {
             { name: "Dragon Boat", description: "I paddled with the McGill DragonBoatZ team and also the UDEM Dragon boat team.", image: "./assets/db.JPG" },
             { name: "Travelling", description: "I enjoy travelling to different countries and discovering local foods/culture!", image: "./assets/plane.jpg" }
         ],
+        // Gallery: just add { name, image } to show more photos as polaroids
+        gallery: [
+            { name: "Dancing", image: "./assets/dance.JPG" },
+            { name: "Volleyball", image: "./assets/volleyball.jpg" },
+            { name: "Dragon Boat", image: "./assets/db.JPG" },
+            { name: "Travelling", image: "./assets/plane.jpg" }
+        ],
         other: ["Piano", "Figure Skating", "Basketball", "Drawing", "Reading"]
     }
 };

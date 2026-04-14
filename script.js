@@ -425,14 +425,17 @@ function renderInterestsJson() {
     json += `\n${pn("}")}`;
     document.getElementById("interestsjson-pre").innerHTML = json;
 
-    // Render images
+    // Render polaroid gallery
+    const rotations = [-4, 3, -2, 5, -3, 4, -5, 2, -1, 3];
+    const photos = d.gallery || d.entries;
     let imgHtml = "";
-    for (const e of d.entries) {
-        imgHtml += `<div style="text-align: center;">
-            <img src="${e.image}" alt="${e.name}" style="height: 150px; border-radius: 5px; display: block; margin: 0 auto;">
-            <p style="color: var(--text-white); font-family: 'Fira Code', monospace; font-size: 0.85rem;">${e.image}</p>
+    photos.forEach((e, i) => {
+        const rot = rotations[i % rotations.length];
+        imgHtml += `<div class="polaroid" style="--rot: ${rot}deg">
+            <img src="${e.image}" alt="${e.name}">
+            <div class="polaroid-caption">${e.name}</div>
         </div>`;
-    }
+    });
     document.getElementById("interests-images").innerHTML = imgHtml;
 }
 
@@ -534,7 +537,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     btn.addEventListener("click", () => {
         win.classList.toggle("show");
-        if (win.classList.contains("show")) input.focus();
+        if (win.classList.contains("show")) {
+            input.focus();
+            setTimeout(() => input.scrollIntoView({ block: "nearest" }), 300);
+        }
     });
     close.addEventListener("click", () => win.classList.remove("show"));
 

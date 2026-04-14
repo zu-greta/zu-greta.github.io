@@ -89,7 +89,7 @@ body {
     background-color: var(--bg-main);
     color: var(--text-primary);
     display: flex;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .container {
@@ -467,15 +467,48 @@ main {
     overflow-x: auto;
 }
 
-/* Interests gallery */
+/* Interests gallery — polaroid style */
 .interests-gallery {
-    background-color: var(--bg-sidebar);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px var(--shadow-color);
-    overflow-x: auto;
     display: flex;
-    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 30px 10px;
+    perspective: 800px;
+}
+
+.polaroid {
+    background: var(--bg-sidebar);
+    border: 1px solid var(--bg-highlight);
+    padding: 10px 10px 6px;
+    border-radius: 3px;
+    box-shadow: 2px 4px 12px var(--shadow-color);
+    transform: rotate(var(--rot));
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: default;
+    max-width: 180px;
+}
+
+.polaroid:hover {
+    transform: rotate(0deg) scale(1.08);
+    box-shadow: 4px 8px 24px var(--shadow-color);
+    z-index: 10;
+}
+
+.polaroid img {
+    width: 160px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 2px;
+    display: block;
+}
+
+.polaroid-caption {
+    text-align: center;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    padding: 6px 0 2px;
 }
 
 /* Floating contact bar */
@@ -521,12 +554,6 @@ main {
 
 .contact-bar a:hover span {
     display: inline;
-}
-
-@media (max-width: 768px) {
-    .contact-bar {
-        display: none;
-    }
 }
 
 /* Terminal */
@@ -635,9 +662,6 @@ main {
     .container {
         flex-direction: column;
     }
-}
-
-@media (max-width: 768px) {
     .tabs {
         flex-direction: column;
         position: absolute;
@@ -654,15 +678,83 @@ main {
         display: block;
         cursor: pointer;
     }
-}
-
-@media (max-width: 768px) {
+    .toolbar-group {
+        flex-direction: row;
+        padding: 8px 16px;
+        gap: 12px;
+        border-bottom: 1px solid var(--border-color);
+    }
     .about-me {
         flex-direction: column;
         text-align: center;
     }
-
     .about-me-text {
         text-align: center;
+    }
+    .about-me-img img {
+        width: 150px;
+    }
+    .content {
+        padding: 15px;
+    }
+    .code-tab {
+        padding: 10px;
+        font-size: 0.8rem;
+    }
+    .code-pre {
+        padding: 10px;
+        font-size: 0.8rem;
+    }
+    .project-card {
+        padding: 16px;
+        margin: 10px auto;
+    }
+    .project-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .project-meta {
+        flex-direction: column;
+        gap: 4px;
+    }
+    .polaroid {
+        max-width: 140px;
+    }
+    .polaroid img {
+        width: 120px;
+        height: 110px;
+    }
+    .interests-gallery {
+        gap: 12px;
+        padding: 15px 5px;
+    }
+    .contact-bar {
+        display: none;
+    }
+    .terminal-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+        bottom: 15px;
+        right: 15px;
+    }
+    .terminal-window {
+        top: 0;
+        bottom: auto;
+        right: 0;
+        left: 0;
+        width: 100%;
+        max-width: none;
+        height: 45vh;
+        border-radius: 0 0 8px 8px;
+    }
+    #contact-me {
+        gap: 12px;
+    }
+    #contact-me a {
+        font-size: 15px;
+    }
+    blockquote {
+        padding-left: 8px;
     }
 }
