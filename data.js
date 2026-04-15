@@ -378,7 +378,7 @@ const DATA = {
                 description: "Implemented the Paxos Consensus Algorithm to achieve total order in a Java-based multiplayer distributed systems game. Handles node failures and network partitions gracefully.",
                 tech: ["Java", "Paxos", "Distributed Systems"],
                 course: "COMP 512 — Distributed Systems",
-                links: []
+                links: [{ label: "📄 Report", url: "assets/reports/paxos_report.pdf" }]
             },
             "travel-agency": {
                 title: "Travel Agency Management System",
