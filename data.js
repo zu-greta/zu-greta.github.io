@@ -1,5 +1,5 @@
 // ============================================================
-// DATA FILE — Edit this file to update your website content.
+// DATA FILE - Edit this file to update your website content.
 // No need to touch index.html or script.js.
 // ============================================================
 
@@ -11,22 +11,24 @@ const DATA = {
             <a href="https://www.imperial.ac.uk/">Imperial College London</a> (graduating September 2027).
             My work spans <b>software engineering</b>, <b>machine learning</b>, and <b>energy-efficient AI</b>.
             <br><br>
-            Previously, I researched at the <a href="https://sites.google.com/view/discslab">McGill DISC Lab</a>
+            Previously, I worked with the <a href="https://www.epfl.ch/labs/sacs/">EPFL SaCS lab</a> with Dr. Biswas,
+            Dr. Devos, and Dr. Garcia Bourrée (under Professor Anne-Marie Kermarrec) on watermarking in output layer 
+            for free-rider detection in federated learning. This was a part of the <a href="https://www.epfl.ch/labs/sacs/">Summer@EPFL</a> program.
+            I have also done research with the <a href="https://sites.google.com/view/discslab">McGill DISC Lab</a>
             with Professors Oana Balmau and Bettina Kemme, where I reduced GPU energy consumption by ~66% on
-            Mixture-of-Experts models without loss in accuracy. I also completed two internships at
+            Mixture-of-Experts models without loss in accuracy. 
+            I completed two internships at
             <a href="https://www.ericsson.com/en/about-us/company-facts/ericsson-worldwide/canada">Ericsson Canada</a>,
             building RAG pipelines, agentic workflows, and AI-powered prediction tools.
             <br><br>
             I hold a B.Sc. in <a href="https://www.cs.mcgill.ca/">Computer Science (Artificial Intelligence)</a>
-            from <b>McGill University</b> (GPA 3.85/4.0, Alma Mater Scholar). During the summer of 2026, I am
-            participating in the <a href="https://www.epfl.ch/labs/sacs/">Summer@EPFL</a> program in the SaCS Lab
-            under Professor Anne-Marie Kermarrec.
+            from <b>McGill University</b> (GPA 3.85/4.0, Alma Mater Scholar). 
             <br><br>
             Whether you are a student, a recruiter, or a collaborator curious about software engineering or responsible AI,
             feel free to connect with me through the links below.`
     },
 
-    status: "Open to opportunities — Summer 2026 & beyond",
+    status: "Open to opportunities - Summer 2027 & beyond",
 
     contact: [
         { icon: "fa-github", label: "GitHub", url: "https://github.com/zu-greta" },
@@ -37,15 +39,15 @@ const DATA = {
 
     experienceSidebar: [
         { folder: "Work", items: [
-            { id: "exp-ericsson-ai", short: "Ericsson — AI Dev", status: "M" },
-            { id: "exp-ericsson-ml", short: "Ericsson — ML Intern", status: "" },
-            { id: "exp-mcgill-notes", short: "McGill — Notetaker", status: "" },
-            { id: "exp-marianopolis", short: "Marianopolis — Corrector", status: "" }
+            { id: "exp-ericsson-ai", short: "Ericsson - AI Dev", status: "M" },
+            { id: "exp-ericsson-ml", short: "Ericsson - ML Intern", status: "" },
+            { id: "exp-mcgill-notes", short: "McGill - Notetaker", status: "" },
+            { id: "exp-marianopolis", short: "Marianopolis - Corrector", status: "" }
         ]},
         { folder: "Research", items: [
-            { id: "exp-epfl", short: "EPFL — SaCS Lab", status: "M" },
-            { id: "exp-disc", short: "McGill — DISC Lab", status: "" },
-            { id: "exp-prometheus", short: "McGill — Prometheus Lab", status: "" }
+            { id: "exp-epfl", short: "EPFL - SaCS Lab", status: "M" },
+            { id: "exp-disc", short: "McGill - DISC Lab", status: "" },
+            { id: "exp-prometheus", short: "McGill - Prometheus Lab", status: "" }
         ]}
     ],
 
@@ -83,15 +85,15 @@ const DATA = {
             tech: ["Physics", "Grading"]
         },
         "exp-epfl": {
-            title: "Research Assistant — Summer@EPFL",
-            company: "EPFL — SaCS Lab", dates: "June 2026 - Aug 2026",
+            title: "Research Assistant - Summer@EPFL",
+            company: "EPFL - SaCS Lab", dates: "June 2026 - Aug 2026",
             image: "assets/logos/epfl.png",
-            status: "M", statusLabel: "Upcoming",
-            description: "Summer@EPFL program in the SaCS Lab under Professor Anne-Marie Kermarrec. Project TBD.",
-            tech: ["TBD"]
+            status: "M", statusLabel: "Completed",
+            description: "Summer@EPFL program in the SaCS Lab under Professor Anne-Marie Kermarrec. Worked on the analysis of output layer watermarking for free-rider detection in federated learning. We prove experimentally and theoretically that output layer watermarking is too fragile and that a free-rider using less than 30% of the effort of an honest client can still escape detection.",
+            tech: ["Watermarking", "Free-Rider", "Federated Learning"]
         },
         "exp-disc": {
-            title: "Research Assistant — DISC Lab",
+            title: "Research Assistant - DISC Lab",
             company: "McGill University", dates: "June 2025 - Dec 2025",
             image: "assets/logos/mcgill_banner.png",
             status: "", statusLabel: "Completed",
@@ -99,7 +101,7 @@ const DATA = {
             tech: ["Python", "CodeCarbon", "DeepSpeed", "PyTorch"]
         },
         "exp-prometheus": {
-            title: "Research Assistant — Prometheus Lab",
+            title: "Research Assistant - Prometheus Lab",
             company: "McGill University", dates: "Sept 2024 - Dec 2024",
             image: "assets/logos/mcgill_banner.png",
             status: "", statusLabel: "Completed",
@@ -146,7 +148,7 @@ const DATA = {
             role: "Research Assistant",
             dates: "June 2026 - August 2026",
             supervisor: "Professor Anne-Marie Kermarrec",
-            project: "TBD"
+            project: "The Inefficiency of Output Layer Watermarking for Free-rider detection in Federated Learning"
         },
         {
             institution: "McGill University - DISC Lab",
@@ -162,7 +164,7 @@ const DATA = {
             role: "Research Assistant",
             dates: "September 2024 - December 2024",
             supervisor: "Professor Joseph Vybihal",
-            project: "TikTok algorithm analysis — designed bots to collect 400+ videos and conducted statistical analysis on algorithmic bias"
+            project: "TikTok algorithm analysis - designed bots to collect 400+ videos and conducted statistical analysis on algorithmic bias"
         }
     ],
 
@@ -204,8 +206,9 @@ const DATA = {
     ],
 
     news: [
-        { date: "Dec 2025", text: 'Completed research at the <a href="https://sites.google.com/view/discslab">DISC Lab</a> — reduced MoE model energy usage by ~66%.' },
-        { date: "Jan 2026", text: 'Began AI Software Developer internship at <a href="https://www.ericsson.com/">Ericsson Canada</a> — building RAG chatbots and prediction tools.' },
+        { date: "Aug 2026", text: 'Completed research at the <a href="https://www.epfl.ch/labs/sacs/">SaCS Lab</a> - Developped a free-rider to prove the fragility of output layer watermarking for free-rider detection in federated learning.' },
+        { date: "Dec 2025", text: 'Completed research at the <a href="https://sites.google.com/view/discslab">DISC Lab</a> - reduced MoE model energy usage by ~66%.' },
+        { date: "Jan 2026", text: 'Began AI Software Developer internship at <a href="https://www.ericsson.com/">Ericsson Canada</a> - building RAG chatbots and prediction tools.' },
         { date: "May 2026", text: 'Graduated from <a href="https://www.mcgill.ca/">McGill University</a> with a B.Sc. in Computer Science (AI).' },
         { date: "Jun 2026", text: 'Starting the <a href="https://www.epfl.ch/labs/sacs/">Summer@EPFL</a> program at the SaCS Lab under Prof. Anne-Marie Kermarrec!' },
         { date: "Sep 2026", text: 'Starting MSc in Computing (Software Engineering) at <a href="https://www.imperial.ac.uk/">Imperial College London</a>!' }
@@ -213,7 +216,7 @@ const DATA = {
 
     // ---- Code-themed tab data ----
 
-    // Experience.py tab — work entries shown as Python add_position calls
+    // Experience.py tab - work entries shown as Python add_position calls
     experiencePy: {
         work: [
             {
@@ -259,7 +262,10 @@ const DATA = {
                 lab: "EPFL SaCS Lab",
                 professors: "Anne-Marie Kermarrec",
                 dates: "June 2026 - Aug 2026",
-                details: ["TBD"]
+                details: [
+                    "Summer@EPFL program in the SaCS Lab under Professor Anne-Marie Kermarrec.", 
+                    "Worked on the analysis of output layer watermarking for free-rider detection in federated learning.",
+                    "We prove experimentally and theoretically that output layer watermarking is too fragile and that a free-rider using less than 30% of the effort of an honest client can still escape detection."]
             },
             {
                 comment: "McGill DISC Lab",
@@ -290,6 +296,7 @@ const DATA = {
         // Git-style status: "M" = modified (in progress/green), "A" = added (recently done/orange), "" = committed (done/normal)
         sidebar: [
             { folder: "Research Projects", items: [
+                { id: "watermark-fl", short: "Watermarking for Free-rider detection in Federated Learning", status: "M" },
                 { id: "energy-ml", short: "Energy Efficiency in ML", status: "A" },
                 { id: "tiktok", short: "TikTok Analysis", status: "" },
                 { id: "depression", short: "Depression & Eating Disorders", status: "" }
@@ -309,7 +316,7 @@ const DATA = {
                 { id: "calendar", short: "Calendar/Reminder", status: "M" }
             ]}
         ],
-        // Detailed project info — shown when clicking a sidebar item
+        // Detailed project info - shown when clicking a sidebar item
         details: {
             "brown-lab": {
                 title: "Brown Lab Website",
@@ -333,7 +340,7 @@ const DATA = {
                 statusLabel: "Completed",
                 description: "Full-stack web application creating a booking tool for school staff and students. The frontend uses HTML, CSS and Javascript, and the backend is developed with PHP and a SQLite3 database hosted on the McGill SOCS servers.",
                 tech: ["HTML/CSS", "Javascript", "PHP", "XAMPP", "SQLite3", "SQL"],
-                course: "COMP 307 — Web Development",
+                course: "COMP 307 - Web Development",
                 links: [
                     { label: "🌐 Website", url: "https://www.cs.mcgill.ca/~gzu/socs_sisters/landing" },
                     { label: "💻 Code", url: "https://github.com/zu-greta/socs_sisters" },
@@ -341,12 +348,12 @@ const DATA = {
                 ]
             },
             "bcv": {
-                title: "BCV — Best CV Generator",
+                title: "BCV - Best CV Generator",
                 dates: "2025 (Hackathon)",
                 image: "assets/logos/bcv.jpeg",
                 status: "",
                 statusLabel: "Completed",
-                description: "Hackathon project (McWICS 2025). Users enter their experience, skills, and a job description — Gemini API generates a tailored single-page CV ranked by relevance. Includes a SERP API job board carousel.",
+                description: "Hackathon project (McWICS 2025). Users enter their experience, skills, and a job description - Gemini API generates a tailored single-page CV ranked by relevance. Includes a SERP API job board carousel.",
                 tech: ["React", "Tailwind CSS", "Next.js", "Drizzle", "PostgreSQL", "Gemini API", "SERP API"],
                 course: "McWICS 2025 Hackathon",
                 links: [
@@ -363,7 +370,7 @@ const DATA = {
                 statusLabel: "Completed",
                 description: "Developed an agent that plays and wins against random, human, and other agents in Colosseum Survival. Uses Monte Carlo Tree Search, A* Search, and heuristics to make efficient decisions. Placed in the top 20% of the class tournament.",
                 tech: ["Python"],
-                course: "COMP 424 — Artificial Intelligence",
+                course: "COMP 424 - Artificial Intelligence",
                 links: [
                     { label: "💻 Code", url: "https://github.com/zu-greta/424project" },
                     { label: "📄 Report", url: "assets/reports/424Report.pdf" }
@@ -377,7 +384,7 @@ const DATA = {
                 statusLabel: "Completed",
                 description: "Implemented the Paxos Consensus Algorithm to achieve total order in a Java-based multiplayer distributed systems game. Handles node failures and network partitions gracefully.",
                 tech: ["Java", "Paxos", "Distributed Systems"],
-                course: "COMP 512 — Distributed Systems",
+                course: "COMP 512 - Distributed Systems",
                 links: [{ label: "📄 Report", url: "assets/reports/paxos_report.pdf" }]
             },
             "travel-agency": {
@@ -388,7 +395,7 @@ const DATA = {
                 statusLabel: "Completed",
                 description: "Designed an application for a travelling agency where users can book flights, hotels, or rent cars. Created relational schemas, E/R diagrams, SQL queries and used JDBC to provide a database and functions to navigate and use it.",
                 tech: ["Java", "JDBC", "SQL", "DB2", "E/R diagrams"],
-                course: "COMP 421 — Database Systems",
+                course: "COMP 421 - Database Systems",
                 links: [
                     { label: "💻 Code", url: "https://github.com/zu-greta/comp421" }
                 ]
@@ -401,7 +408,7 @@ const DATA = {
                 statusLabel: "Completed",
                 description: "Built a full compiler from scratch for Mini-C (a subset of C) including lexer, parser, semantic analysis, MIPS code generation, and object-oriented features. Automated with Bash scripts.",
                 tech: ["Java", "C", "MIPS", "Bash"],
-                course: "COMP 520 — Compiler Design",
+                course: "COMP 520 - Compiler Design",
                 links: [
                     { label: "💻 Code", url: "https://github.com/zu-greta/comp520_2024" }
                 ]
@@ -414,13 +421,13 @@ const DATA = {
                 statusLabel: "Completed",
                 description: "Created an operating system simulation including a custom shell, memory management (paging, segmentation), and filesystem management. Containerized with Docker for reproducible testing.",
                 tech: ["C", "Bash", "Docker"],
-                course: "COMP 310 — Operating Systems",
+                course: "COMP 310 - Operating Systems",
                 links: [
                     { label: "💻 Code", url: "https://github.com/zu-greta/comp310" }
                 ]
             },
             "mealmates": {
-                title: "MealMates — Food Matching App",
+                title: "MealMates - Food Matching App",
                 dates: "2024 (Hackathon)",
                 image: "assets/logos/mealmates.png",
                 status: "",
@@ -447,6 +454,19 @@ const DATA = {
                     { label: "💻 Code", url: "https://github.com/zu-greta/calendar" }
                 ]
             },
+            "watermark-fl": {
+                title: "Inefficiency of Output Layer Watermarking for Free-rider Detection in Federated Learning",
+                dates: "June 2026 - Aug 2026",
+                image: "assets/logos/epfl.png",
+                status: "M",
+                statusLabel: "In Development",
+                description: "Summer@EPFL program in the SaCS Lab under Professor Anne-Marie Kermarrec. Worked on the analysis of output layer watermarking for free-rider detection in federated learning. We prove experimentally and theoretically that output layer watermarking is too fragile and that a free-rider using less than 30% of the effort of an honest client can still escape detection.",
+                tech: ["Python", "Watermarking", "Federated Learning", "Free-Rider", "PyTorch"],
+                course: "EPFL SaCS Lab - Prof. Anne-Marie Kermarrec",
+                links: [
+                    { label: "📄 Report", url: "assets/reports/TODO" }
+                ]
+            },
             "energy-ml": {
                 title: "Energy Efficiency in ML Algorithms",
                 dates: "June 2025 - Dec 2025",
@@ -455,7 +475,7 @@ const DATA = {
                 statusLabel: "Recently Completed",
                 description: "Instrumented Switch-Transformers and Qwen Mixture-of-Experts models using CodeCarbon on DeepSpeed. Profiled GPU energy consumption and identified optimization strategies that reduced energy usage by ~66% without loss in accuracy. Prepared a Responsible AI course project with starter code.",
                 tech: ["Python", "CodeCarbon", "DeepSpeed", "PyTorch"],
-                course: "McGill DISC Lab — Prof. Balmau & Prof. Kemme",
+                course: "McGill DISC Lab - Prof. Balmau & Prof. Kemme",
                 links: [
                     { label: "📄 Report", url: "assets/reports/energy_eff_report.pdf" }
                 ]
@@ -468,7 +488,7 @@ const DATA = {
                 statusLabel: "Completed",
                 description: "Designed Python-based bots to collect 400+ TikTok videos while bypassing scraping restrictions. Conducted statistical analysis using Pandas and Scikit-learn to quantify algorithmic bias in engagement rates by user gender and content sentiment.",
                 tech: ["Python", "Pandas", "Scikit-learn", "Web Scraping"],
-                course: "Prometheus Lab — Prof. Vybihal",
+                course: "Prometheus Lab - Prof. Vybihal",
                 links: [
                     { label: "📄 Report", url: "assets/reports/Tik_Tok_Research_Project.pdf" }
                 ]
@@ -481,7 +501,7 @@ const DATA = {
                 statusLabel: "Completed",
                 description: "Researched the correlation between eating disorders and depression, determining whether there is a link in terms of impact and risks. Analyzed if antidepressants can be beneficial to eating disorders such as anorexia nervosa and bulimia nervosa.",
                 tech: ["Research", "Statistical Analysis"],
-                course: "Marianopolis College — Health Science",
+                course: "Marianopolis College - Health Science",
                 links: [
                     { label: "📄 Report", url: "assets/reports/eating_disorders_depression.pdf" },
                     { label: "📊 Presentation", url: "assets/eating_disorders_depression_poster_prsentation.pdf" }
@@ -599,6 +619,13 @@ const DATA = {
         ],
         research: [
             {
+                name: "Watermarking_Project",
+                comment: "Inefficiency of Output Layer Watermarking for Free-rider Detection in Federated Learning",
+                title: "Inefficiency of Output Layer Watermarking for Free-rider Detection in Federated Learning",
+                description: "Summer@EPFL program in the SaCS Lab under Professor Anne-Marie Kermarrec. Worked on the analysis of output layer watermarking for free-rider detection in federated learning. We prove experimentally and theoretically that output layer watermarking is too fragile and that a free-rider using less than 30% of the effort of an honest client can still escape detection.",
+                reportLink: { url: "assets/reports/TODO.pdf", label: "assets/reports/TODO.pdf" }
+            },
+            {
                 name: "Energy_Efficiency_Project",
                 comment: "Energy Efficiency in ML Algorithms",
                 title: "Energy Efficiency in ML Algorithms",
@@ -697,7 +724,7 @@ const DATA = {
 };
 
 // ============================================================
-// FRENCH TRANSLATIONS — Only override text that needs translating.
+// FRENCH TRANSLATIONS - Only override text that needs translating.
 // Code-themed tabs stay in English (they're "code").
 // ============================================================
 
@@ -714,7 +741,7 @@ const FR = {
         project: "Projet",
         relevantCourses: "Cours pertinents",
         awards: "Prix",
-        status: "Ouverte aux opportunités — Été 2026 et au-delà"
+        status: "Ouverte aux opportunités - Été 2027 et au-delà"
     },
 
     aboutMe: {
@@ -722,16 +749,18 @@ const FR = {
             <a href="https://www.imperial.ac.uk/">Imperial College London</a> (graduant en septembre 2027).
             Mon travail couvre le <b>génie logiciel</b>, l'<b>apprentissage automatique</b> et l'<b>IA écoénergétique</b>.
             <br><br>
-            Précédemment, j'ai fait de la recherche au <a href="https://sites.google.com/view/discslab">McGill DISC Lab</a>
-            avec les professeures Oana Balmau et Bettina Kemme, où j'ai réduit la consommation énergétique GPU de ~66% sur
-            des modèles Mixture-of-Experts sans perte de précision. J'ai aussi complété deux stages chez
+            Précédemment, j'ai travaillé au <a href="https://www.epfl.ch/labs/sacs/">EPFL SaCS Lab</a> avec les
+            docteurs Biswas, Devos et Garcia Bourrée (sous la direction de la professeure Anne-Marie Kermarrec) sur le
+            filigranage de la couche de sortie pour la détection des resquilleurs dans l'apprentissage fédéré, dans le
+            cadre du programme <a href="https://www.epfl.ch/labs/sacs/">Summer@EPFL</a>. J'ai aussi fait de la recherche
+            au <a href="https://sites.google.com/view/discslab">McGill DISC Lab</a> avec les professeures Oana Balmau
+            et Bettina Kemme, où j'ai réduit la consommation énergétique GPU de ~66% sur des modèles
+            Mixture-of-Experts sans perte de précision. J'ai complété deux stages chez
             <a href="https://www.ericsson.com/en/about-us/company-facts/ericsson-worldwide/canada">Ericsson Canada</a>,
-            construisant des pipelines RAG, des flux agentiques et des outils de prédiction IA.
+            où j'ai construit des pipelines RAG, des flux agentiques et des outils de prédiction alimentés par l'IA.
             <br><br>
             Je détiens un B.Sc. en <a href="https://www.cs.mcgill.ca/">informatique (intelligence artificielle)</a>
-            de l'<b>Université McGill</b> (GPA 3.85/4.0, boursière Alma Mater). Durant l'été 2026, je participe au
-            programme <a href="https://www.epfl.ch/labs/sacs/">Summer@EPFL</a> dans le laboratoire SaCS
-            sous la direction de la professeure Anne-Marie Kermarrec.
+            de l'<b>Université McGill</b> (GPA 3.85/4.0, boursière Alma Mater).
             <br><br>
             Que vous soyez étudiant(e), recruteur(se) ou collaborateur(trice) curieux(se) du génie logiciel ou de l'IA responsable,
             n'hésitez pas à me contacter via les liens ci-dessous.`
@@ -760,7 +789,7 @@ const FR = {
         {
             role: "Assistante de recherche",
             supervisor: "Professeure Anne-Marie Kermarrec",
-            project: "À déterminer"
+            project: "L'inefficacité du filigranage de la couche de sortie pour la détection des resquilleurs dans l'apprentissage fédéré"
         },
         {
             role: "Assistante de recherche",
@@ -770,7 +799,7 @@ const FR = {
         {
             role: "Assistante de recherche",
             supervisor: "Professeur Joseph Vybihal",
-            project: "Analyse de l'algorithme TikTok — conception de bots pour collecter plus de 400 vidéos et analyse statistique des biais algorithmiques"
+            project: "Analyse de l'algorithme TikTok - conception de bots pour collecter plus de 400 vidéos et analyse statistique des biais algorithmiques"
         }
     ],
 
@@ -803,8 +832,9 @@ const FR = {
     ],
 
     news: [
-        { date: "Déc 2025", text: 'Recherche complétée au <a href="https://sites.google.com/view/discslab">DISC Lab</a> — réduction de ~66% de la consommation énergétique des modèles MoE.' },
-        { date: "Jan 2026", text: 'Début du stage en développement IA chez <a href="https://www.ericsson.com/">Ericsson Canada</a> — chatbots RAG et outils de prédiction.' },
+        { date: "Août 2026", text: 'Recherche complétée au <a href="https://www.epfl.ch/labs/sacs/">SaCS Lab</a> - développement d\'un resquilleur pour prouver la fragilité du filigranage de la couche de sortie pour la détection des resquilleurs dans l\'apprentissage fédéré.' },
+        { date: "Déc 2025", text: 'Recherche complétée au <a href="https://sites.google.com/view/discslab">DISC Lab</a> - réduction de ~66% de la consommation énergétique des modèles MoE.' },
+        { date: "Jan 2026", text: 'Début du stage en développement IA chez <a href="https://www.ericsson.com/">Ericsson Canada</a> - chatbots RAG et outils de prédiction.' },
         { date: "Mai 2026", text: 'Diplômée de l\'<a href="https://www.mcgill.ca/">Université McGill</a> avec un B.Sc. en informatique (IA).' },
         { date: "Juin 2026", text: 'Début du programme <a href="https://www.epfl.ch/labs/sacs/">Summer@EPFL</a> au laboratoire SaCS sous la prof. Anne-Marie Kermarrec !' },
         { date: "Sep 2026", text: 'Début du MSc en informatique (génie logiciel) à <a href="https://www.imperial.ac.uk/">Imperial College London</a> !' }
