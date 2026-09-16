@@ -746,6 +746,8 @@ main {
     padding: 15px;
     border-radius: 10px;
     overflow-x: auto;
+    white-space: pre-wrap;   /* wrap long lines instead of forcing horizontal scroll */
+    overflow-wrap: anywhere; /* force-break a single long token (e.g. a URL) if it still doesn't fit */
 }
 
 /* Interests gallery — polaroid style */

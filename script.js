@@ -1,5 +1,6 @@
 // ============================================================
-// RENDERING — Builds all HTML from DATA (defined in data.js)
+// RENDERING — Builds all HTML from EXPERIENCE / PROJECTS / etc.
+// (defined in data.js). See data.js for how to add content.
 // ============================================================
 
 // Helper: wrap text in a syntax-highlight span
@@ -30,18 +31,61 @@ function typeText(elId, text, speed = 60) {
     }, speed);
 }
 
-// ---- Helpers for i18n ----
-function t(key) {
-    if (currentLang === "fr" && FR.headings && FR.headings[key]) return FR.headings[key];
-    const defaults = { aboutMe: "About Me", contactMe: "Contact Me", experience: "Experience",
-        skills: "Skills", education: "Education", work: "Work", supervisor: "Supervisor",
-        project: "Project", relevantCourses: "Relevant courses", awards: "Awards",
-        status: "Open to opportunities" };
-    return defaults[key] || key;
+// ============================================================
+// ---- i18n helpers ----
+// L(val)  = the value in the CURRENT language (Home tab / sidebar
+//           folder names). Falls back to English if French is missing.
+// EN(val) = always the English value (detail cards + code tabs, which
+//           are English-only by design).
+// Both accept either a plain value (shown as-is in both languages)
+// or a { en, fr } object.
+// ============================================================
+function L(val) {
+    if (val && typeof val === "object" && !Array.isArray(val) && ("en" in val || "fr" in val)) {
+        return (currentLang === "fr" && val.fr) ? val.fr : val.en;
+    }
+    return val;
+}
+function EN(val) {
+    if (val && typeof val === "object" && !Array.isArray(val) && "en" in val) return val.en;
+    return val;
 }
 
-// ---- Sidebar ----
-const monthMap = { jan:0, feb:1, mar:2, apr:3, may:4, jun:5, june:5, jul:6, july:6, aug:7, august:7, sep:8, sept:8, september:8, oct:9, nov:10, dec:11, december:11 };
+function t(key) {
+    if (HEADINGS[key]) return L(HEADINGS[key]);
+    return key;
+}
+
+// ---- Automatic French date localization ----
+// Write every `dates` field once, in English (e.g. "June 2026 - Aug 2026").
+// French display is generated from it here — no French dates to maintain.
+const MONTH_FR = {
+    jan: "Janv.", january: "Janvier", feb: "Févr.", february: "Février",
+    mar: "Mars", march: "Mars", apr: "Avr.", april: "Avril",
+    may: "Mai", jun: "Juin", june: "Juin", jul: "Juil.", july: "Juillet",
+    aug: "Août", august: "Août", sep: "Sept.", sept: "Sept.", september: "Septembre",
+    oct: "Oct.", october: "Octobre", nov: "Nov.", november: "Novembre",
+    dec: "Déc.", december: "Décembre"
+};
+const WORD_FR = { present: "Présent", ongoing: "En cours", expected: "prévu", tbd: "à déterminer" };
+
+function translateDateWord(word) {
+    const core = word.toLowerCase().replace(/[^a-z]/g, "");
+    const repl = MONTH_FR[core] || WORD_FR[core];
+    if (!repl || !core) return word;
+    return word.replace(new RegExp(core, "i"), repl);
+}
+function localizeDatePart(part) {
+    return part.trim().split(/\s+/).map(translateDateWord).join(" ");
+}
+function localizeDates(str) {
+    if (currentLang !== "fr" || !str) return str;
+    if (str.includes(" - ")) return str.split(" - ").map(localizeDatePart).join(" - ");
+    return localizeDatePart(str);
+}
+
+// ---- Status (auto-computed from dates — never set by hand) ----
+const monthMap = { jan: 0, feb: 1, mar: 2, apr: 3, may: 4, jun: 5, june: 5, jul: 6, july: 6, aug: 7, august: 7, sep: 8, sept: 8, september: 8, oct: 9, nov: 10, dec: 11, december: 11 };
 function parseEndDate(dates) {
     if (!dates) return null;
     const end = dates.split("-").pop().trim().toLowerCase();
@@ -59,7 +103,6 @@ function autoStatus(dates) {
     const now = new Date();
     const end = parseEndDate(dates);
     if (!end) return "";
-    // Check if start date is in the future → upcoming (A)
     const startStr = dates.split("-")[0].trim().toLowerCase();
     const startParts = startStr.split(/\s+/);
     if (startParts.length >= 2) {
@@ -67,43 +110,110 @@ function autoStatus(dates) {
         const y = parseInt(startParts[1]);
         if (m !== undefined && y) {
             const startDate = new Date(y, m, 1);
-            if (startDate > now) return "A";             // upcoming / not started yet
+            if (startDate > now) return "A";
         }
     }
-    if (end >= now) return "M";                          // in progress
-    return "";                                            // done
-}
-
-function statusColor(status) {
-    if (status === "M") return "var(--syn-function)";  // orange — modified/in-progress
-    if (status === "A") return "var(--syn-string)";    // green — added/recently done
+    if (end >= now) return "M";
     return "";
 }
 
-function renderSidebarList(el, items, detailSource) {
-    const detailsMap = detailSource === "experience" ? DATA.experienceDetails : DATA.projectsC.details;
+function statusColor(status) {
+    if (status === "M") return "var(--syn-function)";
+    if (status === "A") return "var(--syn-string)";
+    return "";
+}
+
+// ============================================================
+// ---- Derived views (built from EXPERIENCE / PROJECTS) ----
+// ============================================================
+
+// Every project — the hand-written PROJECTS catalog, plus any
+// EXPERIENCE entry flagged alsoProject:true (shown in ITS OWN words,
+// never re-typed).
+function allProjects() {
+    const fromExperience = EXPERIENCE.filter(e => e.alsoProject).map(e => ({
+        id: e.id,
+        projectFolder: e.projectFolder,
+        dates: e.dates,
+        short: e.projectShort || e.short,
+        title: EN(e.title),
+        image: e.image,
+        description: EN(e.description),
+        tech: e.tech,
+        course: e.course,
+        links: e.links || [],
+        funcName: e.funcName,
+        codeTitle: e.codeTitle,
+        show: e.show
+    }));
+    return [...fromExperience, ...PROJECTS];
+}
+
+// Group a list into sidebar folders, in order of first appearance —
+// so adding a new `projectFolder` name automatically creates a new
+// accordion folder, and leaving it out keeps the item top-level.
+function groupByFolder(items, folderKeyFn, mapFn) {
+    const order = [];
+    const buckets = new Map();
+    items.forEach(item => {
+        const key = folderKeyFn(item) || null;
+        if (!buckets.has(key)) { buckets.set(key, []); order.push(key); }
+        buckets.get(key).push(mapFn(item));
+    });
+    return order.map(key => key ? { folder: key, items: buckets.get(key) } : { items: buckets.get(key), ungrouped: true });
+}
+
+function experienceSidebarTree() {
+    const items = EXPERIENCE.filter(e => e.show.sidebar);
+    return groupByFolder(items, e => (e.type === "research" ? "Research" : "Work"), e => ({ id: e.id, short: e.short }));
+}
+
+function projectsSidebarTree() {
+    const items = allProjects().filter(p => p.show && p.show.sidebar !== false);
+    return groupByFolder(items, p => p.projectFolder, p => ({ id: p.id, short: p.short || p.title }));
+}
+
+// Look up the detail-card shape for an id. `via` is "experience" or
+// "projects" — for a research item that appears on both sidebars, this
+// picks the right title/short label (its Experience-side role title vs.
+// its Projects-side project title), without storing two copies of the
+// rest of the content.
+function findDetail(id, via) {
+    const exp = EXPERIENCE.find(e => e.id === id);
+    if (exp && (via !== "projects" || !exp.alsoProject)) {
+        return {
+            title: exp.type === "research" ? (exp.roleTitle || EN(exp.title)) : EN(exp.role),
+            image: exp.image,
+            dates: exp.dates,
+            course: exp.course || exp.org,
+            description: EN(exp.description),
+            tech: exp.tech,
+            links: exp.links || []
+        };
+    }
+    const proj = allProjects().find(p => p.id === id);
+    if (proj) return proj;
+    if (exp) {
+        return {
+            title: EN(exp.title || exp.role), image: exp.image, dates: exp.dates,
+            course: exp.course || exp.org, description: EN(exp.description), tech: exp.tech, links: exp.links || []
+        };
+    }
+    return null;
+}
+
+// ---- Sidebar rendering ----
+function renderSidebarList(el, tree, source) {
     let html = "";
-    for (const entry of items) {
-        if (entry.folder) {
-            html += `<div class="projects-folder" onclick="this.classList.toggle('collapsed')">
-                <i class="fa fa-angle-down folder-arrow"></i> ${entry.folder}
-                <ul class="projects-list folder-contents" style="padding: 1.5% 2%;">`;
-            for (const item of entry.items) {
-                const detail = detailsMap[item.id];
-                const status = detail ? autoStatus(detail.dates) : "";
-                const color = statusColor(status);
-                const style = color ? ` style="color:${color}"` : "";
-                const badge = status ? `<span class="git-badge">${status}</span>` : "";
-                html += `<li class="project-item"${style} data-item-id="${item.id}" data-source="${detailSource}">${item.short}${badge}</li>`;
-            }
-            html += `</ul></div>`;
+    for (const group of tree) {
+        if (group.ungrouped) {
+            for (const item of group.items) html += sidebarItemHtml(item, source);
         } else {
-            const detail = detailsMap[entry.id];
-            const status = detail ? autoStatus(detail.dates) : "";
-            const color = statusColor(status);
-            const style = color ? ` style="color:${color}"` : "";
-            const badge = status ? `<span class="git-badge">${status}</span>` : "";
-            html += `<li class="project-item"${style} data-item-id="${entry.id}" data-source="${detailSource}">${entry.short}${badge}</li>`;
+            html += `<div class="projects-folder" onclick="this.classList.toggle('collapsed')">
+                <i class="fa fa-angle-down folder-arrow"></i> ${group.folder}
+                <ul class="projects-list folder-contents" style="padding: 1.5% 2%;">`;
+            for (const item of group.items) html += sidebarItemHtml(item, source);
+            html += `</ul></div>`;
         }
     }
     el.innerHTML = html;
@@ -111,22 +221,30 @@ function renderSidebarList(el, items, detailSource) {
         item.addEventListener("click", function (e) {
             e.stopPropagation();
             const id = this.dataset.itemId;
-            const source = this.dataset.source;
-            const details = source === "experience" ? DATA.experienceDetails : DATA.projectsC.details;
-            openDetailPanel(id, details);
+            const src = this.dataset.source;
+            openDetailPanel(id, src);
             document.querySelectorAll(".project-item").forEach(p => p.classList.remove("active"));
             this.classList.add("active");
         });
     });
 }
 
-function renderSidebar() {
-    renderSidebarList(document.getElementById("sidebar-projects"), DATA.projectsC.sidebar, "projects");
-    renderSidebarList(document.getElementById("sidebar-experience"), DATA.experienceSidebar, "experience");
+function sidebarItemHtml(item, source) {
+    const detail = findDetail(item.id, source);
+    const status = detail ? autoStatus(detail.dates) : "";
+    const color = statusColor(status);
+    const style = color ? ` style="color:${color}"` : "";
+    const badge = status ? `<span class="git-badge">${status}</span>` : "";
+    return `<li class="project-item"${style} data-item-id="${item.id}" data-source="${source}">${item.short}${badge}</li>`;
 }
 
-function openDetailPanel(id, detailsMap) {
-    const p = detailsMap[id];
+function renderSidebar() {
+    renderSidebarList(document.getElementById("sidebar-projects"), projectsSidebarTree(), "projects");
+    renderSidebarList(document.getElementById("sidebar-experience"), experienceSidebarTree(), "experience");
+}
+
+function openDetailPanel(id, source) {
+    const p = findDetail(id, source);
     if (!p) return;
     const tab = document.getElementById("current-project-tab");
     const label = p.title.length > 25 ? p.title.substring(0, 25) + "…" : p.title;
@@ -142,7 +260,7 @@ function openDetailPanel(id, detailsMap) {
     const sColors = { "M": "var(--syn-function)", "A": "var(--syn-string)", "": "var(--text-muted)" };
     const sColor = sColors[status] || "var(--text-muted)";
     const sLabel = statusLabels[status] || "Completed";
-    const context = p.course || p.company || "";
+    const context = p.course || "";
     const detail = document.getElementById("project-detail");
     detail.style.display = "block";
     const imgHtml = p.image ? `<div class="detail-banner"><img src="${p.image}" alt="${p.title}"><div class="detail-banner-fade"></div></div>` : "";
@@ -160,7 +278,7 @@ function openDetailPanel(id, detailsMap) {
                 </div>
                 <p class="project-desc">${p.description}</p>
                 <div class="project-tech">
-                    ${p.tech.map(t => `<span class="tech-tag">${t}</span>`).join("")}
+                    ${(p.tech || []).map(tg => `<span class="tech-tag">${tg}</span>`).join("")}
                 </div>
                 ${p.links && p.links.length ? `<div class="project-links">
                     ${p.links.map(l => `<a href="${l.url}" target="_blank">${l.label}</a>`).join("")}
@@ -202,49 +320,46 @@ function initSidebarAccordion() {
         });
     });
 }
+
 // ---- Home tab sections ----
 function renderAboutMe() {
-    const d = DATA.aboutMe;
-    const text = (currentLang === "fr" && FR.aboutMe) ? FR.aboutMe.text : d.text;
-    const status = DATA.status ? `<p class="about-status">${(currentLang === "fr" && FR.headings && FR.headings.status) ? FR.headings.status : DATA.status}</p>` : "";
+    const text = L(ABOUT_ME.text);
+    const status = STATUS ? `<p class="about-status">${L(STATUS)}</p>` : "";
     document.getElementById("about-me").innerHTML = `
-        <div class="about-me-img"><img src="${d.image}" alt="Greta's Profile Picture"></div>
+        <div class="about-me-img"><img src="${ABOUT_ME.image}" alt="Greta's Profile Picture"></div>
         <div class="about-me-text"><h2>${t("aboutMe")}</h2>${status}<p>${text}</p></div>`;
 }
 
 function renderContact() {
     const el = document.getElementById("contact-me");
     el.innerHTML = `<h2>${t("contactMe")}</h2>` +
-        DATA.contact.map(c => `<a href="${c.url}" target="_blank" class="${c.label === 'CV' ? 'cv-highlight' : ''}"><i class="fa ${c.icon}"></i> ${c.label}</a>`).join("\n");
+        CONTACT.map(c => `<a href="${c.url}" target="_blank" class="${c.label === 'CV' ? 'cv-highlight' : ''}"><i class="fa ${c.icon}"></i> ${c.label}</a>`).join("\n");
 
-    // Floating contact bar
-    document.getElementById("contact-bar").innerHTML = DATA.contact.map(c =>
+    document.getElementById("contact-bar").innerHTML = CONTACT.map(c =>
         `<a href="${c.url}" target="_blank" class="${c.label === 'CV' ? 'cv-highlight' : ''}"><i class="fa ${c.icon}"></i><span>${c.label}</span></a>`
     ).join("");
 }
 
 function renderHomeExperience() {
     let html = `<h2 style="text-align: center;">${t("experience")}</h2><br>`;
-    DATA.workExperience.forEach((e, i) => {
-        const fr = (currentLang === "fr" && FR.workExperience) ? FR.workExperience[i] : {};
-        const logo = e.logo ? `<img src="${e.logo}" alt="${e.company}" class="exp-logo">` : "";
+    EXPERIENCE.filter(e => e.type === "work" && e.show.home).forEach(e => {
+        const logo = e.logo ? `<img src="${e.logo}" alt="${e.org}" class="exp-logo">` : "";
         html += `<blockquote class="exp-entry">${logo}<div>
-            <b style="font-size:1.2rem;">${e.company}</b>
+            <b style="font-size:1.2rem;">${e.org}</b>
             <ul style="list-style-type:none;padding-left:0;margin:0;">
-                <li><b style="font-size:1rem;">${fr.role || e.role}</b> (${e.dates})</li>
-                <li><b style="font-size:1rem;">${t("work")}: </b> ${escHtml(fr.work || e.work)}</li>
+                <li><b style="font-size:1rem;">${L(e.role)}</b> (${localizeDates(e.dates)})</li>
+                <li><b style="font-size:1rem;">${t("work")}: </b> ${escHtml(L(e.description))}</li>
             </ul></div></blockquote><br>`;
     });
     html += "<hr><br>";
-    DATA.researchExperience.forEach((r, i) => {
-        const fr = (currentLang === "fr" && FR.researchExperience) ? FR.researchExperience[i] : {};
-        const logo = r.logo ? `<img src="${r.logo}" alt="${r.institution}" class="exp-logo">` : "";
+    EXPERIENCE.filter(e => e.type === "research" && e.show.home).forEach(e => {
+        const logo = e.logo ? `<img src="${e.logo}" alt="${e.institutionFull || e.org}" class="exp-logo">` : "";
         html += `<blockquote class="exp-entry">${logo}<div>
-            <b style="font-size:1.2rem;">${r.institution}</b>
+            <b style="font-size:1.2rem;">${e.institutionFull || e.org}</b>
             <ul style="list-style-type:none;padding-left:0;margin:0;">
-                <li><b style="font-size:1rem;">${fr.role || r.role}</b> (${r.dates})</li>
-                <li><b style="font-size:1rem;">${t("supervisor")}: </b> ${fr.supervisor || r.supervisor}</li>
-                <li><b style="font-size:1rem;">${t("project")}: </b> ${fr.project || r.project}</li>
+                <li><b style="font-size:1rem;">${L(e.role)}</b> (${localizeDates(e.dates)})</li>
+                <li><b style="font-size:1rem;">${t("supervisor")}: </b> ${L(e.supervisor)}</li>
+                <li><b style="font-size:1rem;">${t("project")}: </b> ${L(e.title)}</li>
             </ul></div></blockquote><br>`;
     });
     document.getElementById("experience").innerHTML = html;
@@ -252,9 +367,8 @@ function renderHomeExperience() {
 
 function renderHomeSkills() {
     let html = `<h2 style="text-align: center;">${t("skills")}</h2><br><ul style="list-style-type:none;padding-left:0;margin:0;">`;
-    DATA.skills.forEach((s, i) => {
-        const fr = (currentLang === "fr" && FR.skills) ? FR.skills[i] : {};
-        html += `<li><b>${fr.category || s.category}:</b> ${fr.items || s.items}</li>`;
+    SKILLS.forEach(s => {
+        html += `<li><b>${L(s.category)}:</b> ${L(s.items)}</li>`;
     });
     html += "</ul>";
     document.getElementById("skills").innerHTML = html;
@@ -262,19 +376,17 @@ function renderHomeSkills() {
 
 function renderHomeEducation() {
     let html = `<h2 style="text-align: center;">${t("education")}</h2>`;
-    DATA.education.forEach((e, i) => {
-        const fr = (currentLang === "fr" && FR.education) ? FR.education[i] : {};
+    EDUCATION.forEach((e, i) => {
         if (i > 0) html += "<br><hr><br>";
         const logoHtml = e.logo ? `<img src="${e.logo}" alt="${e.school}" class="edu-logo">` : "";
         html += `<blockquote class="edu-entry">${logoHtml}<div>
             <b style="font-size:1.2rem;">${e.school}</b>
             <ul style="list-style-type:none;padding-left:0;margin:0;">
-                <li><b style="font-size:1rem;">${fr.degree || e.degree}</b> (${fr.dates || e.dates})</li>`;
+                <li><b style="font-size:1rem;">${L(e.degree)}</b> (${localizeDates(e.dates)})</li>`;
         if (e.gpa) html += `<li><b style="font-size:1rem;">cGPA: </b> ${e.gpa}</li>`;
         if (e.rScore) html += `<li><b style="font-size:1rem;">R-Score: </b> ${e.rScore}</li>`;
         if (e.courses) html += `<li><b style="font-size:1rem;">${t("relevantCourses")}: </b>${e.courses}</li>`;
-        const awards = fr.awards || e.awards;
-        if (awards) html += `<li><b style="font-size:1rem;">${t("awards")}: </b> ${awards}</li>`;
+        if (e.awards) html += `<li><b style="font-size:1rem;">${t("awards")}: </b> ${L(e.awards)}</li>`;
         html += `</ul></div></blockquote>`;
     });
     document.getElementById("education").innerHTML = html;
@@ -282,18 +394,18 @@ function renderHomeEducation() {
 
 function renderNews() {
     const el = document.getElementById("news");
-    if (!DATA.news || !DATA.news.length) { el.innerHTML = ""; return; }
-    const heading = currentLang === "fr" ? "Nouvelles" : "News";
-    const items = DATA.news.map((n, i) => {
-        const fr = (currentLang === "fr" && FR.news) ? FR.news[i] : {};
-        return `<tr><td class="news-date">${fr.date || n.date}</td><td>${fr.text || n.text}</td></tr>`;
-    }).join("");
-    el.innerHTML = `<h2 style="text-align:center;">${heading}</h2><table class="news-table">${items}</table>`;
+    if (!NEWS || !NEWS.length) { el.innerHTML = ""; return; }
+    const items = NEWS.map(n => `<tr><td class="news-date">${localizeDates(n.date)}</td><td>${L(n.text)}</td></tr>`).join("");
+    el.innerHTML = `<h2 style="text-align:center;">${t("news")}</h2><table class="news-table">${items}</table>`;
 }
 
-// ---- Code-themed tabs ----
+// ---- Code-themed tabs (always English) ----
+function experienceBullets(e) {
+    if (e.bullets && e.bullets.length) return e.bullets;
+    return EN(e.description).split(/\.\s+/).filter(Boolean).map(s => s.replace(/\.$/, ""));
+}
+
 function renderExperiencePy() {
-    const d = DATA.experiencePy;
     let py = "";
     py += `${cm("### Work Experience ###")}
 
@@ -309,20 +421,20 @@ ${rs("class")} ${mn("Work_Experience")}:
             ${st("details")}: details
         })
 `;
-    for (const w of d.work) {
-        const details = w.details.map(d => `        ${st(escHtml(d))}`).join(",\n");
+    EXPERIENCE.filter(e => e.type === "work" && e.show.code).forEach(e => {
+        const details = experienceBullets(e).map(d => `        ${st(escHtml(d))}`).join(",\n");
         py += `
-${cm("# " + w.comment)}
+${cm("# " + e.short)}
 ${fn("experience.add_position")}(
-    ${st(escHtml(w.company))},
-    ${st(escHtml(w.role))},
-    ${st(w.dates)},
+    ${st(escHtml(e.org))},
+    ${st(escHtml(EN(e.role)))},
+    ${st(e.dates)},
     [
 ${details}
     ]
 )
 `;
-    }
+    });
 
     py += `\n<hr style="border: none; border-top: 1px solid var(--border-color); margin: 0.8rem 0;">\n`;
 
@@ -340,39 +452,49 @@ ${rs("class")} ${mn("Research_Experience")}:
             ${st("details")}: details
         })
 `;
-    for (const r of d.research) {
-        const details = r.details.map(d => `        ${st(escHtml(d))}`).join(",\n");
+    EXPERIENCE.filter(e => e.type === "research" && e.show.code).forEach(e => {
+        const details = experienceBullets(e).map(d => `        ${st(escHtml(d))}`).join(",\n");
         py += `
-${cm("# " + r.comment)}
+${cm("# " + e.short)}
 ${fn("research.add_project")}(
-    ${st(escHtml(r.lab))},
-    ${st(escHtml(r.professors))},
-    ${st(r.dates)},
+    ${st(escHtml(e.org))},
+    ${st(escHtml(EN(e.supervisor)))},
+    ${st(e.dates)},
     [
 ${details}
     ]
 )
 `;
-    }
+    });
 
     document.getElementById("experiencepy-pre").innerHTML = py;
 }
 
+// derive a `char *some_link` variable name from a link label like "💻 Code"
+function linkVarName(label) {
+    const word = label.replace(/[^\p{L}]+/gu, " ").trim().split(/\s+/)[0] || "link";
+    return word.toLowerCase() + "_link";
+}
+
 function renderProjectsC() {
-    const d = DATA.projectsC;
+    const all = allProjects().filter(p => p.show && p.show.code !== false);
+    const regular = all.filter(p => p.projectFolder !== "Research Projects");
+    const research = all.filter(p => p.projectFolder === "Research Projects");
+
     let c = `${cm("// Projects")}
 
 ${rs("#include")} &lt;stdio.h&gt;
 `;
-    for (const p of d.projects) {
+    for (const p of regular) {
+        const funcName = p.funcName || p.id.replace(/[^A-Za-z0-9]+/g, "_");
         c += `
-${cm("// " + p.comment)}
-${rs("void")} ${p.funcName}() {
+${cm("// " + (p.short || p.title))}
+${rs("void")} ${funcName}() {
     ${cm("// " + p.dates)}
     ${cm("/*")} ${p.description} ${cm("*/")}
-    ${fn("char")} *tech = ${st(p.tech)};`;
-        for (const [key, val] of Object.entries(p.links)) {
-            c += `\n    ${fn("char")} *${key} = ${S("colour_string", '"' + link(val.url, val.label) + '"')};`;
+    ${fn("char")} *tech = ${st((p.tech || []).join(", "))};`;
+        for (const l of (p.links || [])) {
+            c += `\n    ${fn("char")} *${linkVarName(l.label)} = ${S("colour_string", '"' + link(l.url, l.label) + '"')};`;
         }
         c += `
 }
@@ -390,13 +512,16 @@ ${rs("struct")} Research_Project {
     ${fn("char")} *report_link;
 };
 `;
-    for (const r of d.research) {
+    for (const p of research) {
+        const structName = p.funcName || p.id.replace(/[^A-Za-z0-9]+/g, "_");
+        const reportLink = (p.links || [])[0];
+        const codeTitle = p.codeTitle || p.title;
         c += `
-${cm("// " + r.comment)}
-${rs("struct")} ${r.name} {
-    ${fn("char")} *title = ${st(r.title)};
-    ${fn("char")} *description = ${st(r.description)};
-    ${cm("// Report → " + link(r.reportLink.url, r.reportLink.label))}
+${cm("// " + codeTitle)}
+${rs("struct")} ${structName} {
+    ${fn("char")} *title = ${st(codeTitle)};
+    ${fn("char")} *description = ${st(p.description)};
+    ${reportLink ? cm("// Report → " + link(reportLink.url, reportLink.label)) : ""}
 };
 `;
     }
@@ -406,7 +531,7 @@ ${rs("struct")} ${r.name} {
 
 function renderEducationJava() {
     let java = "";
-    for (const cls of DATA.educationJava) {
+    for (const cls of EDUCATION_JAVA) {
         java += `${cm("// " + cls.comment)}
 ${mn("public class")} ${fn(cls.className)} {`;
         for (const f of cls.fields) {
@@ -434,7 +559,7 @@ ${mn("public class")} ${fn(cls.className)} {`;
 
 function renderSkillsBash() {
     let bash = `${cm("# Skills")}\n`;
-    for (const group of DATA.skillsBash) {
+    for (const group of SKILLS_BASH) {
         bash += `\n${dt("$")} ${mn(group.varName)}=${pn("(")}`;
         for (const v of group.values) {
             bash += `\n    ${st(v)}`;
@@ -445,12 +570,11 @@ function renderSkillsBash() {
 }
 
 function renderInterestsJson() {
-    const d = DATA.interests;
+    const d = INTERESTS;
     let json = `${cm("// My hobbies and interests")}\n${pn("{")}`;
-    d.entries.forEach((e, i) => {
-        const fr = (currentLang === "fr" && FR.interests && FR.interests.entries) ? FR.interests.entries[i] : {};
+    d.entries.forEach((e) => {
         json += `\n    ${mn('"' + e.name + '"')}${pn(":")} ${pn("{")}
-        ${mn('"description"')}${pn(":")} ${st(fr.description || e.description)}${pn(",")}
+        ${mn('"description"')}${pn(":")} ${st(L(e.description))}${pn(",")}
         ${mn('"image"')}${pn(":")} ${st(e.image)}
     ${pn("}")}${pn(",")}`;
     });
@@ -462,7 +586,6 @@ function renderInterestsJson() {
     json += `\n${pn("}")}`;
     document.getElementById("interestsjson-pre").innerHTML = json;
 
-    // Render polaroid gallery
     const rotations = [-4, 3, -2, 5, -3, 4, -5, 2, -1, 3];
     const photos = d.gallery || d.entries;
     let imgHtml = "";
@@ -479,10 +602,10 @@ function renderInterestsJson() {
 // ---- Profile popup ----
 function renderProfilePopup() {
     const stats = [
-        { value: Object.keys(DATA.projectsC.details).length, label: "Projects" },
-        { value: DATA.skills[0].items.split(",").length, label: "Languages" },
-        { value: DATA.workExperience.length + DATA.researchExperience.length, label: "Positions" },
-        { value: DATA.education.length, label: "Degrees" }
+        { value: allProjects().length, label: "Projects" },
+        { value: String(SKILLS[0].items).split(",").length, label: "Languages" },
+        { value: EXPERIENCE.length, label: "Positions" },
+        { value: EDUCATION.length, label: "Degrees" }
     ];
     document.getElementById("profile-stats").innerHTML = stats.map(s =>
         `<div class="stat-item"><div class="stat-value">${s.value}</div><div class="stat-label">${s.label}</div></div>`
@@ -508,12 +631,10 @@ function initProfilePopup() {
 
 // ---- Init ----
 function renderAll() {
-    // Update greeting with typing animation
-    const greetText = currentLang === "fr" ? FR.greeting : "Hello World, I'm Greta";
+    const greetText = L(GREETING);
     const homeEl = document.getElementById("home");
     homeEl.innerHTML = `<h1 style="text-align: center;" class="colour_main"><span id="typed-greeting"></span><span class="cursor-blink">|</span></h1>`;
     typeText("typed-greeting", greetText);
-    // Update profile status
     const statusEl = document.querySelector(".profile-status");
     if (statusEl) statusEl.textContent = t("status");
 
@@ -531,7 +652,6 @@ function renderAll() {
     renderInterestsJson();
     renderProfilePopup();
 
-    // Footer
     const now = new Date();
     const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
     document.getElementById("footer").innerHTML = `<p style="color:var(--text-muted);font-size:0.8rem;">// last modified: ${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()} | Greta Zu</p>`;
@@ -621,17 +741,17 @@ document.addEventListener("DOMContentLoaded", function () {
 BSc Computer Science (AI) @ McGill → MSc Computing @ Imperial
 Currently: Summer@EPFL in the SaCS Lab 🇨🇭`,
 
-        skills: () => DATA.skills.map(s => `<span style="color:var(--syn-function)">${s.category}:</span> ${s.items}`).join("\n"),
+        skills: () => SKILLS.map(s => `<span style="color:var(--syn-function)">${EN(s.category)}:</span> ${EN(s.items)}`).join("\n"),
 
-        education: () => DATA.education.map(e => `<span style="color:var(--syn-function)">${e.school}</span> — ${e.degree} (${e.dates})`).join("\n"),
+        education: () => EDUCATION.map(e => `<span style="color:var(--syn-function)">${e.school}</span> — ${EN(e.degree)} (${e.dates})`).join("\n"),
 
-        contact: () => DATA.contact.map(c => `<span style="color:var(--syn-function)">${c.label}:</span> ${c.url}`).join("\n"),
+        contact: () => CONTACT.map(c => `<span style="color:var(--syn-function)">${c.label}:</span> ${c.url}`).join("\n"),
 
-        projects: () => DATA.projectsC.projects.map(p => `<span style="color:var(--syn-function)">${p.comment}</span> (${p.dates}) — ${p.tech}`).join("\n"),
+        projects: () => allProjects().filter(p => p.projectFolder !== "Research Projects").map(p => `<span style="color:var(--syn-function)">${p.short || p.title}</span> (${p.dates}) — ${(p.tech || []).join(", ")}`).join("\n"),
 
         interests: () => {
-            const main = DATA.interests.entries.map(e => `🎯 ${e.name} — ${e.description}`).join("\n");
-            const other = DATA.interests.other.join(", ");
+            const main = INTERESTS.entries.map(e => `🎯 ${e.name} — ${EN(e.description)}`).join("\n");
+            const other = INTERESTS.other.join(", ");
             return main + `\n\nAlso: ${other}`;
         },
 
@@ -657,9 +777,8 @@ Currently: Summer@EPFL in the SaCS Lab 🇨🇭`,
 
         "git log": () => {
             const events = [
-                ...DATA.education.map(e => ({ date: e.dates.split("-")[0].trim(), msg: e.degree + " @ " + e.school, type: "edu" })),
-                ...DATA.workExperience.map(e => ({ date: e.dates.split("-")[0].trim(), msg: e.role + " @ " + e.company, type: "work" })),
-                ...DATA.researchExperience.map(e => ({ date: e.dates.split("-")[0].trim(), msg: e.role + " @ " + e.institution, type: "research" }))
+                ...EDUCATION.map(e => ({ date: e.dates.split("-")[0].trim(), msg: EN(e.degree) + " @ " + e.school, type: "edu" })),
+                ...EXPERIENCE.map(e => ({ date: e.dates.split("-")[0].trim(), msg: EN(e.role) + " @ " + e.org, type: e.type === "research" ? "research" : "work" }))
             ];
             const colors = { edu: "var(--syn-dot)", work: "var(--syn-function)", research: "var(--syn-string)" };
             return events.map(e =>
@@ -752,7 +871,6 @@ Currently: Summer@EPFL in the SaCS Lab 🇨🇭`,
     el.appendChild(petEl);
     el.appendChild(zzzEl);
 
-    // Swap pet every 4-6 animation iterations (2-3 full left-right cycles)
     let bounces = 0;
     const swapEvery = 4 + Math.floor(Math.random() * 3);
     petEl.addEventListener("animationiteration", function() {
