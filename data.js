@@ -14,9 +14,11 @@ const DATA = {
             Previously, I worked with the <a href="https://www.epfl.ch/labs/sacs/">EPFL SaCS lab</a> with Dr. Biswas,
             Dr. Devos, and Dr. Garcia Bourrée (under Professor Anne-Marie Kermarrec) on watermarking in output layer 
             for free-rider detection in federated learning. This was a part of the <a href="https://www.epfl.ch/labs/sacs/">Summer@EPFL</a> program.
+            <br><br>
             I have also done research with the <a href="https://sites.google.com/view/discslab">McGill DISC Lab</a>
             with Professors Oana Balmau and Bettina Kemme, where I reduced GPU energy consumption by ~66% on
             Mixture-of-Experts models without loss in accuracy. 
+            <br><br>
             I completed two internships at
             <a href="https://www.ericsson.com/en/about-us/company-facts/ericsson-worldwide/canada">Ericsson Canada</a>,
             building RAG pipelines, agentic workflows, and AI-powered prediction tools.
@@ -265,7 +267,8 @@ const DATA = {
                 details: [
                     "Summer@EPFL program in the SaCS Lab under Professor Anne-Marie Kermarrec.", 
                     "Worked on the analysis of output layer watermarking for free-rider detection in federated learning.",
-                    "We prove experimentally and theoretically that output layer watermarking is too fragile and that a free-rider using less than 30% of the effort of an honest client can still escape detection."]
+                    "We prove experimentally and theoretically that output layer watermarking is too fragile and that a ",
+                    "free-rider using less than 30% of the effort of an honest client can still escape detection."]
             },
             {
                 comment: "McGill DISC Lab",
@@ -622,7 +625,7 @@ const DATA = {
                 name: "Watermarking_Project",
                 comment: "Inefficiency of Output Layer Watermarking for Free-rider Detection in Federated Learning",
                 title: "Inefficiency of Output Layer Watermarking for Free-rider Detection in Federated Learning",
-                description: "Summer@EPFL program in the SaCS Lab under Professor Anne-Marie Kermarrec. Worked on the analysis of output layer watermarking for free-rider detection in federated learning. We prove experimentally and theoretically that output layer watermarking is too fragile and that a free-rider using less than 30% of the effort of an honest client can still escape detection.",
+                description: "Summer@EPFL program in the SaCS Lab under Professor Anne-Marie Kermarrec.\n                    Worked on the analysis of output layer watermarking for free-rider detection in federated learning. \n                    We prove experimentally and theoretically that output layer watermarking\n                    is too fragile and that a free-rider using less than 30% of the effort of an \n                    honest client can still escape detection.",
                 reportLink: { url: "assets/reports/TODO.pdf", label: "assets/reports/TODO.pdf" }
             },
             {
@@ -752,10 +755,12 @@ const FR = {
             Précédemment, j'ai travaillé au <a href="https://www.epfl.ch/labs/sacs/">EPFL SaCS Lab</a> avec les
             docteurs Biswas, Devos et Garcia Bourrée (sous la direction de la professeure Anne-Marie Kermarrec) sur le
             filigranage de la couche de sortie pour la détection des resquilleurs dans l'apprentissage fédéré, dans le
-            cadre du programme <a href="https://www.epfl.ch/labs/sacs/">Summer@EPFL</a>. J'ai aussi fait de la recherche
-            au <a href="https://sites.google.com/view/discslab">McGill DISC Lab</a> avec les professeures Oana Balmau
-            et Bettina Kemme, où j'ai réduit la consommation énergétique GPU de ~66% sur des modèles
-            Mixture-of-Experts sans perte de précision. J'ai complété deux stages chez
+            cadre du programme <a href="https://www.epfl.ch/labs/sacs/">Summer@EPFL</a>. 
+            <br><br>J'ai aussi fait de la recherche au <a href="https://sites.google.com/view/discslab">McGill DISC Lab</a> 
+            avec les professeures Oana Balmau et Bettina Kemme, où j'ai réduit la consommation énergétique GPU de ~66% sur des modèles
+            Mixture-of-Experts sans perte de précision. 
+            <br><br>
+            J'ai complété deux stages chez
             <a href="https://www.ericsson.com/en/about-us/company-facts/ericsson-worldwide/canada">Ericsson Canada</a>,
             où j'ai construit des pipelines RAG, des flux agentiques et des outils de prédiction alimentés par l'IA.
             <br><br>
