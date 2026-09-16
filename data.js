@@ -105,6 +105,11 @@ const CONTACT = [
     { icon: "fa-file", label: "CV", url: "assets/Greta_Zu_CV.pdf" }
 ];
 
+// The repo this site is deployed from — used only to look up the real
+// "last modified" date in the footer from GitHub's API (see renderFooter()
+// in script.js). Change this if the repo is ever renamed or moved.
+const REPO = "zu-greta/zu-greta.github.io";
+
 // ============================================================
 // EXPERIENCE — jobs and research positions. 
 // ============================================================

@@ -651,14 +651,53 @@ function renderAll() {
     renderSkillsBash();
     renderInterestsJson();
     renderProfilePopup();
+}
 
-    const now = new Date();
+// ---- Footer: real "last modified" date, pulled from the last commit pushed to github ----
+const LAST_PUSH_CACHE_KEY = "lastPushDate";
+const LAST_PUSH_CACHE_TTL = 6 * 60 * 60 * 1000; // 6 hours — avoids hitting GitHub's API on every visit
+
+async function fetchLastPushDate() {
+    try {
+        const cached = JSON.parse(localStorage.getItem(LAST_PUSH_CACHE_KEY) || "null");
+        if (cached && cached.date && (Date.now() - cached.fetchedAt) < LAST_PUSH_CACHE_TTL) {
+            return cached.date;
+        }
+    } catch (e) { /* localStorage unavailable or corrupt cache — just refetch */ }
+
+    try {
+        const res = await fetch(`https://api.github.com/repos/${REPO}/commits?per_page=1`);
+        if (!res.ok) throw new Error("GitHub API responded " + res.status);
+        const commits = await res.json();
+        const isoDate = commits[0].commit.committer.date;
+        try {
+            localStorage.setItem(LAST_PUSH_CACHE_KEY, JSON.stringify({ date: isoDate, fetchedAt: Date.now() }));
+        } catch (e) { /* storage full/blocked — fine, we just skip caching */ }
+        return isoDate;
+    } catch (e) {
+        return null;
+    }
+}
+
+async function renderFooter() {
+    const footer = document.getElementById("footer");
     const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-    document.getElementById("footer").innerHTML = `<p style="color:var(--text-muted);font-size:0.8rem;">// last modified: ${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()} | Greta Zu</p>`;
+    const line = text => `<p style="color:var(--text-muted);font-size:0.8rem;">// last modified: ${text} | Greta Zu</p>`;
+    footer.innerHTML = line("…");
+
+    const iso = await fetchLastPushDate();
+    if (iso) {
+        const d = new Date(iso);
+        footer.innerHTML = line(`${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`);
+    } else {
+        // GitHub's API didn't answer (offline / rate-limited) 
+        footer.innerHTML = line("date unavailable");
+    }
 }
 
 document.addEventListener("DOMContentLoaded", function () {
     renderAll();
+    renderFooter(); // once — not language-dependent
     initProfilePopup();
     initSidebarAccordion();
 });

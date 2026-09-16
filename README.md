@@ -189,6 +189,15 @@ You never need to manually break a long `description` (or any other long line) i
 
 Write `description` as one long sentence (or a few) in `data.js` exactly like everything else — the `/* comment */` block, the `"quoted string"` lines, and the auto-generated link lines all reflow to fit the tab's width on their own, at any screen size. There's no fixed character width to tune and nothing to keep in sync if the tab gets narrower or wider (e.g. on mobile) — it's handled once, in CSS, for every code tab at once.
 
+## Footer: "Last Modified" Date
+
+The footer doesn't show today's date — it shows the date of the **last commit actually pushed to GitHub**, fetched live from GitHub's public API (`GET https://api.github.com/repos/{REPO}/commits`), so it stays accurate without you touching anything after a push.
+
+- `REPO` (near the top of `data.js`, next to `CONTACT`) is `"zu-greta/zu-greta.github.io"`. If the repo is ever renamed or moved, update that one line.
+- The result is cached in the visitor's browser (`localStorage`) for 6 hours, so repeat visits don't re-hit GitHub's API — this matters because GitHub allows only 60 unauthenticated requests per hour per visitor IP.
+- If the request ever fails (offline, rate-limited, an ad blocker, GitHub down), the footer says "date unavailable" rather than silently showing today's date as if it were real.
+- This only runs once per page load (`renderFooter()` in `script.js`, called from the `DOMContentLoaded` handler) — it does **not** re-fetch every time you flip the EN/FR toggle, since `renderAll()` (which the toggle re-runs) no longer touches the footer at all.
+
 ## Features
 
 - **3 themes**: dark (default), light, monokai — toggle with 🌙 button or backtick key
