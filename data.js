@@ -127,13 +127,13 @@ const EXPERIENCE = [
             fr: "Stagiaire développeuse en intelligence artificielle"
         },
         description: {
-            en: "Implemented and deployed RAG chatbot using Hopsworks, DeepEval, and EricAI models. Enhancing a dimensioning tool (CANDI) with AI/ML capabilities and automating the building of the prediction model. Designed and deployed a price-predictor tool with regex and LLM process, and trained a LightBGM model for trend prediction.",
-            fr: "Implémentation et déploiement d'un chatbot RAG utilisant Hopsworks, DeepEval et les modèles EricAI. Amélioration d'un outil de dimensionnement (CANDI) avec des capacités IA/ML et automatisation de la construction du modèle de prédiction. Conception et déploiement d'un outil de prédiction de prix avec regex et processus LLM, et entraînement d'un modèle LightBGM pour la prédiction de tendances."
+            en: "Implemented and deployed RAG chatbot using Hopsworks, DeepEval, and EricAI models. Enhancing a dimensioning tool (CANDI) with AI/ML capabilities and automating the building of the prediction model. Designed and deployed a price-predictor tool with regex and LLM process, and trained a LightGBM model for trend prediction.",
+            fr: "Implémentation et déploiement d'un chatbot RAG utilisant Hopsworks, DeepEval et les modèles EricAI. Amélioration d'un outil de dimensionnement (CANDI) avec des capacités IA/ML et automatisation de la construction du modèle de prédiction. Conception et déploiement d'un outil de prédiction de prix avec regex et processus LLM, et entraînement d'un modèle LightGBM pour la prédiction de tendances."
         },
         bullets: [
             "Implemented and deployed RAG chatbot using Hopsworks, DeepEval, and EricAI models",
             "Enhancing dimensioning tool (CANDI) with AI/ML capabilities",
-            "Designed price-predictor tool with regex/LLM and trained LightBGM model"
+            "Designed price-predictor tool with regex/LLM and trained LightGBM model"
         ],
         tech: ["Python", "Hopsworks", "DeepEval", "LightGBM", "RAG"],
         show: { home: true, sidebar: true, code: true }
